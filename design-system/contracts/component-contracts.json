@@ -1,0 +1,1195 @@
+{
+  "version": "1.1.0",
+  "schema": "2026-06-14-token-driven-contracts",
+  "scope": "cross-platform web/ios",
+  "requiredSurfaces": [
+    "app-shell",
+    "card",
+    "badge",
+    "button",
+    "navigation",
+    "screen.feed",
+    "screen.messages",
+    "screen.myPage"
+  ],
+  "globalRules": [
+    "All platform implementations must use canonical tokens for color/spacing/radius/typography/radius/elevation values.",
+    "No inline hardcoded style tokens are allowed in core surface containers without a documented exception in migration evidence.",
+    "Interaction states must be consistent: default / hover / press / focus / disabled / loading / empty / error where applicable.",
+    "Safe-area and platform form-factor differences are allowed only at the container and navigation level."
+  ],
+  "mandatoryPrimitiveContracts": [
+    "app-shell",
+    "card",
+    "badge",
+    "button",
+    "navigation"
+  ],
+  "mandatoryScreenContracts": [
+    "screen.feed",
+    "screen.messages",
+    "screen.myPage"
+  ],
+  "violationRules": [
+    {
+      "id": "raw-color-literal",
+      "severity": "error",
+      "appliesTo": [
+        "web",
+        "ios"
+      ],
+      "description": "Core implementation evidence must not introduce raw hex/rgb/hsl/named semantic platform colors instead of DS color tokens.",
+      "machineDetection": {
+        "webPatterns": [
+          "#[0-9a-fA-F]{3,8}",
+          "rgba?\\(",
+          "hsla?\\("
+        ],
+        "iosPatterns": [
+          "#[0-9a-fA-F]{3,8}",
+          "\\.(foregroundStyle|foregroundColor|background|tint|accentColor)\\(\\s*\\.(primary|secondary|tertiary|black|blue|red|green)"
+        ]
+      }
+    },
+    {
+      "id": "raw-spacing-or-sizing-scalar",
+      "severity": "error",
+      "appliesTo": [
+        "web",
+        "ios"
+      ],
+      "description": "Layout, spacing, radius, dimensions, and opacity in covered contracts must resolve to design tokens or approved token classes.",
+      "machineDetection": {
+        "webPatterns": [
+          "\\b(?:p|px|py|pt|pb|pl|pr|m|mx|my|mt|mb|ml|mr|gap|space-[xy]|rounded|w|h|min-h|max-h|max-w|inset|top|bottom|left|right)-\\[[^\\]]+\\]",
+          "style=\\{\\{[^}]+(?:width|height|minHeight|maxHeight|padding|margin|borderRadius|opacity)"
+        ],
+        "iosPatterns": [
+          "\\.(?:padding|frame)\\([^)]*(?<![A-Za-z])\\d+(?:\\.\\d+)?(?![A-Za-z])",
+          "\\.cornerRadius\\([^)]*\\d[^)]*\\)",
+          "\\.opacity\\((0(?:\\.\\d+)?|1(?:\\.0+)?)\\)"
+        ]
+      }
+    },
+    {
+      "id": "raw-typography",
+      "severity": "error",
+      "appliesTo": [
+        "web",
+        "ios"
+      ],
+      "description": "Typography in covered contracts must use DS text styles, generated font tokens, or approved token-backed web classes.",
+      "machineDetection": {
+        "webPatterns": [
+          "text-\\[[^\\]]+\\]",
+          "font-\\[[^\\]]+\\]"
+        ],
+        "iosPatterns": [
+          "\\.font\\(\\s*\\.(headline|subheadline|caption2?|body|title[0-9]?|callout|footnote)",
+          "\\.font\\(\\s*\\.system\\("
+        ]
+      }
+    },
+    {
+      "id": "missing-token-family-evidence",
+      "severity": "error",
+      "appliesTo": [
+        "web",
+        "ios"
+      ],
+      "description": "Every required token family and explicit requiredTokenUsage entry must be present in implementation evidence for screen contracts.",
+      "machineDetection": {
+        "source": "contract.requiredTokenFamilies and contract.requiredTokenUsage"
+      }
+    },
+    {
+      "id": "missing-contract-evidence",
+      "severity": "error",
+      "appliesTo": [
+        "web",
+        "ios"
+      ],
+      "description": "Mandatory screen contracts must declare readable implementationEvidence files for every supported platform.",
+      "machineDetection": {
+        "source": "contract.implementationEvidence[platform]"
+      }
+    }
+  ],
+  "contractEvidenceRequirements": {
+    "mandatoryScreens": "Each mandatory screen contract must list implementationEvidence.web and implementationEvidence.ios files that are readable from the repository root.",
+    "tokenFamilies": "Evidence files must contain every token family listed in requiredTokenFamilies, using platform-appropriate generated tokens or token-backed class names.",
+    "explicitTokenUsage": "Evidence files must contain every token reference listed in requiredTokenUsage unless the contract declares a documented exception.",
+    "violationReporting": "Verifier output must name the contract, platform, violated rule, and source pattern or missing token reference.",
+    "documentation": "Run npm run generate-contract-docs after contract changes; generated docs must describe required surfaces, violation rules, evidence requirements, and per-contract token expectations."
+  },
+  "components": [
+    {
+      "name": "app-shell",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "empty",
+        "error"
+      ],
+      "requiredTokenUsage": {
+        "surfaceLayers": [
+          "DSColor.background",
+          "DSColor.surface"
+        ],
+        "layout": [
+          "DSLayout.screenPadMobile",
+          "DSLayout.screenPadTablet",
+          "DSLayout.safeBottomNavHeight"
+        ],
+        "radius": [
+          "DSRadius.md"
+        ],
+        "interaction": [
+          "DSOpacity.surfaceSubtle",
+          "DSOpacity.surfaceStrong"
+        ]
+      },
+      "tokens": {
+        "background": [
+          "background",
+          "surface"
+        ],
+        "spacing": [
+          "screenPad.mobile",
+          "screenPad.tablet",
+          "safeBottomNavHeight",
+          "touchTarget"
+        ],
+        "radius": [
+          "md"
+        ],
+        "elevation": [
+          "nav"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSLayout",
+        "DSRadius",
+        "DSOpacity",
+        "DSSpace"
+      ],
+      "rules": [
+        "Single source token consumer for screen backgrounds",
+        "Safe-area aware container on mobile",
+        "No platform-specific visual debt (font/spacing/spacing tokens mapped by platform)",
+        "Respect token-specified spacing and radii"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/RootView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/LoginView.swift"
+        ]
+      }
+    },
+    {
+      "name": "card",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "press",
+        "disabled"
+      ],
+      "variants": [
+        "elevated",
+        "interactive",
+        "ghost"
+      ],
+      "requiredTokenUsage": {
+        "background": [
+          "DSColor.surface",
+          "DSColor.background"
+        ],
+        "border": [
+          "DSColor.border",
+          "DSColor.borderHover"
+        ],
+        "radius": [
+          "DSRadius.lg",
+          "DSRadius.xl"
+        ],
+        "elevation": [
+          "DSCard.elevation",
+          "DSCard.hoverElevation",
+          "DSCard.pressedElevation"
+        ],
+        "spacing": [
+          "DSCard.spacing"
+        ]
+      },
+      "tokens": {
+        "background": [
+          "surface"
+        ],
+        "border": [
+          "border",
+          "borderHover"
+        ],
+        "radius": [
+          "lg",
+          "xl"
+        ],
+        "elevation": [
+          "card",
+          "cardHover"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSRadius",
+        "DSLineWidth",
+        "DSLayout",
+        "DSCard"
+      ],
+      "rules": [
+        "Use border + radius from tokens",
+        "Use elevation/shadow from tokens",
+        "Avoid hard-coded corner radii",
+        "Do not hardcode state-specific colors"
+      ]
+    },
+    {
+      "name": "badge",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "accent",
+        "error"
+      ],
+      "requiredTokenUsage": {
+        "states": [
+          "DSColor.success",
+          "DSColor.warning",
+          "DSColor.error",
+          "DSColor.warm",
+          "DSColor.white"
+        ],
+        "radius": [
+          "DSRadius.full"
+        ],
+        "spacing": [
+          "DSSpace.xs",
+          "DSSpace.sm",
+          "DSSpace.md"
+        ]
+      },
+      "tokens": {
+        "states": [
+          "success",
+          "error",
+          "warning",
+          "warm",
+          "white"
+        ],
+        "radius": [
+          "full"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSSpace",
+        "DSRadius",
+        "DSCard",
+        "DSTextStyle"
+      ],
+      "rules": [
+        "Single color family from semantic tokens",
+        "Readable contrast >= WCAG AA for 16pt+ contexts",
+        "Padding and radius use spacing/radius tokens"
+      ]
+    },
+    {
+      "name": "button",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "press",
+        "focus",
+        "disabled"
+      ],
+      "variants": [
+        "default",
+        "destructive",
+        "outline",
+        "ghost",
+        "link",
+        "secondary"
+      ],
+      "requiredTokenUsage": {
+        "height": [
+          "DSLayout.touchTarget",
+          "DSSpace.md",
+          "DSSpace.lg"
+        ],
+        "shape": [
+          "DSRadius.full",
+          "DSRadius.md",
+          "DSRadius.xl"
+        ],
+        "colors": [
+          "DSColor.primary",
+          "DSColor.background",
+          "DSColor.surface",
+          "DSColor.textPrimary",
+          "DSColor.textSecondary"
+        ],
+        "typography": [
+          "DSTextStyle.body",
+          "DSTextStyle.button"
+        ],
+        "states": [
+          "DSAnimation.quick",
+          "DSAnimation.easingSmooth",
+          "DSOpacity.surfaceSoft",
+          "DSOpacity.surfaceStrong"
+        ]
+      },
+      "tokens": {
+        "height": [
+          "touchTarget"
+        ],
+        "duration": [
+          "motion.duration.quick",
+          "motion.easing.smooth"
+        ],
+        "radius": [
+          "full",
+          "md",
+          "xl"
+        ],
+        "background": [
+          "primary",
+          "background",
+          "surface",
+          "error",
+          "success",
+          "warning"
+        ],
+        "text": [
+          "white",
+          "textPrimary",
+          "textSecondary",
+          "error"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSFont",
+        "DSSpace",
+        "DSSpacing",
+        "DSRadius",
+        "DSLayout",
+        "DSAnimation"
+      ],
+      "rules": [
+        "Minimum tap target 44x44",
+        "Use token durations/easing for press feedback",
+        "Map enabled/disabled visual affordance to tokenized surface/elevation"
+      ]
+    },
+    {
+      "name": "navigation",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "active",
+        "inactive",
+        "badge"
+      ],
+      "variants": [
+        "default",
+        "socialIconTabBar"
+      ],
+      "requiredTokenUsage": {
+        "tabs": [
+          "DSColor.primary",
+          "DSColor.textSecondary",
+          "DSColor.error",
+          "DSColor.warm"
+        ],
+        "badge": [
+          "DSColor.error",
+          "DSColor.warm",
+          "DSSpace.xs",
+          "DSRadius.full"
+        ],
+        "labels": [
+          "DSTextStyle.bodySm",
+          "DSIcon",
+          "DSMenuIcon",
+          "DSLayout.screenPadMobile"
+        ],
+        "socialIconTabBar": [
+          "DSColor.surface",
+          "DSColor.background",
+          "DSColor.textPrimary",
+          "DSColor.textSecondary",
+          "DSColor.border",
+          "DSSizing.safeBottomNavHeight",
+          "DSSizing.touchTarget",
+          "DSIconography.sizeXxl",
+          "DSRadius.full",
+          "DSLineWidth.default",
+          "DSAnimation.quick",
+          "DSOpacity.surfaceSoft"
+        ]
+      },
+      "tokens": {
+        "states": [
+          "primary",
+          "textSecondary",
+          "error",
+          "warm"
+        ],
+        "spacing": [
+          "touchTarget",
+          "safeBottomNavHeight"
+        ],
+        "typography": [
+          "h3",
+          "bodyXs",
+          "caption"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSLayout",
+        "DSIcon",
+        "DSIconography",
+        "DSSizing",
+        "DSRadius",
+        "DSLineWidth",
+        "DSAnimation",
+        "DSOpacity",
+        "DSSpace"
+      ],
+      "rules": [
+        "Badge uses tokenized error/warm colors",
+        "Icon/text labels from typography scale",
+        "Social icon tab bar uses only the approved DSMenuIcon registry from docs/SOCIAL_MENU_ICON_SET.md, except the My Page tab may use the current user's circular profile image with DSMenuIcon.heart as fallback",
+        "App shell menu code must not use raw SF Symbol names directly"
+      ]
+    },
+    {
+      "name": "screen.feed",
+      "contractType": "screen",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "data"
+      ],
+      "requiredBlocks": [
+        "hero",
+        "list"
+      ],
+      "tokens": {
+        "spacing": [
+          "screenPad.mobile",
+          "screenPad.tablet",
+          "cardGap"
+        ],
+        "radius": [
+          "lg",
+          "xl"
+        ],
+        "typography": [
+          "h2",
+          "body",
+          "bodySm",
+          "caption"
+        ],
+        "hero": [
+          "heroFrom",
+          "heroVia",
+          "heroTo"
+        ]
+      },
+      "requiredTokenUsage": {
+        "surfaceLayers": [
+          "DSColor.background",
+          "DSColor.surface"
+        ],
+        "hero": [
+          "DSColor.heroFrom",
+          "DSColor.heroVia",
+          "DSOpacity.titleEmphasis"
+        ],
+        "listSpacing": [
+          "DSSizing.feedHeroHeightMax",
+          "DSSizing.feedHeroHeightMin",
+          "DSSpace.medium",
+          "DSSpace.small",
+          "DSSpace.tiny",
+          "DSCard.spacing",
+          "DSCard.spacingLarge",
+          "DSRadius.lg",
+          "DSRadius.xl",
+          "DSLineWidth.default",
+          "DSLineWidth.emphasis"
+        ],
+        "typography": [
+          "DSTextStyle.heading",
+          "DSTextStyle.title",
+          "DSTextStyle.bodySm",
+          "DSTextStyle.caption",
+          "DSTextStyle.footnote"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSRadius",
+        "DSSpace",
+        "DSCard",
+        "DSOpacity",
+        "DSLayout"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedListView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedInlineDetailBody.swift"
+        ],
+        "web": [
+          "dflh-saf-v2/frontend/src/pages/FeedPage.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/AdCard.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/AdDetailContent.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/AdDetailModal.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/DonationBanner.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/FeedList.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/FeedCard.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/HeartButton.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/HeroSection.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/NetworkWidget.tsx",
+          "dflh-saf-v2/frontend/src/components/feed/NoticeCard.tsx"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemCompat.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemExports.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenContracts.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt"
+        ]
+      },
+      "notes": "Web shows two-column desktop with sidebar widget; iOS may flatten to single column while preserving section order and tokenized spacing/radius/elevation. The donation cumulative-amount widget is no longer part of this screen on iOS/Android: it moved to a dedicated donation screen reachable from the '기부하기' tab (not yet a formal contract). Web may still show it inline via DonationBanner.tsx/NetworkWidget.tsx; that is an accepted platform delta, not a required block."
+    },
+    {
+      "name": "screen.messages",
+      "contractType": "screen",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "data",
+        "sending"
+      ],
+      "requiredBlocks": [
+        "header",
+        "conversationList",
+        "detailThread",
+        "composer"
+      ],
+      "tokens": {
+        "spacing": [
+          "cardGap",
+          "screenPad.mobile"
+        ],
+        "radius": [
+          "lg"
+        ],
+        "typography": [
+          "body",
+          "bodySm",
+          "caption",
+          "mini"
+        ],
+        "states": [
+          "surface",
+          "success",
+          "error",
+          "textSecondary",
+          "white"
+        ]
+      },
+      "requiredTokenUsage": {
+        "conversationCards": [
+          "DSColor.surface",
+          "DSRadius.lg",
+          "DSCard.spacing",
+          "DSOpacity.surfaceSoftStrong"
+        ],
+        "messageBubble": [
+          "DSColor.primary",
+          "DSColor.surface",
+          "DSLayout.messageBubbleMaxWidthRatio",
+          "DSRadius.lg",
+          "DSSizing.messageUnreadBadge",
+          "DSSpace.small",
+          "DSSpace.tiny",
+          "DSCard.spacing",
+          "DSOpacity.surfaceSoft"
+        ],
+        "composer": [
+          "DSSizing.messageComposerHeight",
+          "DSSizing.messageUnreadBadge",
+          "DSCard.spacing",
+          "DSCard.spacingLarge",
+          "DSTextStyle.body",
+          "DSColor.textPrimary",
+          "DSColor.textSecondary",
+          "DSFontWeight.semibold"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSRadius",
+        "DSSpace",
+        "DSCard",
+        "DSLayout",
+        "DSOpacity"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageListView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageConversationDetailView.swift"
+        ],
+        "web": [
+          "dflh-saf-v2/frontend/src/pages/MessagePage.tsx",
+          "dflh-saf-v2/frontend/src/components/message/ChatDateDivider.tsx",
+          "dflh-saf-v2/frontend/src/components/message/ConversationItem.tsx",
+          "dflh-saf-v2/frontend/src/components/message/MessageBubble.tsx",
+          "dflh-saf-v2/frontend/src/components/message/MessageDetailContent.tsx",
+          "dflh-saf-v2/frontend/src/components/message/MessageInbox.tsx",
+          "dflh-saf-v2/frontend/src/components/message/MessageInput.tsx",
+          "dflh-saf-v2/frontend/src/components/message/MessageOutbox.tsx",
+          "dflh-saf-v2/frontend/src/components/message/MessageRowSkeleton.tsx",
+          "dflh-saf-v2/frontend/src/components/message/SendMessageDialog.tsx"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemCompat.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemExports.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenContracts.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt"
+        ]
+      },
+      "notes": "Conversation and thread states (read/unread, mine/other, timestamp grouping) are token-driven."
+    },
+    {
+      "name": "screen.myPage",
+      "contractType": "screen",
+      "mandatory": true,
+      "platforms": [
+        "web",
+        "ios",
+        "android"
+      ],
+      "states": [
+        "loading",
+        "error",
+        "authenticated",
+        "signedOut",
+        "editing"
+      ],
+      "requiredBlocks": [
+        "profileHeader",
+        "accountActions",
+        "supportArea",
+        "signOutAction"
+      ],
+      "tokens": {
+        "spacing": [
+          "screenPad.mobile",
+          "screenPad.tablet"
+        ],
+        "radius": [
+          "xl",
+          "full"
+        ],
+        "typography": [
+          "title",
+          "body",
+          "bodySm"
+        ],
+        "states": [
+          "surface",
+          "background",
+          "textPrimary",
+          "textSecondary",
+          "error",
+          "border"
+        ]
+      },
+      "requiredTokenUsage": {
+        "profileHeader": [
+          "DSColor.surface",
+          "DSColor.background",
+          "DSOpacity.surfaceSubtle",
+          "DSRadius.xl"
+        ],
+        "sectionCards": [
+          "DSCard.spacingLarge",
+          "DSCard.spacing",
+          "DSLayout.profileHorizontalPadding",
+          "DSRadius.xl",
+          "DSColor.surface",
+          "DSOpacity.surfaceSoft",
+          "DSColor.textPrimary",
+          "DSColor.textSecondary"
+        ],
+        "actionText": [
+          "DSTextStyle.title",
+          "DSTextStyle.body",
+          "DSTextStyle.bodySm",
+          "DSTextStyle.caption",
+          "DSTextStyle.footnote",
+          "DSColor.textSecondary",
+          "DSColor.textTertiary",
+          "DSColor.error"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSRadius",
+        "DSSpace",
+        "DSCard",
+        "DSLayout",
+        "DSOpacity"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
+          "dflh-saf-v2-swift/Sources/App/ProfileView.swift"
+        ],
+        "web": [
+          "dflh-saf-v2/frontend/src/pages/MyPage.tsx",
+          "dflh-saf-v2/frontend/src/components/profile/ImageUploadSection.tsx",
+          "dflh-saf-v2/frontend/src/components/profile/ProfileEditForm.tsx",
+          "dflh-saf-v2/frontend/src/components/profile/ProfileHeader.tsx",
+          "dflh-saf-v2/frontend/src/components/profile/AccountActions.tsx"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemCompat.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemExports.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenContracts.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt"
+        ]
+      },
+      "notes": "Action labels remain platform-localized, but style tokens must resolve to shared definitions."
+    },
+    {
+      "name": "screen.alumni",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios"
+      ],
+      "states": [
+        "loading",
+        "loadingMore",
+        "empty",
+        "error",
+        "data",
+        "detail"
+      ],
+      "requiredBlocks": [
+        "searchField",
+        "filterMenu",
+        "resultList",
+        "row",
+        "detailSheet"
+      ],
+      "tokens": {
+        "spacing": [
+          "small",
+          "medium",
+          "large",
+          "tiny"
+        ],
+        "radius": [
+          "md",
+          "lg"
+        ],
+        "typography": [
+          "h2",
+          "title",
+          "bodySm",
+          "bodyXs",
+          "caption",
+          "mini"
+        ],
+        "states": [
+          "warningSubtle",
+          "warningText",
+          "errorText",
+          "primary",
+          "primaryLight",
+          "primaryMuted"
+        ]
+      },
+      "requiredTokenUsage": {
+        "search": [
+          "DSColor.background",
+          "DSColor.border",
+          "DSRadius.md"
+        ],
+        "row": [
+          "DSAvatar",
+          "DSIcon",
+          "DSText",
+          "DSSizing.touchTarget"
+        ],
+        "detail": [
+          "DSButton",
+          "DSDivider",
+          "DSEmptyState",
+          "DSLoadingState"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSRadius",
+        "DSSpace",
+        "DSIconography",
+        "DSSizing",
+        "DSLayout",
+        "DSLineWidth",
+        "DSFontWeight"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Alumni/AlumniSearchView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Alumni/AlumniRowView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Alumni/AlumniDetailView.swift"
+        ]
+      },
+      "notes": "Alumni directory search, row, and detail sheet. Authored after the fact to close a design-system contract gap; not yet mirrored on web/Android, so marked non-mandatory until those platforms ship the same feature."
+    },
+    {
+      "name": "screen.donation",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios"
+      ],
+      "states": [
+        "loading",
+        "data",
+        "empty",
+        "error"
+      ],
+      "requiredBlocks": [
+        "header",
+        "summaryCard",
+        "ctaButton"
+      ],
+      "tokens": {
+        "spacing": [
+          "large",
+          "medium",
+          "xlarge",
+          "xxlarge",
+          "tiny",
+          "small"
+        ],
+        "radius": [
+          "xl"
+        ],
+        "typography": [
+          "title",
+          "bodySm",
+          "mini",
+          "h2",
+          "caption"
+        ]
+      },
+      "requiredTokenUsage": {
+        "summaryCard": [
+          "DSColor.surface",
+          "DSColor.textPrimary",
+          "DSColor.textTertiary",
+          "DSColor.primary",
+          "DSRadius.xl"
+        ],
+        "cta": [
+          "DSButton"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSRadius",
+        "DSSpace",
+        "DSCard",
+        "DSFontWeight"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationLinkView.swift"
+        ]
+      },
+      "notes": "External Happy Nanum donation summary + link-out CTA. Authored after the fact to close a design-system contract gap; non-mandatory until web/Android ship an equivalent screen."
+    },
+    {
+      "name": "screen.socialLink",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios"
+      ],
+      "states": [
+        "default",
+        "invalid",
+        "submitting",
+        "expired"
+      ],
+      "requiredBlocks": [
+        "header",
+        "accountLinkToggle",
+        "profileFields",
+        "submitAction",
+        "expiredNotice"
+      ],
+      "tokens": {
+        "spacing": [
+          "small",
+          "large",
+          "xxlarge"
+        ],
+        "typography": [
+          "title",
+          "bodyXs"
+        ],
+        "states": [
+          "errorText",
+          "warningSubtle",
+          "warningText"
+        ]
+      },
+      "requiredTokenUsage": {
+        "form": [
+          "DSColor.textPrimary",
+          "DSColor.textTertiary",
+          "DSColor.errorText",
+          "DSLabeledField"
+        ],
+        "expired": [
+          "DSCardView",
+          "DSColor.warningSubtle",
+          "DSColor.warningText"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSSpace",
+        "DSLayout"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/SocialLinkView.swift"
+        ]
+      },
+      "notes": "Post-social-login account link/registration form. Authored after the fact to close a design-system contract gap; non-mandatory until web/Android ship an equivalent screen."
+    },
+    {
+      "name": "screen.messageCompose",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "searching",
+        "empty",
+        "error",
+        "selected",
+        "sending"
+      ],
+      "requiredBlocks": [
+        "recipientSearch",
+        "recipientResults",
+        "messageEditor",
+        "sendBar"
+      ],
+      "tokens": {
+        "spacing": [
+          "small",
+          "large",
+          "medium",
+          "tiny"
+        ],
+        "radius": [
+          "md",
+          "lg"
+        ],
+        "typography": [
+          "bodySm",
+          "bodyXs",
+          "caption"
+        ],
+        "states": [
+          "surface",
+          "background",
+          "border",
+          "primary",
+          "errorText"
+        ]
+      },
+      "requiredTokenUsage": {
+        "recipient": [
+          "DSAvatar",
+          "DSDivider",
+          "DSEmptyState",
+          "DSLoadingState",
+          "DSStateView"
+        ],
+        "sendBar": [
+          "DSButton",
+          "DSSizing.messageComposerHeight",
+          "DSOpacity.surfaceSubtle"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSRadius",
+        "DSSpace",
+        "DSSizing",
+        "DSOpacity",
+        "DSLineWidth"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageComposeSheetView.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/ui/MessageComposeScreen.kt"
+        ]
+      },
+      "notes": "Modal presented from screen.messages for composing a new message with recipient search. Authored after the fact to close a design-system contract gap; kept as its own contract rather than folded into screen.messages because it has an independent presentation lifecycle (sheet) and its own required states."
+    },
+    {
+      "name": "screen.webSheet",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios"
+      ],
+      "states": [
+        "loading",
+        "data",
+        "error"
+      ],
+      "requiredBlocks": [
+        "webContent",
+        "loadingSkeleton",
+        "errorState",
+        "toolbar"
+      ],
+      "tokens": {
+        "spacing": [
+          "large",
+          "medium",
+          "small",
+          "xlarge"
+        ],
+        "radius": [
+          "md",
+          "sm"
+        ],
+        "states": [
+          "surface",
+          "border"
+        ]
+      },
+      "requiredTokenUsage": {
+        "errorState": [
+          "DSStateView",
+          "DSText"
+        ],
+        "skeleton": [
+          "DSColor.surfaceElevated",
+          "DSRadius.md"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSSpace",
+        "DSRadius",
+        "DSOpacity",
+        "DSLineWidth"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Shared/WebSheetView.swift"
+        ]
+      },
+      "notes": "Generic in-app web sheet (GenericWebSheet) reused by Donation and other features to open external links inside the app. Authored after the fact to close a design-system contract gap; not folded into app-shell because it has its own loading-skeleton and error states."
+    }
+  ]
+}

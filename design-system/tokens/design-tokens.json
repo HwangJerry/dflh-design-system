@@ -1,0 +1,271 @@
+{
+  "version": "1.2.0",
+  "sourceOfTruth": "design-system/tokens/design-tokens.json",
+  "colors": {
+    "black": "#000000",
+    "accentPill": "#1A1A2E",
+    "accentPillForeground": "#FDFBF4",
+    "primary": "#1A1A2E",
+    "primaryHover": "#0F1B35",
+    "primaryLight": "#E8E5DF",
+    "primaryMuted": "#C8C5BF",
+    "surface": "#FAFAF8",
+    "background": "#F5F4F0",
+    "border": "#E8E5DF",
+    "borderSubtle": "#F0EDE8",
+    "borderHover": "#C8C5BF",
+    "textPrimary": "#1A1A2E",
+    "textSecondary": "#555555",
+    "textTertiary": "#888888",
+    "textPlaceholder": "#AAAAAA",
+    "warm": "#F59E0B",
+    "navIconSelected": "#FBBF6A",
+    "warmLight": "#FFFBEB",
+    "success": "#10B981",
+    "error": "#EF4444",
+    "errorLight": "#FEF2F2",
+    "kakao": "#FEE500",
+    "kakaoText": "#191919",
+    "errorSubtle": "#FEF2F2",
+    "errorBorder": "#FECACA",
+    "errorText": "#DC2626",
+    "successSubtle": "#ECFDF5",
+    "successText": "#047857",
+    "warningSubtle": "#FFFBEB",
+    "warningText": "#92400E",
+    "catNoticeBg": "#E8E5DF",
+    "catNoticeText": "#1A1A2E",
+    "catNoticeBorder": "#C8C5BF",
+    "avatar1": "#7C3AED",
+    "avatar2": "#EA7316",
+    "avatar3": "#0D9488",
+    "avatar4": "#BE185D",
+    "avatar5": "#8B5CF6",
+    "heroFrom": "#0F1B35",
+    "heroVia": "#1A2F5A",
+    "heroTo": "#1E3A6E",
+    "white": "#FFFFFF",
+    "read": "#94A3B8",
+    "disabled": "#CFCBD7",
+    "surfaceElevated": "#FDFBF4",
+    "donationTreePotHighlight": "#F0AD7A",
+    "donationTreePotBase": "#C97239",
+    "donationTreePotShadow": "#A85A2C",
+    "donationTreeRimHighlight": "#F7C295",
+    "donationTreeRimShadow": "#E8955F",
+    "donationTreeSoilCenter": "#5C4530",
+    "donationTreeSoilEdge": "#3D2E1F",
+    "donationTreeTrunkHighlight": "#9C6B45",
+    "donationTreeTrunkShadow": "#6B4226",
+    "donationTreeLeafHighlight": "#B8E68C",
+    "donationTreeLeafMid": "#7CBB4E",
+    "donationTreeLeafShadow": "#5C9438",
+    "donationTreeSproutHighlight": "#8BC96B",
+    "donationTreeSproutShadow": "#6BA34A",
+    "donationTreeSeedHighlight": "#F0E4C8",
+    "donationTreeSeedMid": "#D9C49A",
+    "donationTreeSeedShadow": "#B8A177",
+    "donationTreeFlowerHighlight": "#FFD3E0",
+    "donationTreeFlowerMid": "#FF8FAE",
+    "donationTreeFlowerShadow": "#E8688F",
+    "donationTreeFruitHighlight": "#FFB177",
+    "donationTreeFruitMid": "#FF7A3D",
+    "donationTreeFruitShadow": "#E85D1F",
+    "donationTreeFruitStem": "#4A7A2E"
+  },
+  "colorSchemes": {
+    "light": {
+      "background": "#F5F4F0",
+      "surface": "#FAFAF8",
+      "surfaceElevated": "#FDFBF4",
+      "border": "#E8E5DF",
+      "textPrimary": "#1A1A2E",
+      "textSecondary": "#555555",
+      "textTertiary": "#888888",
+      "warm": "#F59E0B",
+      "accentPill": "#1A1A2E",
+      "accentPillForeground": "#FDFBF4",
+      "navIconSelected": "#FBBF6A"
+    },
+    "dark": {
+      "background": "#14141C",
+      "surface": "#1E1E2A",
+      "surfaceElevated": "#262636",
+      "border": "#33333F",
+      "textPrimary": "#F5F4F0",
+      "textSecondary": "#B8B8C2",
+      "textTertiary": "#8A8A96",
+      "warm": "#FBBF6A",
+      "accentPill": "#FBBF6A",
+      "accentPillForeground": "#14141C",
+      "navIconSelected": "#FBBF6A"
+    }
+  },
+  "opacity": {
+    "overlay": 0.08,
+    "shadow": 0.07,
+    "subtle": 0.14,
+    "low": 0.15,
+    "faint": 0.2,
+    "raised": 0.18,
+    "deep": 0.35,
+    "divider": 0.45,
+    "mutedIcon": 0.6,
+    "strongIcon": 0.65,
+    "surfaceSubtle": 0.72,
+    "surfaceSoft": 0.75,
+    "surfaceSoftStrong": 0.76,
+    "surfaceAlt": 0.85,
+    "titleEmphasis": 0.9,
+    "textEmphasis": 0.92,
+    "donationTreeGroundShadow": 0.12,
+    "donationTreeGloss": 0.3
+  },
+  "typography": {
+    "fontSans": "Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif",
+    "fontSerif": "Pretendard Variable, Pretendard, Georgia, serif",
+    "size": {
+      "display": "36px",
+      "h1": "30px",
+      "h2": "24px",
+      "h3": "20px",
+      "title": "18px",
+      "body": "16px",
+      "bodySm": "15px",
+      "bodyXs": "13px",
+      "caption": "11px",
+      "mini": "10px"
+    },
+    "weight": {
+      "regular": 400,
+      "medium": 500,
+      "semibold": 600,
+      "bold": 700
+    }
+  },
+  "spacing": {
+    "0": "0px",
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "7": "28px",
+    "8": "32px",
+    "9": "36px",
+    "10": "40px"
+  },
+  "radius": {
+    "sm": "8px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "20px",
+    "xxl": "24px",
+    "full": "9999px"
+  },
+  "elevation": {
+    "xs": "0 1px 2px 0 rgba(0,0,0,0.03)",
+    "card": "0 1px 3px 0 rgba(0,0,0,0.04), 0 1px 2px -1px rgba(0,0,0,0.02)",
+    "cardHover": "0 8px 25px -5px rgba(0,0,0,0.08), 0 4px 10px -3px rgba(0,0,0,0.03)",
+    "primaryGlow": "0 4px 14px 0 rgba(26,26,46,0.25)",
+    "nav": "0 4px 24px 0 rgba(0,0,0,0.06)",
+    "float": "0 8px 30px rgba(0,0,0,0.08)"
+  },
+  "sizing": {
+    "touchTarget": "44px",
+    "messageUnreadBadge": "24px",
+    "safeBottomNavHeight": "56px",
+    "messageComposerHeight": "64px",
+    "headerHeight": {
+      "web": "56px",
+      "ios": "52px"
+    },
+    "feedHeroHeight": {
+      "min": "170px",
+      "max": "190px"
+    },
+    "feedCardThumbnailHeight": {
+      "min": "152px",
+      "max": "168px"
+    },
+    "loadingStateMaxWidth": "260px"
+  },
+  "motion": {
+    "duration": {
+      "quick": "150ms",
+      "base": "250ms",
+      "default": "400ms",
+      "slow": "550ms"
+    },
+    "easing": {
+      "smooth": "cubic-bezier(0.16,1,0.3,1)",
+      "standard": "ease-out"
+    }
+  },
+  "layout": {
+    "containerMaxWidth": "1080px",
+    "cardGap": "12px",
+    "messageBubbleMaxWidthRatio": "0.76",
+    "profileHorizontalPadding": "2px",
+    "screenPad": {
+      "mobile": "16px",
+      "tablet": "24px"
+    },
+    "feedPostDetailSpacing": "16px",
+    "feedPostDetailSectionSpacing": "10px",
+    "feedPostCardRadius": "18px"
+  },
+  "platformMapping": {
+    "web": {
+      "format": "@theme CSS variables",
+      "consumers": [
+        "design-system/platform/web/design-tokens.css",
+        "dflh-saf-v2/frontend/src/index.css"
+      ],
+      "notes": [
+        "Use token classes from tailwind theme mapping (e.g. bg-surface, text-body, rounded-xl).",
+        "Avoid local one-off utility values in target screens."
+      ]
+    },
+    "ios": {
+      "format": "generated Swift enums with trait-aware dynamic semantic colors",
+      "consumers": [
+        "design-system/platform/ios/DesignTokens.swift",
+        "dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift"
+      ],
+      "notes": [
+        "Use DS* tokens + DSComponents helpers in shared screens.",
+        "DSColor semantic color-scheme tokens automatically resolve against the system light/dark appearance.",
+        "Avoid hard-coded hex literals, Font/system token bypass, and ad-hoc corner radii."
+      ]
+    }
+  },
+  "iconography": {
+    "size": {
+      "xs": "12px",
+      "sm": "14px",
+      "md": "16px",
+      "lg": "18px",
+      "xl": "20px",
+      "xxl": "24px"
+    },
+    "lineWeight": {
+      "light": 1,
+      "regular": 2,
+      "medium": 2.5
+    }
+  },
+  "state": {
+    "states": [
+      "default",
+      "hover",
+      "press",
+      "focus",
+      "disabled",
+      "loading",
+      "empty",
+      "error"
+    ]
+  }
+}

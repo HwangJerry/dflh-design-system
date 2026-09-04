@@ -1,0 +1,40 @@
+# =============================================================================
+# This repository versions the shared design system and its tooling.
+# Everything else in this workspace directory belongs to other projects and is
+# deliberately excluded — see docs or ask before widening this list.
+# =============================================================================
+
+# --- Allow-list approach: ignore everything, then un-ignore what we own ------
+/*
+!/.gitignore
+!/.github/
+!/design-system/
+!/package.json
+!/package-lock.json
+!/docs/
+
+# --- Within the tracked paths, still exclude the usual noise -----------------
+node_modules/
+dist/
+.next/
+.env
+.env.local
+.env.*.local
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Transient Figma variable export used by design-system/scripts/import-figma-tokens.mjs
+design-system/tokens/.figma-variables-export.json
+
+# --- Verification reports: regenerated on every run -------------------------
+# These carry a generatedAt timestamp (so any run dirties the tree) and embed
+# full file listings of the PRIVATE app repositories. Keep them out of a public
+# history; CI uploads them as build artifacts instead.
+design-system/verification/reports/

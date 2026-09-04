@@ -1,0 +1,13 @@
+{
+  "schema": "2026-06-15-ios-design-system-exceptions",
+  "policy": "Production SwiftUI/UIKit design literals and missing screen contract evidence are blocked unless explicitly listed here with a reason, owner, and review date.",
+  "approvedExceptions": [
+    {
+      "type": "screen-contract-evidence",
+      "path": "dflh-saf-v2-swift/Sources/App/Feature/BannerAd/BannerAdCarouselView.swift",
+      "reason": "New feed banner ad sliding carousel screen, built entirely from existing DS tokens/components (DSColor/DSSpace/DSRadius, DSRemoteHeroMedia pattern). Not yet registered in component-contracts.json implementationEvidence.ios; tracked here pending a follow-up contract registration pass covering all three platforms (web/iOS/Android) for the banner ad feature.",
+      "owner": "jerry",
+      "reviewDate": "2026-09-24"
+    }
+  ]
+}

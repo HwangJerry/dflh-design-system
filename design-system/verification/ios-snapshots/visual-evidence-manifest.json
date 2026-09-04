@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-09-02T00:21:36.795Z",
+  "status": "failed",
+  "baselineDir": "design-system/verification/ios-snapshots/baseline",
+  "captureDir": "design-system/verification/ios-snapshots/captures",
+  "targetScreens": [
+    {
+      "name": "screen.feed",
+      "mandatoryScreens": [
+        "뉴스피드"
+      ],
+      "expectedFiles": [
+        "iOS-Feed-mobile.png"
+      ],
+      "captures": []
+    },
+    {
+      "name": "screen.messages.list",
+      "mandatoryScreens": [
+        "쪽지함"
+      ],
+      "expectedFiles": [
+        "iOS-MessagesList-mobile.png"
+      ],
+      "captures": []
+    },
+    {
+      "name": "screen.messages.thread",
+      "mandatoryScreens": [
+        "쪽지 상세"
+      ],
+      "expectedFiles": [
+        "iOS-MessagesThread-mobile.png"
+      ],
+      "captures": []
+    },
+    {
+      "name": "screen.myPage",
+      "mandatoryScreens": [
+        "마이페이지"
+      ],
+      "expectedFiles": [
+        "iOS-MyPage-mobile.png"
+      ],
+      "captures": []
+    }
+  ],
+  "captures": [
+    {
+      "route": "ios-feed",
+      "viewport": "mobile",
+      "filename": "iOS-Feed-mobile.png",
+      "status": "match",
+      "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-Feed-mobile.png",
+      "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-Feed-mobile.png",
+      "diff": null,
+      "hash": "abf2dc47c6c58a4580d01b8be05b28ca97233be6f8487e4074e9437bdfd50a3b",
+      "baselineHash": "abf2dc47c6c58a4580d01b8be05b28ca97233be6f8487e4074e9437bdfd50a3b",
+      "changedPixelRatio": 0,
+      "changedPixels": 0,
+      "totalPixels": 3013524,
+      "width": 1179,
+      "height": 2556,
+      "pixelThreshold": 0,
+      "maxChangedPixelRatio": 0
+    },
+    {
+      "route": "ios-messageslist",
+      "viewport": "mobile",
+      "filename": "iOS-MessagesList-mobile.png",
+      "status": "match",
+      "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-MessagesList-mobile.png",
+      "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-MessagesList-mobile.png",
+      "diff": null,
+      "hash": "8234e4f5a637b3faec41204dcac0cb2e409926e76a01b8a99b2cc79daf045f2f",
+      "baselineHash": "8234e4f5a637b3faec41204dcac0cb2e409926e76a01b8a99b2cc79daf045f2f",
+      "changedPixelRatio": 0,
+      "changedPixels": 0,
+      "totalPixels": 3013524,
+      "width": 1179,
+      "height": 2556,
+      "pixelThreshold": 0,
+      "maxChangedPixelRatio": 0
+    },
+    {
+      "route": "ios-messagesthread",
+      "viewport": "mobile",
+      "filename": "iOS-MessagesThread-mobile.png",
+      "status": "match",
+      "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-MessagesThread-mobile.png",
+      "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-MessagesThread-mobile.png",
+      "diff": null,
+      "hash": "66eb341f841959f689c7f119fc2a6d19ca2a0b86f71e31f746e2141c6be3f644",
+      "baselineHash": "66eb341f841959f689c7f119fc2a6d19ca2a0b86f71e31f746e2141c6be3f644",
+      "changedPixelRatio": 0,
+      "changedPixels": 0,
+      "totalPixels": 3013524,
+      "width": 1179,
+      "height": 2556,
+      "pixelThreshold": 0,
+      "maxChangedPixelRatio": 0
+    },
+    {
+      "route": "ios-mypage",
+      "viewport": "mobile",
+      "filename": "iOS-MyPage-mobile.png",
+      "status": "match",
+      "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-MyPage-mobile.png",
+      "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-MyPage-mobile.png",
+      "diff": null,
+      "hash": "12608225566553637ae8aa93631c74035b38dfd60553d33e431159f0955535cf",
+      "baselineHash": "12608225566553637ae8aa93631c74035b38dfd60553d33e431159f0955535cf",
+      "changedPixelRatio": 0,
+      "changedPixels": 0,
+      "totalPixels": 3013524,
+      "width": 1179,
+      "height": 2556,
+      "pixelThreshold": 0,
+      "maxChangedPixelRatio": 0
+    }
+  ]
+}

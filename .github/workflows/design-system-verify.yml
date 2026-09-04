@@ -1,0 +1,42 @@
+# Cross-repo token verification lives in each app repository's CI; do not add app-dependent checks here.
+name: design-system-verify
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verify-standalone-design-system:
+    name: Standalone checks (app-dependent verification excluded)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate design tokens
+        run: npm run validate-design-tokens
+
+      - name: Verify in-repo generated platform artifacts
+        run: node design-system/scripts/generate-platform-tokens.mjs --check --only=self
+
+      - name: Verify contract documentation
+        run: npm run verify-contract-docs
+
+      - name: Upload available verification reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: standalone-design-system-verification-reports
+          path: design-system/verification/reports/
+          if-no-files-found: ignore

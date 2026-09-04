@@ -1,0 +1,472 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-14T01:36:07.251Z",
+  "sourceRoot": "/Users/jerryhwang/Workspace/03_daeil",
+  "versioning": {
+    "strategy": "content-addressed-baseline-manifest",
+    "hashAlgorithm": "sha256",
+    "manifestPath": "design-system/verification/visual-baseline-manifest.json",
+    "note": "The workspace root is not a Git repository; this manifest versions the visual baseline set by content hash and file path."
+  },
+  "platforms": {
+    "web": {
+      "baselineDir": "design-system/verification/web-snapshots/baseline",
+      "latestCaptureDir": "design-system/verification/web-snapshots/design",
+      "available": true
+    },
+    "ios": {
+      "baselineDir": "design-system/verification/ios-snapshots/baseline",
+      "latestCaptureDir": "design-system/verification/ios-snapshots/captures",
+      "available": true
+    },
+    "android": {
+      "baselineDir": "design-system/verification/android-snapshots/baseline",
+      "available": false,
+      "status": "platform-unavailable",
+      "expectedFiles": [
+        "Android-Feed-mobile.png",
+        "Android-MessagesList-mobile.png",
+        "Android-MessagesThread-mobile.png",
+        "Android-MyPage-mobile.png"
+      ]
+    }
+  },
+  "screenshotCount": 36,
+  "reportCount": 5,
+  "screenshots": [
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/feed-desktop.png",
+      "fileName": "feed-desktop.png",
+      "exists": true,
+      "bytes": 166874,
+      "sha256": "0fe5245dde27413aab9eed84c80993b6b48ab881df4e92f6231e664deb7d8ad1",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/feed-mobile.png",
+      "fileName": "feed-mobile.png",
+      "exists": true,
+      "bytes": 128225,
+      "sha256": "dbafd5f50db9c4d132cbd35f7fba412648245c7f0bcab9ba8e42bfaea5974d6e",
+      "width": 390,
+      "height": 1316
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/feed-tablet.png",
+      "fileName": "feed-tablet.png",
+      "exists": true,
+      "bytes": 142485,
+      "sha256": "a1c9fda278e9fc81cf023cdb15530179c6612ddd15fc8c0822568c602fa70ae8",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/messages-desktop.png",
+      "fileName": "messages-desktop.png",
+      "exists": true,
+      "bytes": 43961,
+      "sha256": "ec1708982a5e36a4fdcff2f69d95153ea90467d579d06e91258607497a7876a6",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/messages-mobile.png",
+      "fileName": "messages-mobile.png",
+      "exists": true,
+      "bytes": 34904,
+      "sha256": "4168196cabfa7e4e2abded5fa20da694cd8f14ef2a262be427d6d44469068ad9",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/messages-tablet.png",
+      "fileName": "messages-tablet.png",
+      "exists": true,
+      "bytes": 41972,
+      "sha256": "f5ec45c851d2ebec38f75d3ab0d1184cc0a9ede844a0cfd4b85941ee6b793ef4",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/messages_thread-desktop.png",
+      "fileName": "messages_thread-desktop.png",
+      "exists": true,
+      "bytes": 71355,
+      "sha256": "865ecc80c55d81f6eaac71f46b3768b2dc8d215f2341983d9a40a10592f6e433",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/messages_thread-mobile.png",
+      "fileName": "messages_thread-mobile.png",
+      "exists": true,
+      "bytes": 35744,
+      "sha256": "36d449bc2e5309e994e0d5b5f3d55cb784dbf8c60d5c6de72832513f08f5a0ff",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/messages_thread-tablet.png",
+      "fileName": "messages_thread-tablet.png",
+      "exists": true,
+      "bytes": 67421,
+      "sha256": "e023b4c15d1887564a5f9fa7d441d5e9de7a89d925ff972b3be14fe67041783e",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/mypage-desktop.png",
+      "fileName": "mypage-desktop.png",
+      "exists": true,
+      "bytes": 86404,
+      "sha256": "8ac720dd4e2ac8042d8ed72df07983da65526c32d9f19d47e8ee73e59ccaeb0c",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/mypage-mobile.png",
+      "fileName": "mypage-mobile.png",
+      "exists": true,
+      "bytes": 74439,
+      "sha256": "7760683b23419392f6ffaf4b4fef1c1f4c41e3a7e0ce50768b52a89c1baf224c",
+      "width": 390,
+      "height": 1027
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/mypage-tablet.png",
+      "fileName": "mypage-tablet.png",
+      "exists": true,
+      "bytes": 81854,
+      "sha256": "46213e5a196af4ab95cdff24a10eb15e6f57467ae9bb0f8e35bcb223fc73e0f7",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/feed-desktop.png",
+      "fileName": "feed-desktop.png",
+      "exists": true,
+      "bytes": 166874,
+      "sha256": "0fe5245dde27413aab9eed84c80993b6b48ab881df4e92f6231e664deb7d8ad1",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/feed-mobile.png",
+      "fileName": "feed-mobile.png",
+      "exists": true,
+      "bytes": 128225,
+      "sha256": "dbafd5f50db9c4d132cbd35f7fba412648245c7f0bcab9ba8e42bfaea5974d6e",
+      "width": 390,
+      "height": 1316
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/feed-tablet.png",
+      "fileName": "feed-tablet.png",
+      "exists": true,
+      "bytes": 142485,
+      "sha256": "a1c9fda278e9fc81cf023cdb15530179c6612ddd15fc8c0822568c602fa70ae8",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/messages-desktop.png",
+      "fileName": "messages-desktop.png",
+      "exists": true,
+      "bytes": 43961,
+      "sha256": "ec1708982a5e36a4fdcff2f69d95153ea90467d579d06e91258607497a7876a6",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/messages-mobile.png",
+      "fileName": "messages-mobile.png",
+      "exists": true,
+      "bytes": 34904,
+      "sha256": "4168196cabfa7e4e2abded5fa20da694cd8f14ef2a262be427d6d44469068ad9",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/messages-tablet.png",
+      "fileName": "messages-tablet.png",
+      "exists": true,
+      "bytes": 41972,
+      "sha256": "f5ec45c851d2ebec38f75d3ab0d1184cc0a9ede844a0cfd4b85941ee6b793ef4",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/messages_thread-desktop.png",
+      "fileName": "messages_thread-desktop.png",
+      "exists": true,
+      "bytes": 71355,
+      "sha256": "865ecc80c55d81f6eaac71f46b3768b2dc8d215f2341983d9a40a10592f6e433",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/messages_thread-mobile.png",
+      "fileName": "messages_thread-mobile.png",
+      "exists": true,
+      "bytes": 35744,
+      "sha256": "36d449bc2e5309e994e0d5b5f3d55cb784dbf8c60d5c6de72832513f08f5a0ff",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/messages_thread-tablet.png",
+      "fileName": "messages_thread-tablet.png",
+      "exists": true,
+      "bytes": 67421,
+      "sha256": "e023b4c15d1887564a5f9fa7d441d5e9de7a89d925ff972b3be14fe67041783e",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/mypage-desktop.png",
+      "fileName": "mypage-desktop.png",
+      "exists": true,
+      "bytes": 86404,
+      "sha256": "8ac720dd4e2ac8042d8ed72df07983da65526c32d9f19d47e8ee73e59ccaeb0c",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/mypage-mobile.png",
+      "fileName": "mypage-mobile.png",
+      "exists": true,
+      "bytes": 74439,
+      "sha256": "7760683b23419392f6ffaf4b4fef1c1f4c41e3a7e0ce50768b52a89c1baf224c",
+      "width": 390,
+      "height": 1027
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/mypage-tablet.png",
+      "fileName": "mypage-tablet.png",
+      "exists": true,
+      "bytes": 81854,
+      "sha256": "46213e5a196af4ab95cdff24a10eb15e6f57467ae9bb0f8e35bcb223fc73e0f7",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "ios",
+      "role": "baseline",
+      "path": "design-system/verification/ios-snapshots/baseline/iOS-Feed-mobile.png",
+      "fileName": "iOS-Feed-mobile.png",
+      "exists": true,
+      "bytes": 1879552,
+      "sha256": "a0de66b4c2b388f3b238b3d14517018a6330e6f36c9986cd3d4e30e8e4876ce5",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "ios",
+      "role": "baseline",
+      "path": "design-system/verification/ios-snapshots/baseline/iOS-MessagesList-mobile.png",
+      "fileName": "iOS-MessagesList-mobile.png",
+      "exists": true,
+      "bytes": 1917033,
+      "sha256": "92e0cd13720f66b34b39045566073a73706f2135f7c84e1369e7bdfc10642194",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "ios",
+      "role": "baseline",
+      "path": "design-system/verification/ios-snapshots/baseline/iOS-MessagesThread-mobile.png",
+      "fileName": "iOS-MessagesThread-mobile.png",
+      "exists": true,
+      "bytes": 693723,
+      "sha256": "f899a279b785a07cac6d868476f1d8738a320ecfe6c04e3942c1f98d2fe8767d",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "ios",
+      "role": "baseline",
+      "path": "design-system/verification/ios-snapshots/baseline/iOS-MyPage-mobile.png",
+      "fileName": "iOS-MyPage-mobile.png",
+      "exists": true,
+      "bytes": 1856741,
+      "sha256": "27ac48f95b5142d8bcc998ef3a896ce44b8178e0ac359242eb63175157e6c741",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "ios",
+      "role": "latest-capture",
+      "path": "design-system/verification/ios-snapshots/captures/iOS-Feed-mobile.png",
+      "fileName": "iOS-Feed-mobile.png",
+      "exists": true,
+      "bytes": 1879552,
+      "sha256": "a0de66b4c2b388f3b238b3d14517018a6330e6f36c9986cd3d4e30e8e4876ce5",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "ios",
+      "role": "latest-capture",
+      "path": "design-system/verification/ios-snapshots/captures/iOS-MessagesList-mobile.png",
+      "fileName": "iOS-MessagesList-mobile.png",
+      "exists": true,
+      "bytes": 1917033,
+      "sha256": "92e0cd13720f66b34b39045566073a73706f2135f7c84e1369e7bdfc10642194",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "ios",
+      "role": "latest-capture",
+      "path": "design-system/verification/ios-snapshots/captures/iOS-MessagesThread-mobile.png",
+      "fileName": "iOS-MessagesThread-mobile.png",
+      "exists": true,
+      "bytes": 693723,
+      "sha256": "f899a279b785a07cac6d868476f1d8738a320ecfe6c04e3942c1f98d2fe8767d",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "ios",
+      "role": "latest-capture",
+      "path": "design-system/verification/ios-snapshots/captures/iOS-MyPage-mobile.png",
+      "fileName": "iOS-MyPage-mobile.png",
+      "exists": true,
+      "bytes": 1856741,
+      "sha256": "27ac48f95b5142d8bcc998ef3a896ce44b8178e0ac359242eb63175157e6c741",
+      "width": 1179,
+      "height": 2556
+    },
+    {
+      "platform": "cross-platform",
+      "role": "diff",
+      "path": "design-system/verification/platform-diffs/web-ios-feed-mobile.png",
+      "fileName": "web-ios-feed-mobile.png",
+      "exists": true,
+      "bytes": 12821,
+      "sha256": "fdd3e649f503d5d58030ec9f6553de2b3bc327a84df4d7f8e40f0ac2b624574d",
+      "width": 390,
+      "height": 845
+    },
+    {
+      "platform": "cross-platform",
+      "role": "diff",
+      "path": "design-system/verification/platform-diffs/web-ios-messages-mobile.png",
+      "fileName": "web-ios-messages-mobile.png",
+      "exists": true,
+      "bytes": 11291,
+      "sha256": "444ecaaae201aea3c84ef6270e53593874bc4f4cca40dbdd4dd9d1a25b2311ab",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "cross-platform",
+      "role": "diff",
+      "path": "design-system/verification/platform-diffs/web-ios-messages_thread-mobile.png",
+      "fileName": "web-ios-messages_thread-mobile.png",
+      "exists": true,
+      "bytes": 13180,
+      "sha256": "97be90097155061453bd0e95b9f1e5b81f720b4ea6710e939bede316c41d2f2e",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "cross-platform",
+      "role": "diff",
+      "path": "design-system/verification/platform-diffs/web-ios-mypage-mobile.png",
+      "fileName": "web-ios-mypage-mobile.png",
+      "exists": true,
+      "bytes": 20885,
+      "sha256": "4d11e558367c3e697064e1d8703f02727108d712c86c3bf0d9d8ac1eed66d73f",
+      "width": 390,
+      "height": 845
+    }
+  ],
+  "reports": [
+    {
+      "role": "report",
+      "path": "design-system/verification/reports/visual-check-web.json",
+      "exists": true,
+      "bytes": 8018,
+      "sha256": "fced7da57880953725d370d834cf848f2cf343219f4e317fd2bca0cac0de29f8"
+    },
+    {
+      "role": "report",
+      "path": "design-system/verification/reports/visual-check-ios.json",
+      "exists": true,
+      "bytes": 2731,
+      "sha256": "35ceb5fb53e23f81b6cd3271d2e01cbde988e40020a538d28cd99ae17b170e85"
+    },
+    {
+      "role": "report",
+      "path": "design-system/verification/reports/visual-platform-parity.json",
+      "exists": true,
+      "bytes": 8673,
+      "sha256": "b87dcf3a9bc0f0a3bdf83b9ab4768e9a65a0481118385688bb4d71a912c341b0"
+    },
+    {
+      "role": "report",
+      "path": "design-system/verification/reports/visual-platform-parity.md",
+      "exists": true,
+      "bytes": 2938,
+      "sha256": "3c82657fa0f4b87ba16cdceb4a2c6d5e4a552c8cfbd5553e451e88e5ceba9a43"
+    },
+    {
+      "role": "report",
+      "path": "design-system/verification/reports/accepted-deltas.json",
+      "exists": true,
+      "bytes": 2515,
+      "sha256": "0388a0354d27f6819c88cc8e20514d62f0629a8c63ece8fa2a56e33dd7ccd421"
+    }
+  ],
+  "manifestHash": "ff0e457f63fdf6378ce6520480f587e29b67e43c34ad933d43db2afb9597e828"
+}

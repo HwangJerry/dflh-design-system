@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dflh.local/design-system/design-tokens.schema.json",
+  "title": "DFLH design token source schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "sourceOfTruth",
+    "colors",
+    "colorSchemes",
+    "opacity",
+    "typography",
+    "spacing",
+    "radius",
+    "sizing",
+    "elevation",
+    "iconography",
+    "layout",
+    "motion",
+    "state",
+    "platformMapping"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "sourceOfTruth": {
+      "const": "design-system/tokens/design-tokens.json"
+    },
+    "colors": {
+      "$ref": "#/$defs/tokenMapHexColor"
+    },
+    "colorSchemes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["light", "dark"],
+      "properties": {
+        "light": { "$ref": "#/$defs/tokenMapHexColor" },
+        "dark": { "$ref": "#/$defs/tokenMapHexColor" }
+      }
+    },
+    "opacity": {
+      "$ref": "#/$defs/tokenMapOpacity"
+    },
+    "typography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fontSans", "fontSerif", "size", "weight"],
+      "properties": {
+        "fontSans": { "type": "string", "minLength": 1 },
+        "fontSerif": { "type": "string", "minLength": 1 },
+        "size": { "$ref": "#/$defs/tokenMapPixel" },
+        "weight": { "$ref": "#/$defs/tokenMapFontWeight" }
+      }
+    },
+    "spacing": {
+      "$ref": "#/$defs/tokenMapSpacingPixel"
+    },
+    "radius": {
+      "$ref": "#/$defs/tokenMapPixel"
+    },
+    "sizing": {
+      "$ref": "#/$defs/nestedPixelOrRatioTokenMap"
+    },
+    "elevation": {
+      "$ref": "#/$defs/tokenMapShadow"
+    },
+    "iconography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["size", "lineWeight"],
+      "properties": {
+        "size": { "$ref": "#/$defs/tokenMapPixel" },
+        "lineWeight": { "$ref": "#/$defs/tokenMapPositiveNumber" }
+      }
+    },
+    "layout": {
+      "$ref": "#/$defs/nestedPixelOrRatioTokenMap"
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duration", "easing"],
+      "properties": {
+        "duration": { "$ref": "#/$defs/tokenMapDuration" },
+        "easing": { "$ref": "#/$defs/tokenMapEasing" }
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["states"],
+      "properties": {
+        "states": {
+          "type": "array",
+          "minItems": 8,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["default", "hover", "press", "focus", "disabled", "loading", "empty", "error"]
+          }
+        }
+      }
+    },
+    "platformMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["web", "ios"],
+      "properties": {
+        "web": { "$ref": "#/$defs/platformMapping" },
+        "ios": { "$ref": "#/$defs/platformMapping" },
+        "android": { "$ref": "#/$defs/platformMapping" }
+      }
+    }
+  },
+  "$defs": {
+    "tokenName": {
+      "type": "string",
+      "pattern": "^[a-z][a-zA-Z0-9]*$"
+    },
+    "hexColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$"
+    },
+    "pixel": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)(\\.\\d+)?px$"
+    },
+    "duration": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)ms$"
+    },
+    "easing": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ratioString": {
+      "type": "string",
+      "pattern": "^0\\.\\d+$"
+    },
+    "shadow": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tokenMapHexColor": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": { "$ref": "#/$defs/hexColor" }
+    },
+    "tokenMapPixel": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": { "$ref": "#/$defs/pixel" }
+    },
+    "tokenMapSpacingPixel": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(0|[1-9]\\d*)$"
+      },
+      "additionalProperties": { "$ref": "#/$defs/pixel" }
+    },
+    "tokenMapDuration": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": { "$ref": "#/$defs/duration" }
+    },
+    "tokenMapEasing": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": { "$ref": "#/$defs/easing" }
+    },
+    "tokenMapShadow": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": { "$ref": "#/$defs/shadow" }
+    },
+    "tokenMapOpacity": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "tokenMapPositiveNumber": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      }
+    },
+    "tokenMapFontWeight": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 100,
+        "maximum": 900,
+        "multipleOf": 100
+      }
+    },
+    "nestedPixelOrRatioTokenMap": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "#/$defs/tokenName" },
+      "additionalProperties": {
+        "anyOf": [
+          { "$ref": "#/$defs/pixel" },
+          { "$ref": "#/$defs/ratioString" },
+          {
+            "type": "object",
+            "minProperties": 1,
+            "propertyNames": { "$ref": "#/$defs/tokenName" },
+            "additionalProperties": {
+              "anyOf": [
+                { "$ref": "#/$defs/pixel" },
+                { "$ref": "#/$defs/ratioString" }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "platformMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "consumers", "notes"],
+      "properties": {
+        "format": { "type": "string", "minLength": 1 },
+        "consumers": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}
