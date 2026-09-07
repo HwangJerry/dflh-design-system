@@ -151,3 +151,88 @@ xcrun simctl io booted screenshot design-system/verification/ios-snapshots/iOS-F
 - generatedAt: 2026-09-02T00:21:36.794Z
 - pending items:
 - action: capture missing files into design-system/verification/ios-snapshots/captures and re-run.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-07T13:31:14.129Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-07T13:33:52.468Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-07T13:35:22.500Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-07T13:37:42.982Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-07T13:39:49.463Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+## 2026-09-07 — reviewed redesign baselines
+
+- The old baselines predated the merged iOS redesign (`c90fe23`, merge `c639b02`): three native tabs/card list changed to five custom tabs and redesigned feed, conversations and profile.
+- Fixed the capture harness: fixed light appearance, Large text size, Korean locale, Seoul timezone and 9:41 status bar on Codex iPhone 15 / iOS 26.0 (1179 x 2556).
+- Capturing messages-thread exposed a missing visual fixture for `loadBlockState`: the real authenticated request invalidated the fixture session and captured login instead of the thread. It now returns an unblocked fixture without network access.
+- Real rendering defects corrected before baseline promotion: hide the system tab bar on each child; lay out the custom tab bar below the TabView so it cannot cover the message composer.
+- Reviewed Feed, MessagesList, MessagesThread and MyPage: one custom tab bar, correct target content, visible composer, no login/error state. Promoted these reviewed captures, then recaptured for an independent comparison.
+- Inspection by Codex under the user's approved correction plan. No blanket accepted-delta exception was used. A fresh repeat matched three screens exactly; the thread differed at 69 back-chevron edge pixels, each RGB channel by at most 1 (bounding box 94,217–125,271). The per-pixel total channel threshold is therefore 3; the allowed changed-pixel ratio stays 0. This only ignores observed quantization noise.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-07T13:41:36.649Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-07T13:42:52.814Z
+- pending items:
+- iOS-MessagesThread-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+- A pending notification authorization alert was exposed after running XCTest. Visual mode now skips push registration/authorization, and a simulator restart cleared the pre-existing system alert before the independent recapture.

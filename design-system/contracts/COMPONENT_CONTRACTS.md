@@ -292,7 +292,7 @@ Required token usage:
 - surfaceLayers: `DSColor.background`, `DSColor.surface`
 - hero: `DSColor.heroFrom`, `DSColor.heroVia`, `DSOpacity.titleEmphasis`
 - listSpacing: `DSSizing.feedHeroHeightMax`, `DSSizing.feedHeroHeightMin`, `DSSpace.medium`, `DSSpace.small`, `DSSpace.tiny`, `DSCard.spacing`, `DSCard.spacingLarge`, `DSRadius.lg`, `DSRadius.xl`, `DSLineWidth.default`, `DSLineWidth.emphasis`
-- typography: `DSTextStyle.heading`, `DSTextStyle.title`, `DSTextStyle.bodySm`, `DSTextStyle.caption`, `DSTextStyle.footnote`
+- typography: `DSTextStyle.mainTabHeader`, `DSTextStyle.title`, `DSTextStyle.bodySm`, `DSTextStyle.caption`, `DSTextStyle.footnote`
 
 Implementation evidence:
 

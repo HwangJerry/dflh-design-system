@@ -71,7 +71,8 @@
     "donationTreeFruitHighlight": "#FFB177",
     "donationTreeFruitMid": "#FF7A3D",
     "donationTreeFruitShadow": "#E85D1F",
-    "donationTreeFruitStem": "#4A7A2E"
+    "donationTreeFruitStem": "#4A7A2E",
+    "likeOnDark": "#FF6B8A"
   },
   "colorSchemes": {
     "light": {
@@ -189,7 +190,11 @@
       "min": "152px",
       "max": "168px"
     },
-    "loadingStateMaxWidth": "260px"
+    "loadingStateMaxWidth": "260px",
+    "webFeedHeroMinHeight": "260px",
+    "webLandingHeroMinHeight": "360px",
+    "webLandingHeroDesktopMinHeight": "520px",
+    "messageDetailMinHeight": "80px"
   },
   "motion": {
     "duration": {
@@ -214,7 +219,9 @@
     },
     "feedPostDetailSpacing": "16px",
     "feedPostDetailSectionSpacing": "10px",
-    "feedPostCardRadius": "18px"
+    "feedPostCardRadius": "18px",
+    "webMessageBubbleMaxWidthRatio": "0.75",
+    "webModalMaxHeightRatio": "0.85"
   },
   "platformMapping": {
     "web": {

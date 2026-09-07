@@ -55,6 +55,7 @@ public enum DSColor {
   public static let heroVia = Color(hex: "#1A2F5A")
   public static let kakao = Color(hex: "#FEE500")
   public static let kakaoText = Color(hex: "#191919")
+  public static let likeOnDark = Color(hex: "#FF6B8A")
   public static let navIconSelected = Color(lightHex: "#FBBF6A", darkHex: "#FBBF6A")
   public static let primary = Color(hex: "#1A1A2E")
   public static let primaryHover = Color(hex: "#0F1B35")
@@ -149,9 +150,13 @@ public enum DSSizing {
   public static let headerHeightWeb: CGFloat = 56
   public static let loadingStateMaxWidth: CGFloat = 260
   public static let messageComposerHeight: CGFloat = 64
+  public static let messageDetailMinHeight: CGFloat = 80
   public static let messageUnreadBadge: CGFloat = 24
   public static let safeBottomNavHeight: CGFloat = 56
   public static let touchTarget: CGFloat = 44
+  public static let webFeedHeroMinHeight: CGFloat = 260
+  public static let webLandingHeroDesktopMinHeight: CGFloat = 520
+  public static let webLandingHeroMinHeight: CGFloat = 360
 }
 
 public enum DSAnimation {
@@ -198,6 +203,8 @@ public enum DSLayout {
   public static let profileHorizontalPadding: CGFloat = 2
   public static let screenPadMobile: CGFloat = 16
   public static let screenPadTablet: CGFloat = 24
+  public static let webMessageBubbleMaxWidthRatio: CGFloat = 0.75
+  public static let webModalMaxHeightRatio: CGFloat = 0.85
 }
 
 public enum DSIconography {

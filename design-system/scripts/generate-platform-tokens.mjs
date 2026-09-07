@@ -23,6 +23,8 @@ const darkSchemeColors = tokens.colorSchemes?.dark ?? {};
 const webOutput = path.join(root, 'design-system', 'platform', 'web', 'design-tokens.css');
 const iosOutput = path.join(root, 'design-system', 'platform', 'ios', 'DesignTokens.swift');
 const androidOutput = path.join(root, 'design-system', 'platform', 'android', 'DesignTokens.kt');
+const webRepository = resolveSiblingRepository(root, 'web');
+const webCopy = path.join(webRepository.path, 'frontend', 'src', 'generated', 'design-tokens.css');
 const iosRepository = resolveSiblingRepository(root, 'ios');
 const androidRepository = resolveSiblingRepository(root, 'android');
 const iosCopy = path.join(iosRepository.path, 'Sources', 'App', 'DesignSystem', 'DesignTokens.swift');
@@ -347,16 +349,19 @@ const generatedArtifacts = [
   buildOutput(iosOutput, ios),
   buildOutput(androidOutput, android),
 ];
+const webCopyArtifact = buildCopyOutput(generatedArtifacts[0], webCopy);
 const iosCopyArtifact = buildCopyOutput(generatedArtifacts[1], iosCopy);
 const kotlinCopyArtifact = buildCopyOutput(generatedArtifacts[2], kotlinCopy);
 
 for (const artifact of generatedArtifacts) {
   artifact.relativePath = path.relative(root, artifact.path);
 }
+webCopyArtifact.relativePath = path.relative(root, webCopyArtifact.path);
 iosCopyArtifact.relativePath = path.relative(root, iosCopyArtifact.path);
 kotlinCopyArtifact.relativePath = path.relative(root, kotlinCopyArtifact.path);
 
 const existingManifest = readExistingManifest();
+const webManifestCopy = manifestCopyMetadata(existingManifest, 'webCopy', webCopyArtifact, requestedTargets.has('web') && webRepository.exists);
 const iosManifestCopy = manifestCopyMetadata(
   existingManifest,
   'iosCopy',
@@ -384,6 +389,7 @@ const manifest = {
     web: path.relative(root, webOutput),
     ios: path.relative(root, iosOutput),
     android: path.relative(root, androidOutput),
+    ...(webManifestCopy ? { webCopy: webManifestCopy.relativePath } : {}),
     ...(iosManifestCopy ? { iosCopy: iosManifestCopy.relativePath } : {}),
     ...(kotlinManifestCopy ? { kotlinCopy: kotlinManifestCopy.relativePath } : {}),
   },
@@ -391,11 +397,13 @@ const manifest = {
     [toRelative(webOutput)]: generatedArtifacts[0].hash,
     [toRelative(iosOutput)]: generatedArtifacts[1].hash,
     [toRelative(androidOutput)]: generatedArtifacts[2].hash,
+    ...(webManifestCopy ? { [webManifestCopy.relativePath]: webManifestCopy.hash } : {}),
     ...(iosManifestCopy ? { [iosManifestCopy.relativePath]: iosManifestCopy.hash } : {}),
     ...(kotlinManifestCopy ? { [kotlinManifestCopy.relativePath]: kotlinManifestCopy.hash } : {}),
   },
   artifacts: [
     ...generatedArtifacts.map(manifestArtifactEntry),
+    ...(webManifestCopy?.artifact ? [webManifestCopy.artifact] : []),
     ...(iosManifestCopy?.artifact ? [iosManifestCopy.artifact] : []),
     ...(kotlinManifestCopy?.artifact ? [kotlinManifestCopy.artifact] : []),
   ],
@@ -403,6 +411,7 @@ const manifest = {
     [toRelative(webOutput)]: generatedArtifacts[0].size,
     [toRelative(iosOutput)]: generatedArtifacts[1].size,
     [toRelative(androidOutput)]: generatedArtifacts[2].size,
+    ...(webManifestCopy ? { [webManifestCopy.relativePath]: webManifestCopy.size } : {}),
     ...(iosManifestCopy ? { [iosManifestCopy.relativePath]: iosManifestCopy.size } : {}),
     ...(kotlinManifestCopy ? { [kotlinManifestCopy.relativePath]: kotlinManifestCopy.size } : {}),
   },
@@ -418,11 +427,15 @@ manifestArtifact.size = manifestArtifact.text.length;
 
 const allArtifacts = [
   ...(requestedTargets.has('self') ? generatedArtifacts : []),
+  ...(requestedTargets.has('web') && webRepository.exists ? [webCopyArtifact] : []),
   ...(requestedTargets.has('ios') && iosRepository.exists ? [iosCopyArtifact] : []),
   ...(requestedTargets.has('android') && androidRepository.exists ? [kotlinCopyArtifact] : []),
   ...(requestedTargets.has('self') ? [manifestArtifact] : []),
 ];
 
+if (requestedTargets.has('web') && !webRepository.exists) {
+  console.log(siblingSkipMessage(webRepository, 'web copy'));
+}
 if (requestedTargets.has('ios') && !iosRepository.exists) {
   console.log(siblingSkipMessage(iosRepository, 'iOS copy'));
 }
@@ -453,7 +466,8 @@ if (checkOnly) {
   }
 
   if (
-    (requestedTargets.has('ios') && !iosRepository.exists)
+    (requestedTargets.has('web') && !webRepository.exists)
+    || (requestedTargets.has('ios') && !iosRepository.exists)
     || (requestedTargets.has('android') && !androidRepository.exists)
   ) {
     console.log('Present in-scope generated design-system artifacts are up to date; skipped targets were not checked.');
@@ -604,7 +618,7 @@ function manifestArtifactEntry(artifact) {
 }
 
 function parseRequestedTargets(onlyValue) {
-  const supportedTargets = new Set(['self', 'ios', 'android']);
+  const supportedTargets = new Set(['self', 'web', 'ios', 'android']);
   if (!onlyValue) {
     return supportedTargets;
   }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-14T01:36:07.251Z",
+  "generatedAt": "2026-09-07T13:44:56.125Z",
   "sourceRoot": "/Users/jerryhwang/Workspace/03_daeil",
   "versioning": {
     "strategy": "content-addressed-baseline-manifest",
@@ -31,7 +31,7 @@
       ]
     }
   },
-  "screenshotCount": 36,
+  "screenshotCount": 48,
   "reportCount": 5,
   "screenshots": [
     {
@@ -66,6 +66,39 @@
       "sha256": "a1c9fda278e9fc81cf023cdb15530179c6612ddd15fc8c0822568c602fa70ae8",
       "width": 768,
       "height": 1081
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/landing-desktop.png",
+      "fileName": "landing-desktop.png",
+      "exists": true,
+      "bytes": 1596539,
+      "sha256": "4a07d04a9a358df5621aab7d578cbfcfd1a85679dcc09f64827e561ac1b58e2a",
+      "width": 1440,
+      "height": 9091
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/landing-mobile.png",
+      "fileName": "landing-mobile.png",
+      "exists": true,
+      "bytes": 955781,
+      "sha256": "f7fadc4c7bba4bed28177801306dca340a101d7a9900e12fa7427d49c7ca708f",
+      "width": 390,
+      "height": 9984
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/landing-tablet.png",
+      "fileName": "landing-tablet.png",
+      "exists": true,
+      "bytes": 1415841,
+      "sha256": "79a3c55d621eda13239ba2f8428ce93387cab86ea2a3d8d592ea957b60dc1a9f",
+      "width": 768,
+      "height": 10496
     },
     {
       "platform": "web",
@@ -168,14 +201,47 @@
     },
     {
       "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/post-desktop.png",
+      "fileName": "post-desktop.png",
+      "exists": true,
+      "bytes": 35286,
+      "sha256": "f634da267ba126c09d0cd7213d974a2f43559b4fe75c432686dc94dff5ca1d53",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/post-mobile.png",
+      "fileName": "post-mobile.png",
+      "exists": true,
+      "bytes": 26722,
+      "sha256": "daade5443e1aebe88f6cbdf30dcc04585c219d87effc9450297a1cc69cb8b5ad",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "web",
+      "role": "baseline",
+      "path": "design-system/verification/web-snapshots/baseline/post-tablet.png",
+      "fileName": "post-tablet.png",
+      "exists": true,
+      "bytes": 32893,
+      "sha256": "6bfd937b4b381ffe38b279d211564090eb604712283cd2800cf303ead86af892",
+      "width": 768,
+      "height": 1081
+    },
+    {
+      "platform": "web",
       "role": "latest-capture",
       "path": "design-system/verification/web-snapshots/design/feed-desktop.png",
       "fileName": "feed-desktop.png",
       "exists": true,
-      "bytes": 166874,
-      "sha256": "0fe5245dde27413aab9eed84c80993b6b48ab881df4e92f6231e664deb7d8ad1",
+      "bytes": 684833,
+      "sha256": "9a4ab136e91f8df940a8d07666834a221f0efe1810e8dbcc3897380a98c6d5c0",
       "width": 1440,
-      "height": 957
+      "height": 9091
     },
     {
       "platform": "web",
@@ -183,10 +249,10 @@
       "path": "design-system/verification/web-snapshots/design/feed-mobile.png",
       "fileName": "feed-mobile.png",
       "exists": true,
-      "bytes": 128225,
-      "sha256": "dbafd5f50db9c4d132cbd35f7fba412648245c7f0bcab9ba8e42bfaea5974d6e",
+      "bytes": 339556,
+      "sha256": "20f04d1fdc0ef596eec3fa466a82c26ae1ef0418f36fcb1f858c9f5759f36056",
       "width": 390,
-      "height": 1316
+      "height": 9920
     },
     {
       "platform": "web",
@@ -194,10 +260,43 @@
       "path": "design-system/verification/web-snapshots/design/feed-tablet.png",
       "fileName": "feed-tablet.png",
       "exists": true,
-      "bytes": 142485,
-      "sha256": "a1c9fda278e9fc81cf023cdb15530179c6612ddd15fc8c0822568c602fa70ae8",
+      "bytes": 528987,
+      "sha256": "b4dfc1719d3e940916e75f2ac2384add2889b9353eaf1f98580e1a42b9ddbc29",
       "width": 768,
-      "height": 1081
+      "height": 10432
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/landing-desktop.png",
+      "fileName": "landing-desktop.png",
+      "exists": true,
+      "bytes": 1596539,
+      "sha256": "4a07d04a9a358df5621aab7d578cbfcfd1a85679dcc09f64827e561ac1b58e2a",
+      "width": 1440,
+      "height": 9091
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/landing-mobile.png",
+      "fileName": "landing-mobile.png",
+      "exists": true,
+      "bytes": 955781,
+      "sha256": "f7fadc4c7bba4bed28177801306dca340a101d7a9900e12fa7427d49c7ca708f",
+      "width": 390,
+      "height": 9984
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/landing-tablet.png",
+      "fileName": "landing-tablet.png",
+      "exists": true,
+      "bytes": 1415841,
+      "sha256": "79a3c55d621eda13239ba2f8428ce93387cab86ea2a3d8d592ea957b60dc1a9f",
+      "width": 768,
+      "height": 10496
     },
     {
       "platform": "web",
@@ -205,10 +304,10 @@
       "path": "design-system/verification/web-snapshots/design/messages-desktop.png",
       "fileName": "messages-desktop.png",
       "exists": true,
-      "bytes": 43961,
-      "sha256": "ec1708982a5e36a4fdcff2f69d95153ea90467d579d06e91258607497a7876a6",
+      "bytes": 686555,
+      "sha256": "75f438f43fb39bb95541a4d98ea6fccd01b5131edd4eec3f9d7c1c447e32cb7b",
       "width": 1440,
-      "height": 957
+      "height": 9091
     },
     {
       "platform": "web",
@@ -216,10 +315,10 @@
       "path": "design-system/verification/web-snapshots/design/messages-mobile.png",
       "fileName": "messages-mobile.png",
       "exists": true,
-      "bytes": 34904,
-      "sha256": "4168196cabfa7e4e2abded5fa20da694cd8f14ef2a262be427d6d44469068ad9",
+      "bytes": 339521,
+      "sha256": "ecaffb4b409034e5997405b6ccf0a29f5469404bcb71dd2ad0d81e5f6f42fb78",
       "width": 390,
-      "height": 844
+      "height": 9920
     },
     {
       "platform": "web",
@@ -227,10 +326,10 @@
       "path": "design-system/verification/web-snapshots/design/messages-tablet.png",
       "fileName": "messages-tablet.png",
       "exists": true,
-      "bytes": 41972,
-      "sha256": "f5ec45c851d2ebec38f75d3ab0d1184cc0a9ede844a0cfd4b85941ee6b793ef4",
+      "bytes": 528036,
+      "sha256": "fd84323170521df43dc0eafa6d6789bfad99f2ab01aafcb28cea9a1f2c54b292",
       "width": 768,
-      "height": 1081
+      "height": 10432
     },
     {
       "platform": "web",
@@ -249,10 +348,10 @@
       "path": "design-system/verification/web-snapshots/design/messages_thread-mobile.png",
       "fileName": "messages_thread-mobile.png",
       "exists": true,
-      "bytes": 35744,
-      "sha256": "36d449bc2e5309e994e0d5b5f3d55cb784dbf8c60d5c6de72832513f08f5a0ff",
+      "bytes": 339501,
+      "sha256": "fea735e80288892ecd231196c7211904964712a71b2bfdf2d95a394d0315b1e3",
       "width": 390,
-      "height": 844
+      "height": 9920
     },
     {
       "platform": "web",
@@ -260,10 +359,10 @@
       "path": "design-system/verification/web-snapshots/design/messages_thread-tablet.png",
       "fileName": "messages_thread-tablet.png",
       "exists": true,
-      "bytes": 67421,
-      "sha256": "e023b4c15d1887564a5f9fa7d441d5e9de7a89d925ff972b3be14fe67041783e",
+      "bytes": 528826,
+      "sha256": "11f48169511b5420e5781df615672a3ba25b19d0b06ebd401fa2651370b2b139",
       "width": 768,
-      "height": 1081
+      "height": 10432
     },
     {
       "platform": "web",
@@ -271,10 +370,10 @@
       "path": "design-system/verification/web-snapshots/design/mypage-desktop.png",
       "fileName": "mypage-desktop.png",
       "exists": true,
-      "bytes": 86404,
-      "sha256": "8ac720dd4e2ac8042d8ed72df07983da65526c32d9f19d47e8ee73e59ccaeb0c",
+      "bytes": 686437,
+      "sha256": "077a9c596a816a687f1a4c0777699447fbc0814c0d0d4ce4fabf7b8c71e21a5e",
       "width": 1440,
-      "height": 957
+      "height": 9091
     },
     {
       "platform": "web",
@@ -282,10 +381,10 @@
       "path": "design-system/verification/web-snapshots/design/mypage-mobile.png",
       "fileName": "mypage-mobile.png",
       "exists": true,
-      "bytes": 74439,
-      "sha256": "7760683b23419392f6ffaf4b4fef1c1f4c41e3a7e0ce50768b52a89c1baf224c",
+      "bytes": 339669,
+      "sha256": "7da4b55b7e4de771a7be901ff2d64e458d3ba476963baec4c28ab0711a2b171a",
       "width": 390,
-      "height": 1027
+      "height": 9920
     },
     {
       "platform": "web",
@@ -293,8 +392,41 @@
       "path": "design-system/verification/web-snapshots/design/mypage-tablet.png",
       "fileName": "mypage-tablet.png",
       "exists": true,
-      "bytes": 81854,
-      "sha256": "46213e5a196af4ab95cdff24a10eb15e6f57467ae9bb0f8e35bcb223fc73e0f7",
+      "bytes": 529082,
+      "sha256": "75956c1725c754e8c92340e16d1af8ee1e7feeb25e20f6a21515c1ec6b87a260",
+      "width": 768,
+      "height": 10432
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/post-desktop.png",
+      "fileName": "post-desktop.png",
+      "exists": true,
+      "bytes": 35286,
+      "sha256": "f634da267ba126c09d0cd7213d974a2f43559b4fe75c432686dc94dff5ca1d53",
+      "width": 1440,
+      "height": 957
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/post-mobile.png",
+      "fileName": "post-mobile.png",
+      "exists": true,
+      "bytes": 26722,
+      "sha256": "daade5443e1aebe88f6cbdf30dcc04585c219d87effc9450297a1cc69cb8b5ad",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "platform": "web",
+      "role": "latest-capture",
+      "path": "design-system/verification/web-snapshots/design/post-tablet.png",
+      "fileName": "post-tablet.png",
+      "exists": true,
+      "bytes": 32893,
+      "sha256": "6bfd937b4b381ffe38b279d211564090eb604712283cd2800cf303ead86af892",
       "width": 768,
       "height": 1081
     },
@@ -304,8 +436,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-Feed-mobile.png",
       "fileName": "iOS-Feed-mobile.png",
       "exists": true,
-      "bytes": 1879552,
-      "sha256": "a0de66b4c2b388f3b238b3d14517018a6330e6f36c9986cd3d4e30e8e4876ce5",
+      "bytes": 1639628,
+      "sha256": "8d676433302a3c22334b3d943a1cfbef57e2f3235142172d8829bbddd60e7037",
       "width": 1179,
       "height": 2556
     },
@@ -315,8 +447,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-MessagesList-mobile.png",
       "fileName": "iOS-MessagesList-mobile.png",
       "exists": true,
-      "bytes": 1917033,
-      "sha256": "92e0cd13720f66b34b39045566073a73706f2135f7c84e1369e7bdfc10642194",
+      "bytes": 201542,
+      "sha256": "62350fd967d89f24d1e36e73779cee504282828564c8fd540760940235fd3cda",
       "width": 1179,
       "height": 2556
     },
@@ -326,8 +458,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-MessagesThread-mobile.png",
       "fileName": "iOS-MessagesThread-mobile.png",
       "exists": true,
-      "bytes": 693723,
-      "sha256": "f899a279b785a07cac6d868476f1d8738a320ecfe6c04e3942c1f98d2fe8767d",
+      "bytes": 230572,
+      "sha256": "1a3a96fc4fad07b38d7f3abe368f5c5e8210eee53e9b42db424c136890b675ba",
       "width": 1179,
       "height": 2556
     },
@@ -337,8 +469,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-MyPage-mobile.png",
       "fileName": "iOS-MyPage-mobile.png",
       "exists": true,
-      "bytes": 1856741,
-      "sha256": "27ac48f95b5142d8bcc998ef3a896ce44b8178e0ac359242eb63175157e6c741",
+      "bytes": 445401,
+      "sha256": "9adf36fd37aa50c34d02c8fe3cd88c0fce6b12414743dc87696b98c97c89db42",
       "width": 1179,
       "height": 2556
     },
@@ -348,8 +480,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-Feed-mobile.png",
       "fileName": "iOS-Feed-mobile.png",
       "exists": true,
-      "bytes": 1879552,
-      "sha256": "a0de66b4c2b388f3b238b3d14517018a6330e6f36c9986cd3d4e30e8e4876ce5",
+      "bytes": 1639628,
+      "sha256": "8d676433302a3c22334b3d943a1cfbef57e2f3235142172d8829bbddd60e7037",
       "width": 1179,
       "height": 2556
     },
@@ -359,8 +491,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-MessagesList-mobile.png",
       "fileName": "iOS-MessagesList-mobile.png",
       "exists": true,
-      "bytes": 1917033,
-      "sha256": "92e0cd13720f66b34b39045566073a73706f2135f7c84e1369e7bdfc10642194",
+      "bytes": 201542,
+      "sha256": "62350fd967d89f24d1e36e73779cee504282828564c8fd540760940235fd3cda",
       "width": 1179,
       "height": 2556
     },
@@ -370,8 +502,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-MessagesThread-mobile.png",
       "fileName": "iOS-MessagesThread-mobile.png",
       "exists": true,
-      "bytes": 693723,
-      "sha256": "f899a279b785a07cac6d868476f1d8738a320ecfe6c04e3942c1f98d2fe8767d",
+      "bytes": 230568,
+      "sha256": "b67e784c1355b185e3692decea5244693eea0bb52cd584b3e88c4be09a9681a3",
       "width": 1179,
       "height": 2556
     },
@@ -381,8 +513,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-MyPage-mobile.png",
       "fileName": "iOS-MyPage-mobile.png",
       "exists": true,
-      "bytes": 1856741,
-      "sha256": "27ac48f95b5142d8bcc998ef3a896ce44b8178e0ac359242eb63175157e6c741",
+      "bytes": 445401,
+      "sha256": "9adf36fd37aa50c34d02c8fe3cd88c0fce6b12414743dc87696b98c97c89db42",
       "width": 1179,
       "height": 2556
     },
@@ -392,8 +524,8 @@
       "path": "design-system/verification/platform-diffs/web-ios-feed-mobile.png",
       "fileName": "web-ios-feed-mobile.png",
       "exists": true,
-      "bytes": 12821,
-      "sha256": "fdd3e649f503d5d58030ec9f6553de2b3bc327a84df4d7f8e40f0ac2b624574d",
+      "bytes": 74468,
+      "sha256": "0af53fe69a55d71203d20c6686421ef92bacf48c2cecff0cde80dd70a7dc517a",
       "width": 390,
       "height": 845
     },
@@ -403,8 +535,8 @@
       "path": "design-system/verification/platform-diffs/web-ios-messages-mobile.png",
       "fileName": "web-ios-messages-mobile.png",
       "exists": true,
-      "bytes": 11291,
-      "sha256": "444ecaaae201aea3c84ef6270e53593874bc4f4cca40dbdd4dd9d1a25b2311ab",
+      "bytes": 21322,
+      "sha256": "4ed2a475b5ae63a513a5f1b3d694f8e7aaad5760762029601266d07f593b496c",
       "width": 390,
       "height": 844
     },
@@ -414,8 +546,8 @@
       "path": "design-system/verification/platform-diffs/web-ios-messages_thread-mobile.png",
       "fileName": "web-ios-messages_thread-mobile.png",
       "exists": true,
-      "bytes": 13180,
-      "sha256": "97be90097155061453bd0e95b9f1e5b81f720b4ea6710e939bede316c41d2f2e",
+      "bytes": 28692,
+      "sha256": "f0146bb796915a42035057fac4d91a75f8aae7ca3d22f51a66eb8048882836fc",
       "width": 390,
       "height": 844
     },
@@ -425,8 +557,8 @@
       "path": "design-system/verification/platform-diffs/web-ios-mypage-mobile.png",
       "fileName": "web-ios-mypage-mobile.png",
       "exists": true,
-      "bytes": 20885,
-      "sha256": "4d11e558367c3e697064e1d8703f02727108d712c86c3bf0d9d8ac1eed66d73f",
+      "bytes": 43418,
+      "sha256": "843f7ddd7980fd28e3f927ac196062aad7f0152b5f5ae7b5f5eee2e82ede68e2",
       "width": 390,
       "height": 845
     }
@@ -436,37 +568,37 @@
       "role": "report",
       "path": "design-system/verification/reports/visual-check-web.json",
       "exists": true,
-      "bytes": 8018,
-      "sha256": "fced7da57880953725d370d834cf848f2cf343219f4e317fd2bca0cac0de29f8"
+      "bytes": 4195,
+      "sha256": "c53daef05546cdb56e600fa1bc858f7801d3c1db07ce69f7ea3246fb68b5300c"
     },
     {
       "role": "report",
       "path": "design-system/verification/reports/visual-check-ios.json",
       "exists": true,
-      "bytes": 2731,
-      "sha256": "35ceb5fb53e23f81b6cd3271d2e01cbde988e40020a538d28cd99ae17b170e85"
+      "bytes": 3851,
+      "sha256": "3bfee178a7dde12ad0ebedc509f4bc891e60d30fa37626eb541f5fb4ca8bd383"
     },
     {
       "role": "report",
       "path": "design-system/verification/reports/visual-platform-parity.json",
       "exists": true,
-      "bytes": 8673,
-      "sha256": "b87dcf3a9bc0f0a3bdf83b9ab4768e9a65a0481118385688bb4d71a912c341b0"
+      "bytes": 7338,
+      "sha256": "3ef11c0c18a67d150ae5e56700da20d03a5a48100031ac7a0a03b35590789186"
     },
     {
       "role": "report",
       "path": "design-system/verification/reports/visual-platform-parity.md",
       "exists": true,
-      "bytes": 2938,
-      "sha256": "3c82657fa0f4b87ba16cdceb4a2c6d5e4a552c8cfbd5553e451e88e5ceba9a43"
+      "bytes": 1990,
+      "sha256": "7d7546e20b7a2d5a1d7dff98c6b53225bf47a107bd61bc4f95ae011b96ddf510"
     },
     {
       "role": "report",
       "path": "design-system/verification/reports/accepted-deltas.json",
       "exists": true,
-      "bytes": 2515,
-      "sha256": "0388a0354d27f6819c88cc8e20514d62f0629a8c63ece8fa2a56e33dd7ccd421"
+      "bytes": 2981,
+      "sha256": "56db2114dea2295e6f5684de53d627913841d06b65b9990fdcfcf7950adb31dc"
     }
   ],
-  "manifestHash": "ff0e457f63fdf6378ce6520480f587e29b67e43c34ad933d43db2afb9597e828"
+  "manifestHash": "b5c80d0ac6a74b068b5097c798169f8c7cc60b03bbac295f97fb43a301464ff5"
 }

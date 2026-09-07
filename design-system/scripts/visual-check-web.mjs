@@ -15,10 +15,9 @@ const pixelThreshold = Number.parseInt(process.env.DFLH_WEB_PIXEL_THRESHOLD ?? '
 const useApiFixtures = process.env.DFLH_WEB_USE_API_FIXTURES !== '0';
 
 const routes = [
-  { name: 'feed', path: '/' },
-  { name: 'messages', path: '/messages' },
-  { name: 'mypage', path: '/mypage' },
-  { name: 'messages_thread', path: '/messages/1' },
+  // Current public web routes. Native-only message/profile routes redirect home.
+  { name: 'landing', path: '/', expectedText: '동문 멘토링 신청 안내' },
+  { name: 'post', path: '/post/101', expectedText: '뉴스피드 디자인 시스템 기준 공지' },
 ];
 
 const viewports = [
@@ -58,7 +57,7 @@ let acceptedCount = 0;
 
 for (const route of routes) {
   for (const viewport of viewports) {
-    const page = await browser.newPage({ viewport });
+    const page = await browser.newPage({ viewport, locale: 'ko-KR', timezoneId: 'Asia/Seoul', reducedMotion: 'reduce' });
     const fileBase = `${route.name}-${viewport.name}.png`;
     const baselinePath = path.join(baselineDir, fileBase);
     const currentPath = path.join(currentDir, fileBase);
@@ -69,6 +68,17 @@ for (const route of routes) {
         await installApiFixtures(page);
       }
       await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
+      if (new URL(page.url()).pathname !== route.path) throw new Error(`Unexpected redirect: ${page.url()}`);
+      await page.getByText(route.expectedText, { exact: false }).first().waitFor();
+      await page.evaluate(async () => {
+        await document.fonts.ready;
+        // Finish scroll-triggered landing reveals before a full-page screenshot.
+        for (let y = 0; y < document.body.scrollHeight; y += window.innerHeight) {
+          window.scrollTo(0, y);
+          await new Promise(resolve => setTimeout(resolve, 30));
+        }
+        window.scrollTo(0, 0);
+      });
       await page.waitForTimeout(700);
       const shotBuffer = await page.screenshot({
         fullPage: true,
@@ -270,6 +280,8 @@ function isAccepted(route, viewport, hash, baselineHash) {
 }
 
 async function installApiFixtures(page) {
+  // The maintenance gate is client-side; unlock only this isolated test context.
+  await page.addInitScript(() => sessionStorage.setItem('wip-unlock', '1'));
   await page.route('**/api/**', async (route) => {
     const request = route.request();
     const url = new URL(request.url());
@@ -319,6 +331,9 @@ function apiFixtureFor(pathName) {
   }
   if (pathName === '/api/feed/hero') {
     return visualHeroNotice;
+  }
+  if (pathName === '/api/feed/101') {
+    return { ...visualHeroNotice, contentHtml: '<p>장학회 소식과 동문 멘토링 일정을 안내합니다.</p>', contentFormat: 'LEGACY', files: [], userLiked: false };
   }
   if (pathName === '/api/feed') {
     return visualFeedResponse;

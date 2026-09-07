@@ -51,6 +51,7 @@
   --color-hero-via: #1A2F5A;
   --color-kakao: #FEE500;
   --color-kakao-text: #191919;
+  --color-like-on-dark: #FF6B8A;
   --color-nav-icon-selected: #FBBF6A;
   --color-primary: #1A1A2E;
   --color-primary-hover: #0F1B35;
@@ -137,6 +138,8 @@
   --layout-profile-horizontal-padding: 2px;
   --layout-screen-pad-mobile: 16px;
   --layout-screen-pad-tablet: 24px;
+  --layout-web-message-bubble-max-width-ratio: 0.75;
+  --layout-web-modal-max-height-ratio: 0.85;
   --size-feed-card-thumbnail-height-max: 168px;
   --size-feed-card-thumbnail-height-min: 152px;
   --size-feed-hero-height-max: 190px;
@@ -145,9 +148,13 @@
   --size-header-height-web: 56px;
   --size-loading-state-max-width: 260px;
   --size-message-composer-height: 64px;
+  --size-message-detail-min-height: 80px;
   --size-message-unread-badge: 24px;
   --size-safe-bottom-nav-height: 56px;
   --size-touch-target: 44px;
+  --size-web-feed-hero-min-height: 260px;
+  --size-web-landing-hero-desktop-min-height: 520px;
+  --size-web-landing-hero-min-height: 360px;
   --icon-size-lg: 18px;
   --icon-size-md: 16px;
   --icon-size-sm: 14px;

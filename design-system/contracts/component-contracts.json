@@ -573,7 +573,7 @@
           "DSLineWidth.emphasis"
         ],
         "typography": [
-          "DSTextStyle.heading",
+          "DSTextStyle.mainTabHeader",
           "DSTextStyle.title",
           "DSTextStyle.bodySm",
           "DSTextStyle.caption",
@@ -618,7 +618,7 @@
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt"
         ]
       },
-      "notes": "Web shows two-column desktop with sidebar widget; iOS may flatten to single column while preserving section order and tokenized spacing/radius/elevation. The donation cumulative-amount widget is no longer part of this screen on iOS/Android: it moved to a dedicated donation screen reachable from the '기부하기' tab (not yet a formal contract). Web may still show it inline via DonationBanner.tsx/NetworkWidget.tsx; that is an accepted platform delta, not a required block."
+      "notes": "Web shows two-column desktop with sidebar widget; iOS may flatten to single column while preserving section order and tokenized spacing/radius/elevation. The donation cumulative-amount widget is no longer part of this screen on iOS/Android: it moved to a dedicated donation screen reachable from the '기부하기' tab (not yet a formal contract). Web may still show it inline via DonationBanner.tsx/NetworkWidget.tsx; that is an accepted platform delta, not a required block. The merged iOS redesign uses DSTextStyle.mainTabHeader (h3) for the main tab header and DSTextStyle.title for post titles; the former 24px heading requirement is obsolete."
     },
     {
       "name": "screen.messages",

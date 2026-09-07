@@ -18,6 +18,8 @@ Do not edit generated platform files by hand.
 - Web: `design-system/platform/web/design-tokens.css`
 - iOS: `design-system/platform/ios/DesignTokens.swift`
 - Android: `design-system/platform/android/DesignTokens.kt`
+- Copied web app token file:
+  `dflh-saf-v2/frontend/src/generated/design-tokens.css`
 - Copied iOS app token file:
   `dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift`
 - Copied Android token file:

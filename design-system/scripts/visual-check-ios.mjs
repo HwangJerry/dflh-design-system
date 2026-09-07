@@ -31,10 +31,14 @@ const scheme = process.env.DFLH_IOS_VISUAL_SCHEME ?? 'DflhSafV2Swift';
 const simulatorName = process.env.DFLH_IOS_VISUAL_DEVICE ?? 'iPhone 15';
 const captureDelayMs = Number.parseInt(process.env.DFLH_IOS_VISUAL_CAPTURE_DELAY_MS ?? '1800', 10);
 const maxChangedPixelRatio = Number.parseFloat(process.env.DFLH_IOS_MAX_CHANGED_PIXEL_RATIO ?? '0');
-const pixelThreshold = Number.parseInt(process.env.DFLH_IOS_PIXEL_THRESHOLD ?? '0', 10);
+// Repeated simulator captures can differ by one RGB quantization level at antialiased edges.
+// Keep the changed-pixel ratio at zero; only tolerate a total channel delta of three.
+const pixelThreshold = Number.parseInt(process.env.DFLH_IOS_PIXEL_THRESHOLD ?? '3', 10);
 
 const runMode = (process.env.DFLH_IOS_VISUAL_MODE ?? 'guard').toLowerCase();
-const shouldGenerateCaptures = process.env.DFLH_IOS_VISUAL_CAPTURE === '1' || runMode === 'capture';
+if (!['guard', 'capture'].includes(runMode)) throw new Error(`Unknown iOS visual mode: ${runMode}`);
+// Baseline updates promote the exact captures already reviewed, without recapturing.
+const shouldGenerateCaptures = process.env.DFLH_IOS_VISUAL_CAPTURE === '1';
 const manifest = readManifest();
 const accepted = loadAcceptedDeltas();
 await fs.promises.mkdir(baselineDir, { recursive: true });
@@ -194,7 +198,7 @@ const report = {
     changedCount: checks.filter((entry) => entry.status === 'changed').length,
     acceptedCount,
     missingCaptureCount: checks.filter((entry) => entry.status === 'missing-capture' || entry.status === 'missing-both').length,
-    missingBaselineCount: checks.filter((entry) => entry.status === 'missing-baseline').length,
+    missingBaselineCount: checks.filter((entry) => entry.status === 'missing-baseline' || entry.status === 'missing-both').length,
     errorCount: checks.filter((entry) => entry.status === 'error').length,
     baselineCreatedCount: checks.filter((entry) => entry.status === 'baseline-created').length,
     baselineUpdatedCount: checks.filter((entry) => entry.status === 'baseline-updated').length,
@@ -204,14 +208,17 @@ const report = {
 
 if (failureCount > 0) {
   manifest.status = 'failed';
+  manifest.captures = checks;
   manifest.generatedAt = new Date().toISOString();
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
   const message = [
     'iOS evidence check failed:',
-    `- missing captures/baselines: ${failureCount}`,
+    `- changed screens: ${report.summary.changedCount}`,
+    `- missing captures: ${report.summary.missingCaptureCount}`,
+    `- missing baselines: ${report.summary.missingBaselineCount}`,
     `- report: ${reportPath}`,
-    '- Capture command: DFLH_IOS_VISUAL_CAPTURE=1 npm run visual-check-ios',
-    '- Baseline update command: DFLH_IOS_VISUAL_MODE=capture npm run visual-check-ios',
+    '- Capture command: npm run visual-check-ios:capture',
+    '- After reviewing changes, update baselines: npm run visual-check-ios:update-baseline',
   ].join('\n');
   console.error(message);
 }
@@ -221,7 +228,7 @@ await fs.promises.writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, 
 if (failureCount > 0) {
   const existingLog = fs.existsSync(decisionLogPath) ? fs.readFileSync(decisionLogPath, 'utf8') : '';
   const statusLines = checks
-    .filter((entry) => entry.status === 'missing-baseline' || entry.status === 'missing-capture' || entry.status === 'missing-both')
+    .filter((entry) => ['changed', 'missing-baseline', 'missing-capture', 'missing-both'].includes(entry.status))
     .map((entry) => `- ${entry.filename}: ${entry.status}`);
   const updateText = [
     existingLog,
@@ -230,7 +237,9 @@ if (failureCount > 0) {
     `- generatedAt: ${report.generatedAt}`,
     '- pending items:',
     ...statusLines,
-    '- action: capture missing files into design-system/verification/ios-snapshots/captures and re-run.',
+    report.summary.changedCount > 0
+      ? '- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.'
+      : '- action: capture missing files or restore reviewed baselines, then re-run.',
     '',
   ]
     .join('\n');
@@ -247,7 +256,7 @@ manifest.generatedAt = new Date().toISOString();
 manifest.captures = checks;
 await fs.promises.writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
 
-console.log(`iOS visual parity check passed. report: ${reportPath}`);
+console.log(`iOS visual regression check passed. report: ${reportPath}`);
 if (acceptedCount > 0) {
   console.log(`accepted deltas applied: ${acceptedCount}`);
 }
@@ -273,6 +282,9 @@ async function generateSimulatorCaptures() {
   ], { stdio: 'inherit' });
 
   bootSimulator(udid);
+  execFileSync('xcrun', ['simctl', 'ui', udid, 'appearance', 'light']);
+  execFileSync('xcrun', ['simctl', 'ui', udid, 'content_size', 'large']);
+  execFileSync('xcrun', ['simctl', 'status_bar', udid, 'override', '--time', '9:41', '--dataNetwork', 'wifi', '--wifiMode', 'active', '--wifiBars', '3', '--batteryState', 'charged', '--batteryLevel', '100']);
   spawnSync('xcrun', ['simctl', 'terminate', udid, bundleIdentifier], { stdio: 'ignore' });
   spawnSync('xcrun', ['simctl', 'uninstall', udid, bundleIdentifier], { stdio: 'ignore' });
   execFileSync('xcrun', ['simctl', 'install', udid, appBundlePath], { stdio: 'inherit' });
@@ -282,6 +294,7 @@ async function generateSimulatorCaptures() {
     const screen = visualScreenForFile(fileName);
     const visualEnvironment = {
       ...process.env,
+      SIMCTL_CHILD_TZ: 'Asia/Seoul',
       SIMCTL_CHILD_DFLH_VISUAL_TEST: '1',
       SIMCTL_CHILD_DFLH_VISUAL_TEST_SCREEN: screen,
     };
@@ -297,6 +310,7 @@ async function generateSimulatorCaptures() {
       '--terminate-running-process',
       udid,
       bundleIdentifier,
+      '-AppleLanguages', '(ko)', '-AppleLocale', 'ko_KR',
     ], {
       stdio: 'inherit',
       env: visualEnvironment,

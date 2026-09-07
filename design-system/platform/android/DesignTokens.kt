@@ -57,6 +57,7 @@ object DesignTokens {
     val heroVia = Color(0xFF1A2F5A)
     val kakao = Color(0xFFFEE500)
     val kakaoText = Color(0xFF191919)
+    val likeOnDark = Color(0xFFFF6B8A)
     val navIconSelected = Color(0xFFFBBF6A)
     val primary = Color(0xFF1A1A2E)
     val primaryHover = Color(0xFF0F1B35)
@@ -111,6 +112,8 @@ object DesignTokens {
         val profileHorizontalPadding = 2.dp
         val screenPadMobile = 16.dp
         val screenPadTablet = 24.dp
+        val webMessageBubbleMaxWidthRatio = 0.75f
+        val webModalMaxHeightRatio = 0.85f
     }
 
     object Sizing {
@@ -122,9 +125,13 @@ object DesignTokens {
         val headerHeightWeb = 56.dp
         val loadingStateMaxWidth = 260.dp
         val messageComposerHeight = 64.dp
+        val messageDetailMinHeight = 80.dp
         val messageUnreadBadge = 24.dp
         val safeBottomNavHeight = 56.dp
         val touchTarget = 44.dp
+        val webFeedHeroMinHeight = 260.dp
+        val webLandingHeroDesktopMinHeight = 520.dp
+        val webLandingHeroMinHeight = 360.dp
     }
 
     object Typography {

@@ -12,12 +12,13 @@
     "verify-ios-design-system": "node design-system/scripts/verify-ios-design-system-compliance.mjs",
     "verify-design-system": "npm run validate-design-tokens && DFLH_SKIP_TOKEN_VALIDATION=1 npm run verify-generated-design-system && npm run verify-contract-docs && npm run verify-android-design-system && npm run verify-ios-design-system && node design-system/scripts/verify-design-system.mjs",
     "visual-check-web": "DFLH_WEB_BASE_URL=http://127.0.0.1:4173 node design-system/scripts/visual-check-web.mjs",
-    "build-web-for-visual-check": "cd dflh-saf-v2/frontend && VITE_VISUAL_CHECK_BYPASS_WIP=1 npm run build",
+    "build-web-for-visual-check": "cd dflh-saf-v2/frontend && npm run build",
     "visual-check-ios": "DFLH_IOS_VISUAL_MODE=guard node design-system/scripts/visual-check-ios.mjs",
     "visual-check-ios:capture": "DFLH_IOS_VISUAL_CAPTURE=1 DFLH_IOS_VISUAL_MODE=guard node design-system/scripts/visual-check-ios.mjs",
     "visual-check-ios:update-baseline": "DFLH_IOS_VISUAL_MODE=capture node design-system/scripts/visual-check-ios.mjs",
     "visual-compare-platforms": "node design-system/scripts/visual-compare-platforms.mjs",
     "generate-visual-baseline-manifest": "node design-system/scripts/generate-visual-baseline-manifest.mjs",
-    "verify-design-system:full": "npm run verify-design-system && npm run visual-check-web && npm run visual-check-ios && npm run visual-compare-platforms && npm run generate-visual-baseline-manifest"
+    "verify-design-system:full": "npm run verify-design-system && npm run visual-check-web && npm run visual-check-ios && npm run visual-compare-platforms && npm run generate-visual-baseline-manifest",
+    "test-design-system-scripts": "node --test design-system/scripts/tests/*.test.mjs"
   }
 }

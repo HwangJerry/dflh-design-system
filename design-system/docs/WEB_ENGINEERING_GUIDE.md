@@ -6,6 +6,8 @@ This guide is for contributors working in `dflh-saf-v2/frontend`.
 
 - Canonical tokens: `design-system/tokens/design-tokens.json`
 - Generated web variables: `design-system/platform/web/design-tokens.css`
+- Generated copy (committed for standalone web builds):
+  `dflh-saf-v2/frontend/src/generated/design-tokens.css`
 - Web import point: `dflh-saf-v2/frontend/src/index.css`
 - Contracts: `design-system/contracts/component-contracts.json`
 - Contract reference: `design-system/contracts/COMPONENT_CONTRACTS.md`
@@ -61,3 +63,22 @@ npm run visual-check-web
 - Generated token CSS was not edited by hand.
 - `npm run verify-design-system` passes.
 
+
+## Visual coverage (2026-09-07)
+
+The public web now exposes the landing page and post detail, not the legacy
+`/messages` or `/mypage` routes. The visual guard captures `/` and `/post/101`
+at mobile, tablet and desktop sizes. It rejects unexpected redirects and waits
+for fixture content and fonts. Legacy Feed/Message/Profile components remain
+covered by token compliance and component tests; screenshots of the home-page
+fallback are not evidence that those retired routes work.
+
+The isolated Playwright context unlocks the client-side maintenance gate via
+its sessionStorage and uses reduced motion, Korean locale, and Seoul timezone.
+This does not change the production maintenance gate. The old
+`VITE_VISUAL_CHECK_BYPASS_WIP` environment variable has no consumer in the app.
+
+Generated token copies are checked by `npm run verify-generated-design-system`;
+use `DFLH_WEB_REPO` to point at a non-default web checkout. Arbitrary responsive
+values retained in legacy components resolve through explicit web layout tokens
+(75% message width, 85vh modal cap, and existing hero heights).
