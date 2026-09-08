@@ -56,6 +56,11 @@ public enum DSColor {
   public static let kakao = Color(hex: "#FEE500")
   public static let kakaoText = Color(hex: "#191919")
   public static let likeOnDark = Color(hex: "#FF6B8A")
+  public static let mobileFlowBackground = Color(hex: "#F5F4F1")
+  public static let mobileFlowBadge = Color(hex: "#EDEAE3")
+  public static let mobileFlowPrimary = Color(hex: "#1B1A30")
+  public static let mobileFlowWarning = Color(hex: "#B45309")
+  public static let mobileFlowWarningSubtle = Color(hex: "#FDF6EC")
   public static let mobileLoginHero = Color(hex: "#172849")
   public static let navIconSelected = Color(lightHex: "#FBBF6A", darkHex: "#FBBF6A")
   public static let primary = Color(hex: "#1A1A2E")
@@ -91,7 +96,10 @@ public enum DSFont {
   public static let h2: CGFloat = 24
   public static let h3: CGFloat = 20
   public static let mini: CGFloat = 10
+  public static let mobileFlowSecondaryAction: CGFloat = 14
+  public static let mobileFlowTitle: CGFloat = 22
   public static let mobileLoginHeadline: CGFloat = 26
+  public static let mobileReceiptValue: CGFloat = 12.5
   public static let navigationLabel: CGFloat = 12
   public static let title: CGFloat = 18
   public static let fontWeightBold: Double = 700
@@ -118,6 +126,7 @@ public enum DSRadius {
   public static let full: CGFloat = 9999
   public static let lg: CGFloat = 16
   public static let md: CGFloat = 12
+  public static let mobileFlow: CGFloat = 14
   public static let sm: CGFloat = 8
   public static let xl: CGFloat = 20
   public static let xxl: CGFloat = 24

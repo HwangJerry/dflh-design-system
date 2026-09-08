@@ -1191,6 +1191,42 @@
         ]
       },
       "notes": "Generic in-app web sheet (GenericWebSheet) reused by Donation and other features to open external links inside the app. Authored after the fact to close a design-system contract gap; not folded into app-shell because it has its own loading-skeleton and error states."
+    },
+    {
+      "name": "screen.accountDeletion",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "android"
+      ],
+      "states": [
+        "idle",
+        "submitting",
+        "data",
+        "empty",
+        "invalid",
+        "error"
+      ],
+      "requiredBlocks": [
+        "guide",
+        "confirmation",
+        "receipt",
+        "status",
+        "recovery",
+        "manualInput"
+      ],
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSFont",
+        "DSSpace",
+        "DSRadius"
+      ],
+      "implementationEvidence": {
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/accountdeletion/AccountDeletionScreen.kt"
+        ]
+      },
+      "notes": "Approved Figma V6 node 31:2. Native Android deletion request and public receipt lookup. Tokens are masked; submitting survives logout. 202 acceptance is distinct from completed. Recovery queries the pre-saved token and never creates another request when outcome is unknown."
     }
   ]
 }

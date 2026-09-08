@@ -58,6 +58,11 @@ object DesignTokens {
     val kakao = Color(0xFFFEE500)
     val kakaoText = Color(0xFF191919)
     val likeOnDark = Color(0xFFFF6B8A)
+    val mobileFlowBackground = Color(0xFFF5F4F1)
+    val mobileFlowBadge = Color(0xFFEDEAE3)
+    val mobileFlowPrimary = Color(0xFF1B1A30)
+    val mobileFlowWarning = Color(0xFFB45309)
+    val mobileFlowWarningSubtle = Color(0xFFFDF6EC)
     val mobileLoginHero = Color(0xFF172849)
     val navIconSelected = Color(0xFFFBBF6A)
     val primary = Color(0xFF1A1A2E)
@@ -98,6 +103,7 @@ object DesignTokens {
         val full = 9999.dp
         val lg = 16.dp
         val md = 12.dp
+        val mobileFlow = 14.dp
         val sm = 8.dp
         val xl = 20.dp
         val xxl = 24.dp
@@ -165,7 +171,10 @@ object DesignTokens {
         val h2 = 24.sp
         val h3 = 20.sp
         val mini = 10.sp
+        val mobileFlowSecondaryAction = 14.sp
+        val mobileFlowTitle = 22.sp
         val mobileLoginHeadline = 26.sp
+        val mobileReceiptValue = 12.5.sp
         val navigationLabel = 12.sp
         val title = 18.sp
         const val fontWeightBold = 700

@@ -91,6 +91,7 @@
 | `screen.socialLink` | screen | `ios` | `default`, `invalid`, `submitting`, `expired` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
 | `screen.messageCompose` | screen | `ios`, `android` | `default`, `searching`, `empty`, `error`, `selected`, `sending` | `DSColor`, `DSTextStyle`, `DSRadius`, `DSSpace`, `DSSizing`, `DSOpacity`, `DSLineWidth` |
 | `screen.webSheet` | screen | `ios` | `loading`, `data`, `error` | `DSColor`, `DSSpace`, `DSRadius`, `DSOpacity`, `DSLineWidth` |
+| `screen.accountDeletion` | screen | `android` | `idle`, `submitting`, `data`, `empty`, `invalid`, `error` | `DSColor`, `DSFont`, `DSSpace`, `DSRadius` |
 
 ## Contract Details
 
@@ -520,6 +521,33 @@ Required token usage:
 Implementation evidence:
 
 - ios: `dflh-saf-v2-swift/Sources/App/Feature/Shared/WebSheetView.swift`
+
+Rules:
+
+- None declared
+
+### `screen.accountDeletion`
+
+- Type: `screen`
+- Mandatory: `false`
+- Platforms: `android`
+- States: `idle`, `submitting`, `data`, `empty`, `invalid`, `error`
+- Required blocks: `guide`, `confirmation`, `receipt`, `status`, `recovery`, `manualInput`
+
+Required token families:
+
+- `DSColor`
+- `DSFont`
+- `DSSpace`
+- `DSRadius`
+
+Required token usage:
+
+- None declared
+
+Implementation evidence:
+
+- android: `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/accountdeletion/AccountDeletionScreen.kt`
 
 Rules:
 
