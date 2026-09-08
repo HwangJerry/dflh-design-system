@@ -56,6 +56,7 @@ public enum DSColor {
   public static let kakao = Color(hex: "#FEE500")
   public static let kakaoText = Color(hex: "#191919")
   public static let likeOnDark = Color(hex: "#FF6B8A")
+  public static let mobileLoginHero = Color(hex: "#172849")
   public static let navIconSelected = Color(lightHex: "#FBBF6A", darkHex: "#FBBF6A")
   public static let primary = Color(hex: "#1A1A2E")
   public static let primaryHover = Color(hex: "#0F1B35")
@@ -79,7 +80,7 @@ public enum DSColor {
 }
 
 public enum DSFont {
-  public static let sans = "Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif"
+  public static let sans = "Noto Sans KR, Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif"
   public static let serif = "Pretendard Variable, Pretendard, Georgia, serif"
   public static let body: CGFloat = 16
   public static let bodySm: CGFloat = 15
@@ -90,6 +91,8 @@ public enum DSFont {
   public static let h2: CGFloat = 24
   public static let h3: CGFloat = 20
   public static let mini: CGFloat = 10
+  public static let mobileLoginHeadline: CGFloat = 26
+  public static let navigationLabel: CGFloat = 12
   public static let title: CGFloat = 18
   public static let fontWeightBold: Double = 700
   public static let fontWeightMedium: Double = 500
@@ -146,13 +149,33 @@ public enum DSSizing {
   public static let feedCardThumbnailHeightMin: CGFloat = 152
   public static let feedHeroHeightMax: CGFloat = 190
   public static let feedHeroHeightMin: CGFloat = 170
+  public static let floatingNavBorderWidth: CGFloat = 0.5
+  public static let floatingNavHeight: CGFloat = 68
+  public static let floatingNavIconTop: CGFloat = 16
+  public static let floatingNavIndicatorHeight: CGFloat = 3
+  public static let floatingNavIndicatorTop: CGFloat = 6
+  public static let floatingNavIndicatorWidth: CGFloat = 24
+  public static let floatingNavLabelTop: CGFloat = 40
   public static let headerHeightIos: CGFloat = 52
   public static let headerHeightWeb: CGFloat = 56
   public static let loadingStateMaxWidth: CGFloat = 260
   public static let messageComposerHeight: CGFloat = 64
   public static let messageDetailMinHeight: CGFloat = 80
+  public static let messageRowHeight: CGFloat = 90
   public static let messageUnreadBadge: CGFloat = 24
+  public static let mobileDonationCardHeight: CGFloat = 283
+  public static let mobileDonationSummaryHeight: CGFloat = 155
+  public static let mobileDonationTreeHeight: CGFloat = 150
+  public static let mobileFeedCardHeight: CGFloat = 174
+  public static let mobileFeedHeroHeight: CGFloat = 218
+  public static let mobileInputHeight: CGFloat = 48
+  public static let mobileLoginEmblemSize: CGFloat = 88
+  public static let mobileLoginHeroHeight: CGFloat = 305
   public static let safeBottomNavHeight: CGFloat = 56
+  public static let stepActionHeight: CGFloat = 52
+  public static let stepCardGap: CGFloat = 10
+  public static let stepCompletedHeight: CGFloat = 52
+  public static let stepInputHeight: CGFloat = 56
   public static let touchTarget: CGFloat = 44
   public static let webFeedHeroMinHeight: CGFloat = 260
   public static let webLandingHeroDesktopMinHeight: CGFloat = 520
@@ -164,6 +187,8 @@ public enum DSAnimation {
   public static let `default`: Double = 0.4 // seconds
   public static let quick: Double = 0.15 // seconds
   public static let slow: Double = 0.55 // seconds
+  public static let stepReduced: Double = 0.08 // seconds
+  public static let stepTransition: Double = 0.16 // seconds
   public static let easingSmooth = "cubic-bezier(0.16,1,0.3,1)" // easing
   public static let easingStandard = "ease-out" // easing
 }

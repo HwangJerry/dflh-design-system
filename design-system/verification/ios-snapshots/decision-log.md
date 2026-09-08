@@ -236,3 +236,52 @@ xcrun simctl io booted screenshot design-system/verification/ios-snapshots/iOS-F
 - action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
 
 - A pending notification authorization alert was exposed after running XCTest. Visual mode now skips push registration/authorization, and a simulator restart cleared the pre-existing system alert before the independent recapture.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-08T02:00:42.851Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-08T02:03:11.468Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-08T02:08:25.446Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-08T05:45:49.585Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## 2026-09-08 — Figma V4 / V5 native implementation review
+
+Reviewed all four fresh iPhone 15 captures against the approved Figma V4 references. Accepted the intentional redesign: Noto Sans KR, warm surface palette, floating five-tab bar with a thin selection indicator, pinned feed hero, unread rows, compact profile actions, and native chat composer. Captures contain fixture data, native safe areas and OS chrome; they are regression baselines, not evidence of exact raster equality with Figma. Promote these reviewed captures. V5 reverse-stacked forms and all 16 routes per platform are recorded separately in output/figma-design-review-2026-09-08/implementation/. Existing web design captures are unrelated and were not changed by this review.

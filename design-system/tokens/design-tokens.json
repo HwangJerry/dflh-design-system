@@ -72,7 +72,8 @@
     "donationTreeFruitMid": "#FF7A3D",
     "donationTreeFruitShadow": "#E85D1F",
     "donationTreeFruitStem": "#4A7A2E",
-    "likeOnDark": "#FF6B8A"
+    "likeOnDark": "#FF6B8A",
+    "mobileLoginHero": "#172849"
   },
   "colorSchemes": {
     "light": {
@@ -123,7 +124,7 @@
     "donationTreeGloss": 0.3
   },
   "typography": {
-    "fontSans": "Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif",
+    "fontSans": "Noto Sans KR, Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif",
     "fontSerif": "Pretendard Variable, Pretendard, Georgia, serif",
     "size": {
       "display": "36px",
@@ -135,7 +136,9 @@
       "bodySm": "15px",
       "bodyXs": "13px",
       "caption": "11px",
-      "mini": "10px"
+      "mini": "10px",
+      "navigationLabel": "12px",
+      "mobileLoginHeadline": "26px"
     },
     "weight": {
       "regular": 400,
@@ -176,6 +179,7 @@
   "sizing": {
     "touchTarget": "44px",
     "messageUnreadBadge": "24px",
+    "messageRowHeight": "90px",
     "safeBottomNavHeight": "56px",
     "messageComposerHeight": "64px",
     "headerHeight": {
@@ -194,14 +198,35 @@
     "webFeedHeroMinHeight": "260px",
     "webLandingHeroMinHeight": "360px",
     "webLandingHeroDesktopMinHeight": "520px",
-    "messageDetailMinHeight": "80px"
+    "messageDetailMinHeight": "80px",
+    "floatingNavHeight": "68px",
+    "floatingNavIndicatorWidth": "24px",
+    "floatingNavIndicatorHeight": "3px",
+    "floatingNavIndicatorTop": "6px",
+    "floatingNavIconTop": "16px",
+    "floatingNavLabelTop": "40px",
+    "floatingNavBorderWidth": "0.5px",
+    "mobileInputHeight": "48px",
+    "mobileFeedHeroHeight": "218px",
+    "mobileFeedCardHeight": "174px",
+    "mobileDonationTreeHeight": "150px",
+    "mobileDonationCardHeight": "283px",
+    "mobileDonationSummaryHeight": "155px",
+    "mobileLoginHeroHeight": "305px",
+    "mobileLoginEmblemSize": "88px",
+    "stepInputHeight": "56px",
+    "stepCompletedHeight": "52px",
+    "stepActionHeight": "52px",
+    "stepCardGap": "10px"
   },
   "motion": {
     "duration": {
       "quick": "150ms",
       "base": "250ms",
       "default": "400ms",
-      "slow": "550ms"
+      "slow": "550ms",
+      "stepTransition": "160ms",
+      "stepReduced": "80ms"
     },
     "easing": {
       "smooth": "cubic-bezier(0.16,1,0.3,1)",
