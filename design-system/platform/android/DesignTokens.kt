@@ -124,8 +124,13 @@ object DesignTokens {
     }
 
     object Sizing {
+        val feedCardPadding = 18.dp
         val feedCardThumbnailHeightMax = 168.dp
         val feedCardThumbnailHeightMin = 152.dp
+        val feedEngagementGroupGap = 20.dp
+        val feedEngagementIcon = 21.dp
+        val feedEngagementInnerGap = 7.dp
+        val feedEngagementTouchTarget = 48.dp
         val feedHeroHeightMax = 190.dp
         val feedHeroHeightMin = 170.dp
         val floatingNavBorderWidth = 0.5.dp

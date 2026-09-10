@@ -152,8 +152,13 @@
   --layout-screen-pad-tablet: 24px;
   --layout-web-message-bubble-max-width-ratio: 0.75;
   --layout-web-modal-max-height-ratio: 0.85;
+  --size-feed-card-padding: 18px;
   --size-feed-card-thumbnail-height-max: 168px;
   --size-feed-card-thumbnail-height-min: 152px;
+  --size-feed-engagement-group-gap: 20px;
+  --size-feed-engagement-icon: 21px;
+  --size-feed-engagement-inner-gap: 7px;
+  --size-feed-engagement-touch-target: 48px;
   --size-feed-hero-height-max: 190px;
   --size-feed-hero-height-min: 170px;
   --size-floating-nav-border-width: 0.5px;

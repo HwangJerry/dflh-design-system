@@ -154,8 +154,13 @@ public enum DSOpacity {
 }
 
 public enum DSSizing {
+  public static let feedCardPadding: CGFloat = 18
   public static let feedCardThumbnailHeightMax: CGFloat = 168
   public static let feedCardThumbnailHeightMin: CGFloat = 152
+  public static let feedEngagementGroupGap: CGFloat = 20
+  public static let feedEngagementIcon: CGFloat = 21
+  public static let feedEngagementInnerGap: CGFloat = 7
+  public static let feedEngagementTouchTarget: CGFloat = 48
   public static let feedHeroHeightMax: CGFloat = 190
   public static let feedHeroHeightMin: CGFloat = 170
   public static let floatingNavBorderWidth: CGFloat = 0.5

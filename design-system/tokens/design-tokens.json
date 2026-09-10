@@ -226,7 +226,12 @@
     "stepInputHeight": "56px",
     "stepCompletedHeight": "52px",
     "stepActionHeight": "52px",
-    "stepCardGap": "10px"
+    "stepCardGap": "10px",
+    "feedEngagementIcon": "21px",
+    "feedEngagementInnerGap": "7px",
+    "feedEngagementGroupGap": "20px",
+    "feedEngagementTouchTarget": "48px",
+    "feedCardPadding": "18px"
   },
   "motion": {
     "duration": {
