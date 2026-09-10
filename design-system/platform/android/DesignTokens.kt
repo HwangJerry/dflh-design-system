@@ -141,11 +141,11 @@ object DesignTokens {
         val feedPendingDot = 6.dp
         val floatingNavBorderWidth = 0.5.dp
         val floatingNavHeight = 68.dp
-        val floatingNavIconTop = 16.dp
+        val floatingNavIconTop = 14.dp
         val floatingNavIndicatorHeight = 3.dp
         val floatingNavIndicatorTop = 6.dp
         val floatingNavIndicatorWidth = 24.dp
-        val floatingNavLabelTop = 40.dp
+        val floatingNavLabelTop = 38.dp
         val headerHeightIos = 52.dp
         val headerHeightWeb = 56.dp
         val loadingStateMaxWidth = 260.dp

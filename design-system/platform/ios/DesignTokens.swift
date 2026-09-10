@@ -172,11 +172,11 @@ public enum DSSizing {
   public static let feedPendingDot: CGFloat = 6
   public static let floatingNavBorderWidth: CGFloat = 0.5
   public static let floatingNavHeight: CGFloat = 68
-  public static let floatingNavIconTop: CGFloat = 16
+  public static let floatingNavIconTop: CGFloat = 14
   public static let floatingNavIndicatorHeight: CGFloat = 3
   public static let floatingNavIndicatorTop: CGFloat = 6
   public static let floatingNavIndicatorWidth: CGFloat = 24
-  public static let floatingNavLabelTop: CGFloat = 40
+  public static let floatingNavLabelTop: CGFloat = 38
   public static let headerHeightIos: CGFloat = 52
   public static let headerHeightWeb: CGFloat = 56
   public static let loadingStateMaxWidth: CGFloat = 260
