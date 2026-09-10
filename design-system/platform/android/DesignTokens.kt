@@ -119,6 +119,11 @@ object DesignTokens {
         val feedPostDetailSectionSpacing = 10.dp
         val feedPostDetailSpacing = 16.dp
         val messageBubbleMaxWidthRatio = 0.76f
+        val navigationMotionEasingX1 = 0.25f
+        val navigationMotionEasingX2 = 0.3f
+        val navigationMotionEasingY1 = 1f
+        val navigationMotionEasingY2 = 1f
+        val navigationMotionPressedScale = 0.94f
         val profileHorizontalPadding = 2.dp
         val screenPadMobile = 16.dp
         val screenPadTablet = 24.dp
@@ -224,6 +229,7 @@ object DesignTokens {
         const val faint = 0.2
         const val low = 0.15
         const val mutedIcon = 0.6
+        const val navigationPressed = 0.55
         const val overlay = 0.08
         const val raised = 0.18
         const val shadow = 0.07
@@ -240,6 +246,10 @@ object DesignTokens {
     object AnimationMs {
         const val baseMs = 250L
         const val defaultMs = 400L
+        const val navigationIndicatorMs = 160L
+        const val navigationPressMs = 70L
+        const val navigationReducedReleaseMs = 120L
+        const val navigationReleaseMs = 220L
         const val quickMs = 150L
         const val slowMs = 550L
         const val stepReducedMs = 80L

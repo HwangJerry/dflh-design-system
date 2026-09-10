@@ -137,7 +137,7 @@
     },
     "ratioString": {
       "type": "string",
-      "pattern": "^0\\.\\d+$"
+      "pattern": "^(?:0\\.\\d+|1\\.0+)$"
     },
     "shadow": {
       "type": "string",

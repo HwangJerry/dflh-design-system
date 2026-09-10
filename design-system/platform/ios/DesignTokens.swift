@@ -144,6 +144,7 @@ public enum DSOpacity {
   public static let faint: Double = 0.2
   public static let low: Double = 0.15
   public static let mutedIcon: Double = 0.6
+  public static let navigationPressed: Double = 0.55
   public static let overlay: Double = 0.08
   public static let raised: Double = 0.18
   public static let shadow: Double = 0.07
@@ -206,6 +207,10 @@ public enum DSSizing {
 public enum DSAnimation {
   public static let base: Double = 0.25 // seconds
   public static let `default`: Double = 0.4 // seconds
+  public static let navigationIndicator: Double = 0.16 // seconds
+  public static let navigationPress: Double = 0.07 // seconds
+  public static let navigationReducedRelease: Double = 0.12 // seconds
+  public static let navigationRelease: Double = 0.22 // seconds
   public static let quick: Double = 0.15 // seconds
   public static let slow: Double = 0.55 // seconds
   public static let stepReduced: Double = 0.08 // seconds
@@ -246,6 +251,11 @@ public enum DSLayout {
   public static let feedPostDetailSectionSpacing: CGFloat = 10
   public static let feedPostDetailSpacing: CGFloat = 16
   public static let messageBubbleMaxWidthRatio: CGFloat = 0.76
+  public static let navigationMotionEasingX1: CGFloat = 0.25
+  public static let navigationMotionEasingX2: CGFloat = 0.3
+  public static let navigationMotionEasingY1: CGFloat = 1
+  public static let navigationMotionEasingY2: CGFloat = 1
+  public static let navigationMotionPressedScale: CGFloat = 0.94
   public static let profileHorizontalPadding: CGFloat = 2
   public static let screenPadMobile: CGFloat = 16
   public static let screenPadTablet: CGFloat = 24

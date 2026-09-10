@@ -129,7 +129,8 @@
     "titleEmphasis": 0.9,
     "textEmphasis": 0.92,
     "donationTreeGroundShadow": 0.12,
-    "donationTreeGloss": 0.3
+    "donationTreeGloss": 0.3,
+    "navigationPressed": 0.55
   },
   "typography": {
     "fontSans": "Noto Sans KR, Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif",
@@ -247,7 +248,11 @@
       "default": "400ms",
       "slow": "550ms",
       "stepTransition": "160ms",
-      "stepReduced": "80ms"
+      "stepReduced": "80ms",
+      "navigationPress": "70ms",
+      "navigationRelease": "220ms",
+      "navigationIndicator": "160ms",
+      "navigationReducedRelease": "120ms"
     },
     "easing": {
       "smooth": "cubic-bezier(0.16,1,0.3,1)",
@@ -267,7 +272,14 @@
     "feedPostDetailSectionSpacing": "10px",
     "feedPostCardRadius": "18px",
     "webMessageBubbleMaxWidthRatio": "0.75",
-    "webModalMaxHeightRatio": "0.85"
+    "webModalMaxHeightRatio": "0.85",
+    "navigationMotion": {
+      "pressedScale": "0.94",
+      "easingX1": "0.25",
+      "easingY1": "1.0",
+      "easingX2": "0.3",
+      "easingY2": "1.0"
+    }
   },
   "platformMapping": {
     "web": {

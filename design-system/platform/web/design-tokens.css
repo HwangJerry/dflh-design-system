@@ -128,6 +128,7 @@
   --opacity-faint: 0.2;
   --opacity-low: 0.15;
   --opacity-muted-icon: 0.6;
+  --opacity-navigation-pressed: 0.55;
   --opacity-overlay: 0.08;
   --opacity-raised: 0.18;
   --opacity-shadow: 0.07;
@@ -151,6 +152,11 @@
   --layout-feed-post-detail-section-spacing: 10px;
   --layout-feed-post-detail-spacing: 16px;
   --layout-message-bubble-max-width-ratio: 0.76;
+  --layout-navigation-motion-easing-x1: 0.25;
+  --layout-navigation-motion-easing-x2: 0.3;
+  --layout-navigation-motion-easing-y1: 1.0;
+  --layout-navigation-motion-easing-y2: 1.0;
+  --layout-navigation-motion-pressed-scale: 0.94;
   --layout-profile-horizontal-padding: 2px;
   --layout-screen-pad-mobile: 16px;
   --layout-screen-pad-tablet: 24px;

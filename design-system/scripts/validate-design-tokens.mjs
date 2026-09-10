@@ -344,7 +344,7 @@ function isPixel(value) {
 }
 
 function isPixelOrRatio(value) {
-  return isPixel(value) || (typeof value === 'string' && /^0\.\d+$/.test(value));
+  return isPixel(value) || (typeof value === 'string' && /^(?:0\.\d+|1\.0+)$/.test(value));
 }
 
 function isDuration(value) {
