@@ -78,7 +78,10 @@
     "mobileFlowBackground": "#F5F4F1",
     "mobileFlowWarning": "#B45309",
     "mobileFlowWarningSubtle": "#FDF6EC",
-    "mobileFlowBadge": "#EDEAE3"
+    "mobileFlowBadge": "#EDEAE3",
+    "feedLiked": "#C0492F",
+    "feedWarning": "#8A6A24",
+    "feedWarningOnDark": "#F5D9A8"
   },
   "colorSchemes": {
     "light": {
@@ -146,7 +149,8 @@
       "mobileLoginHeadline": "26px",
       "mobileFlowTitle": "22px",
       "mobileReceiptValue": "12.5px",
-      "mobileFlowSecondaryAction": "14px"
+      "mobileFlowSecondaryAction": "14px",
+      "feedMetric": "14px"
     },
     "weight": {
       "regular": 400,
@@ -231,7 +235,10 @@
     "feedEngagementInnerGap": "7px",
     "feedEngagementGroupGap": "20px",
     "feedEngagementTouchTarget": "48px",
-    "feedCardPadding": "18px"
+    "feedCardPadding": "18px",
+    "feedPendingDot": "6px",
+    "feedActionInset": "6px",
+    "feedBodyLineHeight": "27px"
   },
   "motion": {
     "duration": {

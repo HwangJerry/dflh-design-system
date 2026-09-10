@@ -52,6 +52,9 @@ object DesignTokens {
     val errorLight = Color(0xFFFEF2F2)
     val errorSubtle = Color(0xFFFEF2F2)
     val errorText = Color(0xFFDC2626)
+    val feedLiked = Color(0xFFC0492F)
+    val feedWarning = Color(0xFF8A6A24)
+    val feedWarningOnDark = Color(0xFFF5D9A8)
     val heroFrom = Color(0xFF0F1B35)
     val heroTo = Color(0xFF1E3A6E)
     val heroVia = Color(0xFF1A2F5A)
@@ -124,6 +127,8 @@ object DesignTokens {
     }
 
     object Sizing {
+        val feedActionInset = 6.dp
+        val feedBodyLineHeight = 27.dp
         val feedCardPadding = 18.dp
         val feedCardThumbnailHeightMax = 168.dp
         val feedCardThumbnailHeightMin = 152.dp
@@ -133,6 +138,7 @@ object DesignTokens {
         val feedEngagementTouchTarget = 48.dp
         val feedHeroHeightMax = 190.dp
         val feedHeroHeightMin = 170.dp
+        val feedPendingDot = 6.dp
         val floatingNavBorderWidth = 0.5.dp
         val floatingNavHeight = 68.dp
         val floatingNavIconTop = 16.dp
@@ -172,6 +178,7 @@ object DesignTokens {
         val bodyXs = 13.sp
         val caption = 11.sp
         val display = 36.sp
+        val feedMetric = 14.sp
         val h1 = 30.sp
         val h2 = 24.sp
         val h3 = 20.sp

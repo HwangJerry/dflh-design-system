@@ -46,6 +46,9 @@
   --color-error-light: #FEF2F2;
   --color-error-subtle: #FEF2F2;
   --color-error-text: #DC2626;
+  --color-feed-liked: #C0492F;
+  --color-feed-warning: #8A6A24;
+  --color-feed-warning-on-dark: #F5D9A8;
   --color-hero-from: #0F1B35;
   --color-hero-to: #1E3A6E;
   --color-hero-via: #1A2F5A;
@@ -85,6 +88,7 @@
   --font-size-body-xs: 13px;
   --font-size-caption: 11px;
   --font-size-display: 36px;
+  --font-size-feed-metric: 14px;
   --font-size-h1: 30px;
   --font-size-h2: 24px;
   --font-size-h3: 20px;
@@ -152,6 +156,8 @@
   --layout-screen-pad-tablet: 24px;
   --layout-web-message-bubble-max-width-ratio: 0.75;
   --layout-web-modal-max-height-ratio: 0.85;
+  --size-feed-action-inset: 6px;
+  --size-feed-body-line-height: 27px;
   --size-feed-card-padding: 18px;
   --size-feed-card-thumbnail-height-max: 168px;
   --size-feed-card-thumbnail-height-min: 152px;
@@ -161,6 +167,7 @@
   --size-feed-engagement-touch-target: 48px;
   --size-feed-hero-height-max: 190px;
   --size-feed-hero-height-min: 170px;
+  --size-feed-pending-dot: 6px;
   --size-floating-nav-border-width: 0.5px;
   --size-floating-nav-height: 68px;
   --size-floating-nav-icon-top: 16px;

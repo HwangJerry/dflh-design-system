@@ -50,6 +50,9 @@ public enum DSColor {
   public static let errorLight = Color(hex: "#FEF2F2")
   public static let errorSubtle = Color(hex: "#FEF2F2")
   public static let errorText = Color(hex: "#DC2626")
+  public static let feedLiked = Color(hex: "#C0492F")
+  public static let feedWarning = Color(hex: "#8A6A24")
+  public static let feedWarningOnDark = Color(hex: "#F5D9A8")
   public static let heroFrom = Color(hex: "#0F1B35")
   public static let heroTo = Color(hex: "#1E3A6E")
   public static let heroVia = Color(hex: "#1A2F5A")
@@ -92,6 +95,7 @@ public enum DSFont {
   public static let bodyXs: CGFloat = 13
   public static let caption: CGFloat = 11
   public static let display: CGFloat = 36
+  public static let feedMetric: CGFloat = 14
   public static let h1: CGFloat = 30
   public static let h2: CGFloat = 24
   public static let h3: CGFloat = 20
@@ -154,6 +158,8 @@ public enum DSOpacity {
 }
 
 public enum DSSizing {
+  public static let feedActionInset: CGFloat = 6
+  public static let feedBodyLineHeight: CGFloat = 27
   public static let feedCardPadding: CGFloat = 18
   public static let feedCardThumbnailHeightMax: CGFloat = 168
   public static let feedCardThumbnailHeightMin: CGFloat = 152
@@ -163,6 +169,7 @@ public enum DSSizing {
   public static let feedEngagementTouchTarget: CGFloat = 48
   public static let feedHeroHeightMax: CGFloat = 190
   public static let feedHeroHeightMin: CGFloat = 170
+  public static let feedPendingDot: CGFloat = 6
   public static let floatingNavBorderWidth: CGFloat = 0.5
   public static let floatingNavHeight: CGFloat = 68
   public static let floatingNavIconTop: CGFloat = 16
