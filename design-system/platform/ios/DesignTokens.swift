@@ -16,7 +16,7 @@ public enum DSColor {
   public static let black = Color(hex: "#000000")
   public static let border = Color(lightHex: "#E8E5DF", darkHex: "#33333F")
   public static let borderHover = Color(hex: "#C8C5BF")
-  public static let borderSubtle = Color(hex: "#F0EDE8")
+  public static let borderSubtle = Color(lightHex: "#F0EDE8", darkHex: "#2A2C35")
   public static let catNoticeBg = Color(hex: "#E8E5DF")
   public static let catNoticeBorder = Color(hex: "#C8C5BF")
   public static let catNoticeText = Color(hex: "#1A1A2E")
