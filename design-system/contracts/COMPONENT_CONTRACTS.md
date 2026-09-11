@@ -119,7 +119,7 @@ Required token usage:
 
 Implementation evidence:
 
-- ios: `dflh-saf-v2-swift/Sources/App/RootView.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Login/LoginView.swift`
+- ios: `dflh-saf-v2-swift/Sources/App/RootView.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Login/LoginView.swift`, `dflh-saf-v2-swift/Sources/App/DesignSystem/DSAdaptiveLayout.swift`
 
 Rules:
 

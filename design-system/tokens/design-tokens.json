@@ -281,6 +281,22 @@
       "easingY1": "1.0",
       "easingX2": "0.3",
       "easingY2": "1.0"
+    },
+    "adaptive": {
+      "shortHeight": "520px",
+      "largeWidth": "840px",
+      "rectangleWidth": "600px",
+      "railCompact": "78px",
+      "railLarge": "96px",
+      "readable": "560px",
+      "readableLarge": "620px",
+      "form": "480px",
+      "formLarge": "520px",
+      "listMin": "300px",
+      "listMax": "360px",
+      "detailMin": "360px",
+      "listRatio": "0.42",
+      "landscapeHeightRatio": "0.7142857143"
     }
   },
   "platformMapping": {

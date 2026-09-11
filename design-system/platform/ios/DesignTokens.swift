@@ -245,6 +245,20 @@ public enum DSElevation {
 }
 
 public enum DSLayout {
+  public static let adaptiveDetailMin: CGFloat = 360
+  public static let adaptiveForm: CGFloat = 480
+  public static let adaptiveFormLarge: CGFloat = 520
+  public static let adaptiveLandscapeHeightRatio: CGFloat = 0.7142857143
+  public static let adaptiveLargeWidth: CGFloat = 840
+  public static let adaptiveListMax: CGFloat = 360
+  public static let adaptiveListMin: CGFloat = 300
+  public static let adaptiveListRatio: CGFloat = 0.42
+  public static let adaptiveRailCompact: CGFloat = 78
+  public static let adaptiveRailLarge: CGFloat = 96
+  public static let adaptiveReadable: CGFloat = 560
+  public static let adaptiveReadableLarge: CGFloat = 620
+  public static let adaptiveRectangleWidth: CGFloat = 600
+  public static let adaptiveShortHeight: CGFloat = 520
   public static let cardGap: CGFloat = 12
   public static let containerMaxWidth: CGFloat = 1080
   public static let feedPostCardRadius: CGFloat = 18

@@ -113,6 +113,20 @@ object DesignTokens {
     }
 
     object Layout {
+        val adaptiveDetailMin = 360.dp
+        val adaptiveForm = 480.dp
+        val adaptiveFormLarge = 520.dp
+        val adaptiveLandscapeHeightRatio = 0.7142857143f
+        val adaptiveLargeWidth = 840.dp
+        val adaptiveListMax = 360.dp
+        val adaptiveListMin = 300.dp
+        val adaptiveListRatio = 0.42f
+        val adaptiveRailCompact = 78.dp
+        val adaptiveRailLarge = 96.dp
+        val adaptiveReadable = 560.dp
+        val adaptiveReadableLarge = 620.dp
+        val adaptiveRectangleWidth = 600.dp
+        val adaptiveShortHeight = 520.dp
         val cardGap = 12.dp
         val containerMaxWidth = 1080.dp
         val feedPostCardRadius = 18.dp
