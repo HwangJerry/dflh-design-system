@@ -594,7 +594,8 @@
         "ios": [
           "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedListView.swift",
-          "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedInlineDetailBody.swift"
+          "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedInlineDetailBody.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Feed/CommentReportSheet.swift"
         ],
         "web": [
           "dflh-saf-v2/frontend/src/pages/FeedPage.tsx",
