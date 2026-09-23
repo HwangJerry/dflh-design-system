@@ -164,7 +164,7 @@ Header "쪽지" [search, bell] → SegmentedTabs [전체, 안 읽음] → Conver
 
 ### 5.6 내정보 (MyPage.dc.html)
 Header "내정보" [bell, gear] → Profile section: avatar 64, name 22/700 + 기수 chip, "직함 | 회사",
-학과, pen button 40 outlined; bio 15/22; tag chips (no action buttons; 내 명함 / 동문에게 보이는 화면 removed 2026-09-23) →
+학과, pen button 40 outlined; bio 15/22; tag chips; one full-width secondary 44 button "내 명함" that opens the registered business-card image full screen (label "명함 등록" → profile edit when none; "동문에게 보이는 화면" removed 2026-09-23) →
 Contact section: phone / mail rows 48px with 공개/비공개 outline chip → Settings section:
 비밀번호 변경, 로그인 연동 (trailing "카카오"), 알림 설정, 개인정보 설정, 로그아웃 (destructive) →
 copyright 11 ink4 centered. Existing sub-screens (edit, password, account settings) restyle with the

@@ -430,6 +430,7 @@ def mypage_board(P):
     </div>
     <div style="font-size: 15px; line-height: 22px; color: {P['t1']};">함께 배우고 나누는 동문이 되고 싶어요.</div>
     <div style="display: flex; flex-wrap: wrap; gap: 8px;">{chip(P, "#기획", "tag")}{chip(P, "#교육", "tag")}{chip(P, "#멘토링", "tag")}</div>
+    <button type="button" style="height: 44px; border-radius: 8px; border: 1px solid {P['border']}; color: {P['t1']}; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px;">{ic('card', 18, P['t1'], 2)}내 명함</button>
   </section>
   <section style="background: {P['surface']};">
     <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 20px; border-bottom: 1px solid {P['divider']};">{ic('phone', 20, P['t3'])}<span style="flex: 1 1 0; font-size: 15px; color: {P['t1']};">010-0000-0000</span>{chip(P, "비공개", "outline")}</div>
