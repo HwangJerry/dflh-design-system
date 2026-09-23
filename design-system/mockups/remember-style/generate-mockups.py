@@ -2,7 +2,7 @@
 """Generate .dc.html artboards for the DFLH Remember-style UI mockup."""
 import json, os, datetime
 
-ROOT = os.path.join(os.path.dirname(__file__), "canvas", "project")
+ROOT = os.environ.get("MOCKUP_OUT", os.path.dirname(os.path.abspath(__file__)))
 os.makedirs(ROOT, exist_ok=True)
 
 LIGHT = dict(
@@ -430,10 +430,6 @@ def mypage_board(P):
     </div>
     <div style="font-size: 15px; line-height: 22px; color: {P['t1']};">함께 배우고 나누는 동문이 되고 싶어요.</div>
     <div style="display: flex; flex-wrap: wrap; gap: 8px;">{chip(P, "#기획", "tag")}{chip(P, "#교육", "tag")}{chip(P, "#멘토링", "tag")}</div>
-    <div style="display: flex; gap: 8px;">
-      <button type="button" style="flex: 1 1 0; height: 44px; border-radius: 8px; border: 1px solid {P['border']}; color: {P['t1']}; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px;">{ic('card', 18, P['t1'], 2)}내 명함</button>
-      <button type="button" style="flex: 1 1 0; height: 44px; border-radius: 8px; border: 1px solid {P['border']}; color: {P['t1']}; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px;">{ic('eye', 18, P['t1'], 2)}동문에게 보이는 화면</button>
-    </div>
   </section>
   <section style="background: {P['surface']};">
     <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 20px; border-bottom: 1px solid {P['divider']};">{ic('phone', 20, P['t3'])}<span style="flex: 1 1 0; font-size: 15px; color: {P['t1']};">010-0000-0000</span>{chip(P, "비공개", "outline")}</div>
