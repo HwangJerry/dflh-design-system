@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>쪽지 대화</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,sans-serif;background:#F5F4F0;color:#1A1A2E;-webkit-font-smoothing:antialiased}
+a{color:#B45309;text-decoration:none}a:hover{color:#1A1A2E}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input{font:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F4F0; position: relative; overflow: hidden;">
+<div style="height: 48px; background: #FFFFFF; flex-shrink: 0;"></div>
+<div style="height: 56px; padding: 0 12px 0 8px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-bottom: 1px solid #F0EDE8;">
+  <div style="display: flex; align-items: center; gap: 4px;">
+    <a href="Messages.dc.html" aria-label="뒤로" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #1A1A2E;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+    <div aria-hidden="true" style="width: 32px; height: 32px; border-radius: 16px; background: #1A1A2E; color: #FDFBF4; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">김</div>
+    <div style="display: flex; flex-direction: column; margin-left: 6px;"><span style="font-size: 16px; font-weight: 700; color: #1A1A2E;">김하늘</span><span style="font-size: 12px; color: #888888;">20기 영어과 · 동문기업</span></div>
+  </div>
+  <button type="button" aria-label="더 보기" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #1A1A2E;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;"><circle cx="12" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="19" r="1.5"/></svg></button>
+</div>
+<div style="flex: 1 1 0; overflow: hidden; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; background: #F5F4F0;">
+  <div style="align-self: center; font-size: 12px; color: #888888; background: #FFFFFF; border: 1px solid #E8E5DF; border-radius: 12px; padding: 3px 10px; margin-bottom: 6px;">9월 23일 화요일</div>
+  <div style="display: flex; justify-content: flex-end; align-items: flex-end; gap: 6px;"><span style="font-size: 11px; color: #888888;">오전 9:12</span><div style="max-width: 260px; padding: 10px 14px; border-radius: 16px 16px 4px 16px; background: #1A1A2E; color: #FDFBF4; font-size: 15px; line-height: 22px;">안녕하세요 하늘 선배님, 이번 수여식에 참석하시나요?</div></div>
+  <div style="display: flex; justify-content: flex-start; align-items: flex-end; gap: 6px;"><div style="max-width: 260px; padding: 10px 14px; border-radius: 16px 16px 16px 4px; background: #FFFFFF; border: 1px solid #E8E5DF; color: #1A1A2E; font-size: 15px; line-height: 22px;">네, 참석합니다. 후배들 얼굴 오래 못 봐서 기대돼요.</div><span style="font-size: 11px; color: #888888;">오전 9:20</span></div>
+  <div style="display: flex; justify-content: flex-end; align-items: flex-end; gap: 6px;"><span style="font-size: 11px; color: #888888;">오전 9:25</span><div style="max-width: 260px; padding: 10px 14px; border-radius: 16px 16px 4px 16px; background: #1A1A2E; color: #FDFBF4; font-size: 15px; line-height: 22px;">혹시 행사 끝나고 시간 되시면 커피 한 잔 어떠세요?</div></div>
+  <div style="display: flex; justify-content: flex-start; align-items: flex-end; gap: 6px;"><div style="max-width: 260px; padding: 10px 14px; border-radius: 16px 16px 16px 4px; background: #FFFFFF; border: 1px solid #E8E5DF; color: #1A1A2E; font-size: 15px; line-height: 22px;">좋아요! 행사에서 뵙겠습니다!</div><span style="font-size: 11px; color: #888888;">오전 9:32</span></div>
+</div>
+<div style="flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #F0EDE8; padding: 10px 12px 34px; display: flex; align-items: center; gap: 8px;">
+  <label for="compose" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">쪽지 입력</label>
+  <input id="compose" type="text" placeholder="쪽지를 입력하세요" style="flex: 1 1 0; height: 44px; border-radius: 22px; border: 1px solid #E8E5DF; background: #FAFAF8; padding: 0 16px; font-size: 15px; color: #1A1A2E; outline: none; box-sizing: border-box;">
+  <button type="button" aria-label="보내기" style="width: 44px; height: 44px; border-radius: 22px; background: #1A1A2E; color: #FDFBF4; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FDFBF4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;"><path d="M21 3 3 10l8 3 3 8 7-18Z"/></svg></button>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview": {"width": 390, "height": 844}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
