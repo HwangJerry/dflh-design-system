@@ -17,3 +17,11 @@ Commit in the umbrella repo (and mobile repos if touched).
    [missing-contract-evidence] for dflh-saf-v2-swift/Sources/App/Feature/AppUpdate/ForceUpdateView.swift.
    Register it under the appropriate contract's implementationEvidence.ios (create a `screen.forceUpdate` contract if
    none fits) so the full gate passes.
+6. Current `node design-system/scripts/verify-design-system.mjs` failures to resolve (fix the contract when the
+   requirement is obsolete after the redesign, or the implementation when it is a genuine literal):
+   - screen.messages ios raw-spacing-or-sizing-scalar: MessageConversationDetailView.swift `.padding(.vertical, DSSpace.inlineGap / 2)`
+     → use a proper token (add one if needed) instead of an arithmetic expression.
+   - screen.messages requires token usage `DSLayout.messageBubbleMaxWidthRatio` across iOS files → the new
+     DSMessageBubble should apply the ratio; if it does so inside DSComponents.swift, adjust the contract file list.
+   - screen.myPage requires `DSTextStyle.footnote` on iOS → ProfileView copyright footer should use it, or update the contract.
+   Also re-check Android after the same pass: `npm run verify-android-design-system` currently passes.
