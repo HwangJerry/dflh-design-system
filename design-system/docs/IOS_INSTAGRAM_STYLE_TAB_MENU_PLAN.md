@@ -1,5 +1,11 @@
 # iOS Instagram-Style Tab Menu Plan
 
+> **Superseded on 2026-09-23.** The approved [Remember-style spec](remember-style/SPEC.md)
+> and [HTML mockups](../mockups/remember-style/) replace this plan with a flat,
+> labeled five-tab bar: 소식 / 동문 / 기부 / 쪽지 / 내정보. Use the
+> [`bottomTabBar` contract](../contracts/COMPONENT_CONTRACTS.md#bottomtabbar).
+> The remaining text is historical and is not an implementation requirement.
+
 ## Goal
 
 Improve the iOS authenticated bottom navigation using an Instagram-inspired

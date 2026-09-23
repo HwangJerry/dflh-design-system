@@ -28,6 +28,23 @@ This guide is for contributors working in `dflh-saf-v2-swift`.
 - Safe-area differences are allowed at app shell and navigation boundaries when
   documented.
 
+## Remember-style components
+
+Follow the [approved spec](remember-style/SPEC.md) and [HTML mockups](../mockups/remember-style/)
+for the five native tabs. `DSComponents.swift` provides `DSSegmentedTabs`,
+`DSFilterRow`, `DSPersonRow`, `DSChip`, `DSPostActionBar`, `DSPostCard`,
+`DSConversationRow`, `DSSettingsRow`, `DSFab`, `DSSectionBlock` and `DSSubHeader`.
+`DSIconTabBar` implements the flat `bottomTabBar` contract with visible labels;
+the system provides the safe area. `DSMessageBubble` owns the width ratio and
+timestamp layout. The copyright uses the spec's 11px `rememberCaption` style.
+
+The [contract reference](../contracts/COMPONENT_CONTRACTS.md) records states and
+implementation evidence. Preserve existing ViewModels, callbacks, accessibility
+labels and test IDs. Capture fresh simulator images with `npm run visual-check-ios:capture`
+before reviewing and promoting them with `npm run visual-check-ios:update-baseline`;
+then run `npm run visual-check-ios` and `npm run generate-visual-baseline-manifest`.
+The earlier Instagram-style tab-menu plan is superseded.
+
 ## Adding Or Changing UI
 
 1. Identify the primitive or screen contract.
@@ -37,9 +54,8 @@ This guide is for contributors working in `dflh-saf-v2-swift`.
 4. Update contract implementation evidence if covered screen files move.
 5. Run verification from the workspace root.
 
-For the planned Instagram-style authenticated bottom navigation, follow
-`docs/IOS_INSTAGRAM_STYLE_TAB_MENU_PLAN.md` and treat the work as a
-`navigation` primitive variant before changing app screens.
+For authenticated bottom navigation, follow the Remember-style `bottomTabBar`
+contract and preserve the existing selected-tab and unread-count state.
 
 ```bash
 npm run verify-design-system

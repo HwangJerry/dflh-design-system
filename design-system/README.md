@@ -10,8 +10,7 @@ This repository section defines the single source of truth for design tokens and
 - `docs/DESIGNER_ONBOARDING.md`: designer onboarding guide for token and contract handoff.
 - `docs/WEB_ENGINEERING_GUIDE.md`: web adoption guide for `dflh-saf-v2/frontend`.
 - `docs/IOS_ENGINEERING_GUIDE.md`: iOS adoption guide for `dflh-saf-v2-swift`.
-- `docs/IOS_INSTAGRAM_STYLE_TAB_MENU_PLAN.md`: planned iOS icon-only bottom
-  navigation variant for News Feed, Messages, and My Page.
+- `docs/IOS_INSTAGRAM_STYLE_TAB_MENU_PLAN.md`: superseded historical iOS navigation plan.
 - `docs/SOCIAL_MENU_ICON_SET.md`: approved social menu icon registry and
   platform mappings.
 - `docs/ANDROID_ENGINEERING_GUIDE.md`: Android adoption guide for `dflh-saf-v2-kotlin/design-system`.
@@ -59,6 +58,20 @@ The schema is documented in `tokens/design-tokens.schema.json` and summarized in
 - explicit units for pixel and millisecond values,
 - bounded opacity and font-weight values,
 - required interaction/data states.
+
+## Remember-style components
+
+The native five-tab UI follows the approved [Remember-style spec](docs/remember-style/SPEC.md)
+and [plain HTML pixel references](mockups/remember-style/). Android and iOS share
+segmented tabs, filter/person/conversation/settings rows, chips, post cards and
+actions, FABs, flat sections, subheaders and a flat bottom tab bar. Use the
+[component contracts](contracts/COMPONENT_CONTRACTS.md) for states, token usage
+and platform implementation files. Web retains its existing layout.
+
+After native changes, run `npm run verify-design-system`. For intentional iOS
+visual changes, capture on a simulator with `npm run visual-check-ios:capture`,
+review the images, record the decision, then run `npm run visual-check-ios:update-baseline`,
+`npm run visual-check-ios` and `npm run generate-visual-baseline-manifest`.
 
 ## Workflow
 

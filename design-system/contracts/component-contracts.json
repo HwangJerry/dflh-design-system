@@ -1,7 +1,7 @@
 {
-  "version": "1.1.0",
+  "version": "1.3.0",
   "schema": "2026-06-14-token-driven-contracts",
-  "scope": "cross-platform web/ios",
+  "scope": "cross-platform web/ios/android; Remember-style UI on ios/android",
   "requiredSurfaces": [
     "app-shell",
     "card",
@@ -10,7 +10,21 @@
     "navigation",
     "screen.feed",
     "screen.messages",
-    "screen.myPage"
+    "screen.myPage",
+    "segmentedTabs",
+    "filterRow",
+    "personRow",
+    "chip",
+    "postActionBar",
+    "postCard",
+    "conversationRow",
+    "settingsRow",
+    "fab",
+    "sectionBlock",
+    "subHeader",
+    "bottomTabBar",
+    "screen.alumni",
+    "screen.donation"
   ],
   "globalRules": [
     "All platform implementations must use canonical tokens for color/spacing/radius/typography/radius/elevation values.",
@@ -23,12 +37,26 @@
     "card",
     "badge",
     "button",
-    "navigation"
+    "navigation",
+    "segmentedTabs",
+    "filterRow",
+    "personRow",
+    "chip",
+    "postActionBar",
+    "postCard",
+    "conversationRow",
+    "settingsRow",
+    "fab",
+    "sectionBlock",
+    "subHeader",
+    "bottomTabBar"
   ],
   "mandatoryScreenContracts": [
     "screen.feed",
     "screen.messages",
-    "screen.myPage"
+    "screen.myPage",
+    "screen.alumni",
+    "screen.donation"
   ],
   "violationRules": [
     {
@@ -116,7 +144,7 @@
     }
   ],
   "contractEvidenceRequirements": {
-    "mandatoryScreens": "Each mandatory screen contract must list implementationEvidence.web and implementationEvidence.ios files that are readable from the repository root.",
+    "mandatoryScreens": "Each mandatory screen contract must list readable implementationEvidence files for every platform it declares. Remember-style primitives and screen layouts apply to iOS/Android; existing web evidence remains unchanged.",
     "tokenFamilies": "Evidence files must contain every token family listed in requiredTokenFamilies, using platform-appropriate generated tokens or token-backed class names.",
     "explicitTokenUsage": "Evidence files must contain every token reference listed in requiredTokenUsage unless the contract declares a documented exception.",
     "violationReporting": "Verifier output must name the contract, platform, violated rule, and source pattern or missing token reference.",
@@ -190,6 +218,7 @@
         "ios": [
           "dflh-saf-v2-swift/Sources/App/RootView.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Login/LoginView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/NativeSignUpView.swift",
           "dflh-saf-v2-swift/Sources/App/DesignSystem/DSAdaptiveLayout.swift"
         ]
       }
@@ -436,7 +465,7 @@
       ],
       "variants": [
         "default",
-        "socialIconTabBar"
+        "bottomTabBar"
       ],
       "requiredTokenUsage": {
         "tabs": [
@@ -456,20 +485,6 @@
           "DSIcon",
           "DSMenuIcon",
           "DSLayout.screenPadMobile"
-        ],
-        "socialIconTabBar": [
-          "DSColor.surface",
-          "DSColor.background",
-          "DSColor.textPrimary",
-          "DSColor.textSecondary",
-          "DSColor.border",
-          "DSSizing.safeBottomNavHeight",
-          "DSSizing.touchTarget",
-          "DSIconography.sizeXxl",
-          "DSRadius.full",
-          "DSLineWidth.default",
-          "DSAnimation.quick",
-          "DSOpacity.surfaceSoft"
         ]
       },
       "tokens": {
@@ -503,10 +518,681 @@
         "DSSpace"
       ],
       "rules": [
-        "Badge uses tokenized error/warm colors",
-        "Icon/text labels from typography scale",
-        "Social icon tab bar uses only the approved DSMenuIcon registry from docs/SOCIAL_MENU_ICON_SET.md, except the My Page tab may use the current user's circular profile image with DSMenuIcon.heart as fallback",
-        "App shell menu code must not use raw SF Symbol names directly"
+        "Legacy web navigation retains its current tokens and behavior.",
+        "Native apps consume the bottomTabBar contract; the floating socialIconTabBar and Instagram icon-only plan are superseded by docs/remember-style/SPEC.md.",
+        "Keep platform-localized accessibility labels, unread counts and selected-tab state."
+      ]
+    },
+    {
+      "name": "segmentedTabs",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "selected",
+        "unselected"
+      ],
+      "tokens": {
+        "semantic": [
+          "rememberTab",
+          "rememberTabSelected",
+          "rowDivider",
+          "segmentedTabHeight",
+          "segmentedTabIndicator",
+          "tabIdleText",
+          "tabIndicator",
+          "tabSelectedText"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSSizing",
+        "DSTextStyle"
+      ],
+      "requiredTokenUsage": {
+        "colors": [
+          "DSColor.tabSelectedText",
+          "DSColor.tabIdleText",
+          "DSColor.tabIndicator",
+          "DSColor.rowDivider"
+        ],
+        "layout": [
+          "DSSizing.segmentedTabHeight",
+          "DSSizing.segmentedTabIndicator"
+        ],
+        "typography": [
+          "DSTextStyle.rememberTab",
+          "DSTextStyle.rememberTabSelected"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSegmentedTabs.kt"
+        ]
+      },
+      "rules": [
+        "Equal-width text tabs with a brand underline and divider; preserve selection callbacks and accessibility selected state."
+      ]
+    },
+    {
+      "name": "filterRow",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "activeFilters"
+      ],
+      "tokens": {
+        "semantic": [
+          "filterRowHeight",
+          "rememberMetaSemibold",
+          "rowDivider",
+          "rowSurface",
+          "screenPadMobile"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSLayout",
+        "DSSizing",
+        "DSTextStyle"
+      ],
+      "requiredTokenUsage": {
+        "surface": [
+          "DSColor.rowSurface",
+          "DSColor.rowDivider"
+        ],
+        "layout": [
+          "DSSizing.filterRowHeight",
+          "DSLayout.screenPadMobile"
+        ],
+        "typography": [
+          "DSTextStyle.rememberMetaSemibold"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSFilterRow.kt"
+        ]
+      },
+      "rules": [
+        "Display 전체 (N) with a disclosure action and trailing sort/filter utilities; preserve existing filter and sort behavior."
+      ]
+    },
+    {
+      "name": "personRow",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "self",
+        "imageLoading",
+        "imageUnavailable"
+      ],
+      "tokens": {
+        "semantic": [
+          "alumniCardThumbHeight",
+          "alumniCardThumbWidth",
+          "avatarLg",
+          "listRowVerticalPad",
+          "rememberMeta",
+          "rememberName",
+          "rowDivider",
+          "rowSurface",
+          "screenPadMobile"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSLayout",
+        "DSSizing",
+        "DSTextStyle"
+      ],
+      "requiredTokenUsage": {
+        "surface": [
+          "DSColor.rowSurface",
+          "DSColor.rowDivider"
+        ],
+        "layout": [
+          "DSSizing.listRowVerticalPad",
+          "DSLayout.screenPadMobile",
+          "DSSizing.alumniCardThumbWidth",
+          "DSSizing.alumniCardThumbHeight",
+          "DSSizing.avatarLg"
+        ],
+        "typography": [
+          "DSTextStyle.rememberName",
+          "DSTextStyle.rememberMeta"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPersonRow.kt"
+        ]
+      },
+      "rules": [
+        "Name and cohort chip precede two ellipsized secondary lines; the own row uses the 본인 outline chip.",
+        "Trailing content is a bordered business-card thumbnail or avatar fallback; tapping opens the existing alumni detail."
+      ]
+    },
+    {
+      "name": "chip",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default"
+      ],
+      "tokens": {
+        "semantic": [
+          "chip",
+          "chipAccentBg",
+          "chipAccentText",
+          "chipHeight",
+          "chipOutlineBorder",
+          "full"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSRadius",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "accent": [
+          "DSColor.chipAccentBg",
+          "DSColor.chipAccentText"
+        ],
+        "outline": [
+          "DSColor.chipOutlineBorder"
+        ],
+        "layout": [
+          "DSSizing.chipHeight",
+          "DSRadius.chip",
+          "DSRadius.full"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSChip.kt"
+        ]
+      },
+      "rules": [
+        "Accent identifies cohorts, outline identifies 본인 or visibility, primary identifies 공지, and tag uses a pill."
+      ],
+      "variants": [
+        "accent",
+        "outline",
+        "primary",
+        "tag"
+      ]
+    },
+    {
+      "name": "postActionBar",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "liked",
+        "unliked",
+        "disabled"
+      ],
+      "tokens": {
+        "semantic": [
+          "actionBarHeight",
+          "likeActive",
+          "rememberMetaSemibold",
+          "rowDivider",
+          "textSecondary"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSSizing",
+        "DSTextStyle"
+      ],
+      "requiredTokenUsage": {
+        "colors": [
+          "DSColor.likeActive",
+          "DSColor.textSecondary",
+          "DSColor.rowDivider"
+        ],
+        "layout": [
+          "DSSizing.actionBarHeight"
+        ],
+        "typography": [
+          "DSTextStyle.rememberMetaSemibold"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPostCard.kt"
+        ]
+      },
+      "rules": [
+        "Three equal actions retain 좋아요 / 댓글 / 공유, existing callbacks and test IDs; active like uses a filled heart and likeActive."
+      ]
+    },
+    {
+      "name": "postCard",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "pinned",
+        "collapsed",
+        "expanded",
+        "liked",
+        "unliked"
+      ],
+      "tokens": {
+        "semantic": [
+          "avatarMd",
+          "body",
+          "lineHeightBody",
+          "rowDivider",
+          "rowSurface",
+          "screenPadMobile",
+          "sectionGap"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSFont",
+        "DSLayout",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "surface": [
+          "DSColor.rowSurface",
+          "DSColor.rowDivider"
+        ],
+        "spacing": [
+          "DSLayout.screenPadMobile",
+          "DSLayout.sectionGap"
+        ],
+        "content": [
+          "DSSizing.avatarMd",
+          "DSFont.body",
+          "DSFont.lineHeightBody"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPostCard.kt"
+        ]
+      },
+      "rules": [
+        "Flat article surface with optional 고정된 공지 and 공지 chip; avatar, author, time, role, overflow action, body/link preview, engagement summary and action bar retain their order.",
+        "Keep inline expansion, comments, likes, sharing, analytics and accessible actions."
+      ]
+    },
+    {
+      "name": "conversationRow",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "read",
+        "unread",
+        "imageUnavailable"
+      ],
+      "tokens": {
+        "semantic": [
+          "avatarLg",
+          "chipHeight",
+          "messageRowVerticalPad",
+          "rowDivider",
+          "rowSurface",
+          "unreadBadge",
+          "unreadBadgeText"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "surface": [
+          "DSColor.rowSurface",
+          "DSColor.rowDivider"
+        ],
+        "unread": [
+          "DSColor.unreadBadge",
+          "DSColor.unreadBadgeText"
+        ],
+        "layout": [
+          "DSSizing.avatarLg",
+          "DSSizing.messageRowVerticalPad",
+          "DSSizing.chipHeight"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSConversationRow.kt"
+        ]
+      },
+      "rules": [
+        "Show avatar, name, time, preview and unread pill; unread uses bold name and primary preview text, read uses tertiary preview text."
+      ]
+    },
+    {
+      "name": "settingsRow",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "destructive",
+        "disabled"
+      ],
+      "tokens": {
+        "semantic": [
+          "destructiveText",
+          "metaLg",
+          "rememberBodyMedium",
+          "rowDivider",
+          "rowSurface",
+          "screenPadMobile"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSFont",
+        "DSLayout",
+        "DSTextStyle"
+      ],
+      "requiredTokenUsage": {
+        "colors": [
+          "DSColor.rowSurface",
+          "DSColor.rowDivider",
+          "DSColor.destructiveText"
+        ],
+        "typography": [
+          "DSTextStyle.rememberBodyMedium",
+          "DSFont.metaLg"
+        ],
+        "layout": [
+          "DSLayout.screenPadMobile"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSettingsRow.kt"
+        ]
+      },
+      "rules": [
+        "Leading icon, label, optional trailing caption and chevron use the 54px token-derived row metric; destructive rows use red text and omit the chevron."
+      ]
+    },
+    {
+      "name": "fab",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "press"
+      ],
+      "tokens": {
+        "semantic": [
+          "deep",
+          "fab",
+          "fabBackground",
+          "fabForeground",
+          "screenPadMobile",
+          "xlarge"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSLayout",
+        "DSOpacity",
+        "DSSizing",
+        "DSSpace"
+      ],
+      "requiredTokenUsage": {
+        "colors": [
+          "DSColor.fabBackground",
+          "DSColor.fabForeground"
+        ],
+        "layout": [
+          "DSSizing.fab",
+          "DSLayout.screenPadMobile",
+          "DSSpace.xlarge"
+        ],
+        "shadow": [
+          "DSOpacity.deep"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSFab.kt"
+        ]
+      },
+      "rules": [
+        "Circular amber 새 쪽지 action sits at the screen inset and above the safe-area-aware tab bar; preserve the compose callback and accessibility label."
+      ]
+    },
+    {
+      "name": "sectionBlock",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default"
+      ],
+      "tokens": {
+        "semantic": [
+          "rowSurface",
+          "screenPadMobile",
+          "sectionGap"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSLayout"
+      ],
+      "requiredTokenUsage": {
+        "colors": [
+          "DSColor.rowSurface",
+          "DSColor.sectionGap"
+        ],
+        "layout": [
+          "DSLayout.sectionGap",
+          "DSLayout.screenPadMobile"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSectionBlock.kt"
+        ]
+      },
+      "rules": [
+        "Flat surface blocks use canvas gaps without rounded card containers. iOS can render the gap with DSSectionBlock; Android composes DSSectionBlock with DSSectionGap."
+      ],
+      "variants": [
+        "withHeading",
+        "withGap",
+        "withoutGap"
+      ]
+    },
+    {
+      "name": "subHeader",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "withAvatar",
+        "withSubtitle",
+        "withActions"
+      ],
+      "tokens": {
+        "semantic": [
+          "avatarSm",
+          "headerIcon",
+          "rowDivider",
+          "rowSurface",
+          "tabHeaderHeight",
+          "touchTarget"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "colors": [
+          "DSColor.rowSurface",
+          "DSColor.headerIcon",
+          "DSColor.rowDivider"
+        ],
+        "layout": [
+          "DSSizing.tabHeaderHeight",
+          "DSSizing.touchTarget",
+          "DSSizing.avatarSm"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSubHeader.kt"
+        ]
+      },
+      "rules": [
+        "Back action, title, optional peer avatar/subtitle and overflow actions preserve navigation and accessibility labels; the system owns the top safe area."
+      ]
+    },
+    {
+      "name": "bottomTabBar",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "selected",
+        "unselected",
+        "unread"
+      ],
+      "tokens": {
+        "semantic": [
+          "bottomTabHeight",
+          "caption",
+          "rowDivider",
+          "rowSurface",
+          "tabIdleText",
+          "tabSelectedText",
+          "unreadBadge"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSFont",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "colors": [
+          "DSColor.rowSurface",
+          "DSColor.rowDivider",
+          "DSColor.tabSelectedText",
+          "DSColor.tabIdleText",
+          "DSColor.unreadBadge"
+        ],
+        "layout": [
+          "DSSizing.bottomTabHeight"
+        ],
+        "typography": [
+          "DSFont.caption"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
+          "dflh-saf-v2-swift/Sources/App/RootView.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/navigation/MainBottomNavigation.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSConversationRow.kt"
+        ]
+      },
+      "rules": [
+        "Flat five-tab bar: 소식 / 동문 / 기부 / 쪽지 / 내정보; labels remain visible, 기부/내정보 use filled selected icons, and 쪽지 preserves the unread pill.",
+        "System safe area is additional to the bar height; keep navigation state, existing accessibility labels and test IDs.",
+        "iOS implementation is DSIconTabBar; Android implementation is DflhBottomNavigation. The former floating/icon-only menu is superseded."
       ]
     },
     {
@@ -522,72 +1208,57 @@
         "loading",
         "empty",
         "error",
-        "data"
+        "data",
+        "refreshing",
+        "loadingMore",
+        "categorySelected",
+        "expanded",
+        "liking",
+        "commenting"
       ],
       "requiredBlocks": [
-        "hero",
-        "list"
+        "header",
+        "segmentedTabs",
+        "pinnedPosts",
+        "postList",
+        "bannerSlot",
+        "inlineDetail",
+        "commentComposer"
       ],
       "tokens": {
-        "spacing": [
-          "screenPad.mobile",
-          "screenPad.tablet",
-          "cardGap"
-        ],
-        "radius": [
-          "lg",
-          "xl"
-        ],
-        "typography": [
-          "h2",
+        "semantic": [
           "body",
-          "bodySm",
-          "caption"
-        ],
-        "hero": [
-          "heroFrom",
-          "heroVia",
-          "heroTo"
+          "likeActive",
+          "lineHeightBody",
+          "mainTabHeader",
+          "rowDivider",
+          "rowSurface",
+          "sectionGap"
         ]
       },
       "requiredTokenUsage": {
-        "surfaceLayers": [
-          "DSColor.background",
-          "DSColor.surface"
-        ],
-        "hero": [
-          "DSColor.heroFrom",
-          "DSColor.heroVia",
-          "DSOpacity.titleEmphasis"
-        ],
-        "listSpacing": [
-          "DSSizing.feedHeroHeightMax",
-          "DSSizing.feedHeroHeightMin",
-          "DSSpace.medium",
-          "DSSpace.small",
-          "DSSpace.tiny",
-          "DSCard.spacing",
-          "DSCard.spacingLarge",
-          "DSRadius.lg",
-          "DSRadius.xl",
-          "DSLineWidth.default",
-          "DSLineWidth.emphasis"
-        ],
-        "typography": [
+        "header": [
+          "DSMainTabHeader",
           "DSTextStyle.mainTabHeader",
-          "DSTextStyle.title",
-          "DSTextStyle.bodySm",
-          "DSTextStyle.caption",
-          "DSTextStyle.footnote"
+          "DSSegmentedTabs"
+        ],
+        "articles": [
+          "DSPostCard",
+          "DSPostActionBar",
+          "DSColor.rowSurface",
+          "DSColor.rowDivider",
+          "DSLayout.sectionGap"
+        ],
+        "body": [
+          "DSFont.body",
+          "DSFont.lineHeightBody",
+          "DSColor.likeActive"
         ]
       },
       "requiredTokenFamilies": [
         "DSColor",
         "DSTextStyle",
-        "DSRadius",
         "DSSpace",
-        "DSCard",
-        "DSOpacity",
         "DSLayout"
       ],
       "implementationEvidence": {
@@ -595,7 +1266,8 @@
           "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedListView.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedInlineDetailBody.swift",
-          "dflh-saf-v2-swift/Sources/App/Feature/Feed/CommentReportSheet.swift"
+          "dflh-saf-v2-swift/Sources/App/Feature/Feed/CommentReportSheet.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/BannerAd/BannerAdCarouselView.swift"
         ],
         "web": [
           "dflh-saf-v2/frontend/src/pages/FeedPage.tsx",
@@ -611,16 +1283,23 @@
           "dflh-saf-v2/frontend/src/components/feed/NoticeCard.tsx"
         ],
         "android": [
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemCompat.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemExports.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenContracts.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSRememberStyle.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt"
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/feed/ui/FeedScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/feed/ui/CommentReportSheet.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/feed/ui/BannerAdSection.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPostCard.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSegmentedTabs.kt"
         ]
       },
-      "notes": "Web shows two-column desktop with sidebar widget; iOS may flatten to single column while preserving section order and tokenized spacing/radius/elevation. The donation cumulative-amount widget is no longer part of this screen on iOS/Android: it moved to a dedicated donation screen reachable from the '기부하기' tab (not yet a formal contract). Web may still show it inline via DonationBanner.tsx/NetworkWidget.tsx; that is an accepted platform delta, not a required block. The merged iOS redesign uses DSTextStyle.mainTabHeader (h3) for the main tab header and DSTextStyle.title for post titles; the former 24px heading requirement is obsolete."
+      "notes": "Remember-style native feed; legacy web evidence and behavior are retained. Category tabs map only to existing API categories. Donation totals belong on the native 기부 tab.",
+      "rules": [
+        "Native header is 소식 with search and notifications; category order is 전체 / 공지 / 장학 / 동문 when exposed by the API.",
+        "Pinned notices render first; flat post sections have sectionGap spacing. Keep the banner slot after the first post and preserve likes, comments, inline expansion and analytics.",
+        "Web retains its existing hero/sidebar layout; Remember-style blocks apply only to iOS/Android."
+      ]
     },
     {
       "name": "screen.messages",
@@ -636,73 +1315,71 @@
         "empty",
         "error",
         "data",
-        "sending"
+        "refreshing",
+        "all",
+        "unread",
+        "thread",
+        "sending",
+        "sendError",
+        "blocked",
+        "reporting"
       ],
       "requiredBlocks": [
         "header",
+        "segmentedTabs",
         "conversationList",
+        "composeFab",
+        "subHeader",
+        "dateDivider",
         "detailThread",
         "composer"
       ],
       "tokens": {
-        "spacing": [
-          "cardGap",
-          "screenPad.mobile"
-        ],
-        "radius": [
-          "lg"
-        ],
-        "typography": [
-          "body",
-          "bodySm",
-          "caption",
-          "mini"
-        ],
-        "states": [
-          "surface",
-          "success",
-          "error",
-          "textSecondary",
-          "white"
+        "semantic": [
+          "bubbleMine",
+          "bubbleMineText",
+          "bubbleTheirs",
+          "bubbleTheirsBorder",
+          "captionInset",
+          "full",
+          "insetSurface",
+          "messageBubbleMaxWidthRatio",
+          "messageComposerHeight",
+          "unreadBadge",
+          "unreadBadgeText"
         ]
       },
       "requiredTokenUsage": {
-        "conversationCards": [
-          "DSColor.surface",
-          "DSRadius.lg",
-          "DSCard.spacing",
-          "DSOpacity.surfaceSoftStrong"
+        "list": [
+          "DSConversationRow",
+          "DSSegmentedTabs",
+          "DSFab",
+          "DSColor.unreadBadge",
+          "DSColor.unreadBadgeText"
         ],
         "messageBubble": [
-          "DSColor.primary",
-          "DSColor.surface",
-          "DSLayout.messageBubbleMaxWidthRatio",
-          "DSRadius.lg",
-          "DSSizing.messageUnreadBadge",
-          "DSSpace.small",
-          "DSSpace.tiny",
-          "DSCard.spacing",
-          "DSOpacity.surfaceSoft"
+          "DSMessageBubble",
+          "DSColor.bubbleMine",
+          "DSColor.bubbleMineText",
+          "DSColor.bubbleTheirs",
+          "DSColor.bubbleTheirsBorder",
+          "DSLayout.messageBubbleMaxWidthRatio"
         ],
         "composer": [
           "DSSizing.messageComposerHeight",
-          "DSSizing.messageUnreadBadge",
-          "DSCard.spacing",
-          "DSCard.spacingLarge",
-          "DSTextStyle.body",
-          "DSColor.textPrimary",
-          "DSColor.textSecondary",
-          "DSFontWeight.semibold"
+          "DSRadius.full",
+          "DSColor.insetSurface",
+          "DSColor.bubbleMine"
+        ],
+        "dateDivider": [
+          "DSSpace.captionInset"
         ]
       },
       "requiredTokenFamilies": [
         "DSColor",
         "DSTextStyle",
-        "DSRadius",
         "DSSpace",
-        "DSCard",
-        "DSLayout",
-        "DSOpacity"
+        "DSLayout"
       ],
       "implementationEvidence": {
         "ios": [
@@ -724,16 +1401,26 @@
           "dflh-saf-v2/frontend/src/components/message/SendMessageDialog.tsx"
         ],
         "android": [
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemCompat.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemExports.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenContracts.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSRememberStyle.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt"
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/ui/MessagesScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/ui/MessageComposeScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/ui/MessageReportSheet.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSConversationRow.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSMessageBubble.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSegmentedTabs.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSFab.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSubHeader.kt"
         ]
       },
-      "notes": "Conversation and thread states (read/unread, mine/other, timestamp grouping) are token-driven."
+      "notes": "The shared DSMessageBubble owns the width ratio, colors, tail corners and beside-bubble time. Both shared component files are implementation evidence.",
+      "rules": [
+        "Native 쪽지 uses 전체 / 안 읽음 tabs, read/unread rows and a 새 쪽지 FAB opening existing compose.",
+        "Thread retains back, peer metadata, block/report actions, date grouping, send/retry behavior and read state; use asymmetric message bubbles and a pill composer.",
+        "Unread count remains on the bottom tab bar. Existing web layout and behavior are unchanged."
+      ]
     },
     {
       "name": "screen.myPage",
@@ -749,73 +1436,56 @@
         "error",
         "authenticated",
         "signedOut",
-        "editing"
+        "editing",
+        "saving",
+        "signingOut",
+        "publicContact",
+        "privateContact"
       ],
       "requiredBlocks": [
+        "header",
         "profileHeader",
-        "accountActions",
-        "supportArea",
-        "signOutAction"
+        "bioAndTags",
+        "businessCardAction",
+        "alumniPreviewAction",
+        "contactSection",
+        "settingsSection",
+        "signOutAction",
+        "copyright"
       ],
       "tokens": {
-        "spacing": [
-          "screenPad.mobile",
-          "screenPad.tablet"
-        ],
-        "radius": [
-          "xl",
-          "full"
-        ],
-        "typography": [
-          "title",
-          "body",
-          "bodySm"
-        ],
-        "states": [
-          "surface",
-          "background",
-          "textPrimary",
-          "textSecondary",
-          "error",
-          "border"
+        "semantic": [
+          "avatarXl",
+          "destructiveText",
+          "placeholderInk",
+          "rememberCaption",
+          "rowSurface",
+          "screenPadMobile",
+          "sectionGap"
         ]
       },
       "requiredTokenUsage": {
-        "profileHeader": [
-          "DSColor.surface",
-          "DSColor.background",
-          "DSOpacity.surfaceSubtle",
-          "DSRadius.xl"
+        "profile": [
+          "DSColor.rowSurface",
+          "DSSizing.avatarXl",
+          "DSChip",
+          "DSLayout.screenPadMobile"
         ],
-        "sectionCards": [
-          "DSCard.spacingLarge",
-          "DSCard.spacing",
-          "DSLayout.profileHorizontalPadding",
-          "DSRadius.xl",
-          "DSColor.surface",
-          "DSOpacity.surfaceSoft",
-          "DSColor.textPrimary",
-          "DSColor.textSecondary"
+        "sections": [
+          "DSLayout.sectionGap",
+          "DSSettingsRow",
+          "DSColor.destructiveText"
         ],
-        "actionText": [
-          "DSTextStyle.title",
-          "DSTextStyle.body",
-          "DSTextStyle.bodySm",
-          "DSTextStyle.caption",
-          "DSTextStyle.footnote",
-          "DSColor.textSecondary",
-          "DSColor.textTertiary",
-          "DSColor.error"
+        "footer": [
+          "DSTextStyle.rememberCaption",
+          "DSColor.placeholderInk"
         ]
       },
       "requiredTokenFamilies": [
         "DSColor",
         "DSTextStyle",
-        "DSRadius",
         "DSSpace",
-        "DSCard",
-        "DSLayout",
-        "DSOpacity"
+        "DSLayout"
       ],
       "implementationEvidence": {
         "ios": [
@@ -830,23 +1500,32 @@
           "dflh-saf-v2/frontend/src/components/profile/AccountActions.tsx"
         ],
         "android": [
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemCompat.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignSystemExports.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenContracts.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSRememberStyle.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt"
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/profile/ui/ProfileScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/profile/ui/ProfilePreview.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/profile/ui/BusinessCardEditor.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSChip.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSettingsRow.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSectionBlock.kt"
         ]
       },
-      "notes": "Action labels remain platform-localized, but style tokens must resolve to shared definitions."
+      "notes": "The copyright uses rememberCaption (11px), matching the mockup; the former footnote/mini requirement (10px) is obsolete. Edit/password/account forms retain their existing behavior.",
+      "rules": [
+        "Native header is 내정보 with bell and gear; preserve profile edit, 내 명함 and 동문에게 보이는 화면 actions.",
+        "Flat contact rows show 공개 / 비공개 chips; settings keep 비밀번호 변경, 로그인 연동, 알림 설정, 개인정보 설정 and destructive 로그아웃.",
+        "Use 11px rememberCaption and placeholder ink for the centered copyright. Existing web layout is unchanged."
+      ]
     },
     {
       "name": "screen.alumni",
       "contractType": "screen",
-      "mandatory": false,
+      "mandatory": true,
       "platforms": [
-        "ios"
+        "ios",
+        "android"
       ],
       "states": [
         "loading",
@@ -854,146 +1533,184 @@
         "empty",
         "error",
         "data",
-        "detail"
+        "searching",
+        "all",
+        "sameCohort",
+        "sameJob",
+        "filtered",
+        "sorted",
+        "self",
+        "detail",
+        "privateContact",
+        "imageUnavailable"
       ],
       "requiredBlocks": [
-        "searchField",
-        "filterMenu",
-        "resultList",
-        "row",
-        "detailSheet"
+        "header",
+        "inlineSearchField",
+        "segmentedTabs",
+        "filterRow",
+        "personList",
+        "detailSubHeader",
+        "detailHero",
+        "detailSections",
+        "messageAction",
+        "businessCardAction"
       ],
       "tokens": {
-        "spacing": [
-          "small",
-          "medium",
-          "large",
-          "tiny"
-        ],
-        "radius": [
-          "md",
-          "lg"
-        ],
-        "typography": [
-          "h2",
-          "title",
-          "bodySm",
-          "bodyXs",
-          "caption",
-          "mini"
-        ],
-        "states": [
-          "warningSubtle",
-          "warningText",
-          "errorText",
-          "primary",
-          "primaryLight",
-          "primaryMuted"
+        "semantic": [
+          "alumniCardThumbHeight",
+          "alumniCardThumbWidth",
+          "avatarLg",
+          "rememberName",
+          "rowDivider",
+          "rowSurface",
+          "sectionGap"
         ]
       },
       "requiredTokenUsage": {
-        "search": [
-          "DSColor.background",
-          "DSColor.border",
-          "DSRadius.md"
+        "directory": [
+          "DSMainTabHeader",
+          "DSSegmentedTabs",
+          "DSFilterRow",
+          "DSPersonRow",
+          "DSChip"
         ],
         "row": [
-          "DSAvatar",
-          "DSIcon",
-          "DSText",
-          "DSSizing.touchTarget"
+          "DSTextStyle.rememberName",
+          "DSSizing.alumniCardThumbWidth",
+          "DSSizing.alumniCardThumbHeight",
+          "DSSizing.avatarLg",
+          "DSColor.rowDivider"
         ],
         "detail": [
-          "DSButton",
-          "DSDivider",
-          "DSEmptyState",
-          "DSLoadingState"
+          "DSSubHeader",
+          "DSSectionBlock",
+          "DSColor.rowSurface",
+          "DSLayout.sectionGap"
         ]
       },
       "requiredTokenFamilies": [
         "DSColor",
         "DSTextStyle",
-        "DSRadius",
         "DSSpace",
-        "DSIconography",
-        "DSSizing",
-        "DSLayout",
-        "DSLineWidth",
-        "DSFontWeight"
+        "DSLayout"
       ],
       "implementationEvidence": {
         "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Alumni/AlumniSearchView.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Alumni/AlumniRowView.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Alumni/AlumniDetailView.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSRememberStyle.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/alumni/ui/AlumniScreen.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPersonRow.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSFilterRow.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSegmentedTabs.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSChip.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSectionBlock.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSubHeader.kt"
         ]
       },
-      "notes": "Alumni directory search, row, and detail sheet. Authored after the fact to close a design-system contract gap; not yet mirrored on web/Android, so marked non-mandatory until those platforms ship the same feature."
+      "notes": "Native Remember directory and profile detail are implemented on both iOS and Android.",
+      "rules": [
+        "Header 동문 opens the existing inline search; presets 전체 동문 / 같은 기수 / 같은 직종 map to existing cohort/job filters.",
+        "Filter row shows 전체 (N), 기수순 and 필터. Preserve filter sheet, sorting, paging and row selection.",
+        "Detail retains 학교 / 직장 / 연락처 / 전문분야·태그, privacy badges, message/business-card actions, block/report and self handling."
+      ]
     },
     {
       "name": "screen.donation",
       "contractType": "screen",
-      "mandatory": false,
+      "mandatory": true,
       "platforms": [
-        "ios"
+        "ios",
+        "android"
       ],
       "states": [
         "loading",
         "data",
         "empty",
-        "error"
+        "error",
+        "refreshing",
+        "balanceAvailable",
+        "balanceUnavailable",
+        "goalAvailable",
+        "goalUnavailable",
+        "linkUnavailable"
       ],
       "requiredBlocks": [
         "header",
-        "summaryCard",
-        "ctaButton"
+        "cumulativeAmount",
+        "goalProgress",
+        "monthAmount",
+        "optionalBalanceAmount",
+        "optionalBalanceAsOf",
+        "myTree",
+        "externalDonationCta"
       ],
       "tokens": {
-        "spacing": [
-          "large",
-          "medium",
-          "xlarge",
-          "xxlarge",
-          "tiny",
-          "small"
-        ],
-        "radius": [
-          "xl"
-        ],
-        "typography": [
-          "title",
-          "bodySm",
-          "mini",
-          "h2",
-          "caption"
+        "semantic": [
+          "button",
+          "chipAccentText",
+          "progressFill",
+          "progressTrack",
+          "rowSurface",
+          "screenPadMobile",
+          "sectionGap"
         ]
       },
       "requiredTokenUsage": {
-        "summaryCard": [
-          "DSColor.surface",
-          "DSColor.textPrimary",
-          "DSColor.textTertiary",
-          "DSColor.primary",
-          "DSRadius.xl"
+        "summary": [
+          "DSColor.rowSurface",
+          "DSColor.progressFill",
+          "DSColor.progressTrack",
+          "DSColor.chipAccentText",
+          "DSRadius.button"
+        ],
+        "sections": [
+          "DSLayout.sectionGap",
+          "DSLayout.screenPadMobile"
         ],
         "cta": [
-          "DSButton"
+          "DSPrimaryButton"
         ]
       },
       "requiredTokenFamilies": [
         "DSColor",
         "DSTextStyle",
-        "DSRadius",
         "DSSpace",
-        "DSCard",
-        "DSFontWeight"
+        "DSLayout"
       ],
       "implementationEvidence": {
         "ios": [
-          "dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationLinkView.swift"
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationLinkView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Donation/MyDonationTreeCard.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationTreeIllustration.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSRememberStyle.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationSummarySection.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/MyDonationTreeCard.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationTreeIllustration.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSActionButtons.kt"
         ]
       },
-      "notes": "External Happy Nanum donation summary + link-out CTA. Authored after the fact to close a design-system contract gap; non-mandatory until web/Android ship an equivalent screen."
+      "notes": "Both native platforms consume GET /api/donation/summary monthAmount and nullable balanceAmount/balanceAsOf and retain the external Happy Nanum flow.",
+      "rules": [
+        "Native 기부 summary shows 장학회 전체 누적 기부, optional goal/progress, 이번 달 기부액 and optional 계좌 잔액.",
+        "Hide the balance card when balanceAmount is absent; display 계좌 잔액 기준일 YYYY.MM.DD · 장학회 관리자 입력 when dated. Never render 참여 동문/donorCount.",
+        "Keep 내 나무 and the 해피나눔에서 기부하기 external CTA; do not introduce an in-app payment flow."
+      ]
     },
     {
       "name": "screen.socialLink",
@@ -1229,6 +1946,91 @@
         ]
       },
       "notes": "Approved Figma V6 node 31:2. Native Android deletion request and public receipt lookup. Tokens are masked; submitting survives logout. 202 acceptance is distinct from completed. Recovery queries the pre-saved token and never creates another request when outcome is unknown."
+    },
+    {
+      "name": "screen.notificationSettings",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "loading",
+        "ready",
+        "saving",
+        "error",
+        "unavailable"
+      ],
+      "requiredBlocks": [
+        "messageToggle",
+        "messagePreviewToggle",
+        "noticeToggle",
+        "permissionNotice"
+      ],
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSFont",
+        "DSSpace",
+        "DSRadius",
+        "DSSizing"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/ProfileView.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/notificationsettings/NotificationSettingsScreen.kt"
+        ]
+      },
+      "notes": "Account-level message, preview and 새 소식 push preferences reached from My Page on both native platforms. Preserve permission/unavailable states, optimistic writes and rollback behavior."
+    },
+    {
+      "name": "screen.forceUpdate",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "required",
+        "storeUrlUnavailable"
+      ],
+      "requiredBlocks": [
+        "title",
+        "explanation",
+        "updateActionOrStoreInstructions"
+      ],
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSSpace"
+      ],
+      "requiredTokenUsage": {
+        "content": [
+          "DSTextStyle.h2",
+          "DSTextStyle.bodySm",
+          "DSColor.textSecondary"
+        ],
+        "layout": [
+          "DSSpace.large",
+          "DSSpace.xlarge",
+          "DSColor.background"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/AppUpdate/ForceUpdateView.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/appupdate/ui/ForceUpdateScreen.kt"
+        ]
+      },
+      "rules": [
+        "Blocking minimum-version screen preserves the update link and prevents continuing into the app.",
+        "If the store URL is unavailable, display store-install instructions; styling remains token-driven."
+      ]
     }
   ]
 }

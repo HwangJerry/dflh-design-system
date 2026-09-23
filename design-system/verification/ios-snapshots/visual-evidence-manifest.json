@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T05:47:33.070Z",
+  "generatedAt": "2026-09-23T03:17:26.169Z",
   "status": "passed",
   "baselineDir": "design-system/verification/ios-snapshots/baseline",
   "captureDir": "design-system/verification/ios-snapshots/captures",
@@ -7,7 +7,7 @@
     {
       "name": "screen.feed",
       "mandatoryScreens": [
-        "뉴스피드"
+        "소식"
       ],
       "expectedFiles": [
         "iOS-Feed-mobile.png"
@@ -17,7 +17,7 @@
     {
       "name": "screen.messages.list",
       "mandatoryScreens": [
-        "쪽지함"
+        "쪽지"
       ],
       "expectedFiles": [
         "iOS-MessagesList-mobile.png"
@@ -37,7 +37,7 @@
     {
       "name": "screen.myPage",
       "mandatoryScreens": [
-        "마이페이지"
+        "내정보"
       ],
       "expectedFiles": [
         "iOS-MyPage-mobile.png"
@@ -54,8 +54,8 @@
       "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-Feed-mobile.png",
       "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-Feed-mobile.png",
       "diff": null,
-      "hash": "b3f2b2c215bc442a96e238f2ee8b956c8e13ecace30b566a80c82b406fce521c",
-      "baselineHash": "b3f2b2c215bc442a96e238f2ee8b956c8e13ecace30b566a80c82b406fce521c",
+      "hash": "3bf14b9a1b36888ebb0d33cbae838e9746ab72f6614f4bdfbf8b0a1ab8c89f52",
+      "baselineHash": "3bf14b9a1b36888ebb0d33cbae838e9746ab72f6614f4bdfbf8b0a1ab8c89f52",
       "changedPixelRatio": 0,
       "changedPixels": 0,
       "totalPixels": 3013524,
@@ -72,8 +72,8 @@
       "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-MessagesList-mobile.png",
       "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-MessagesList-mobile.png",
       "diff": null,
-      "hash": "22f7b01fdc4ce80229ef9ca66730230e0dd02f3b293feeb481b1cd9628181841",
-      "baselineHash": "22f7b01fdc4ce80229ef9ca66730230e0dd02f3b293feeb481b1cd9628181841",
+      "hash": "cc2ec154941957632f741c566cf8e427c9a91b4f54497703a27b6f548aa758ba",
+      "baselineHash": "cc2ec154941957632f741c566cf8e427c9a91b4f54497703a27b6f548aa758ba",
       "changedPixelRatio": 0,
       "changedPixels": 0,
       "totalPixels": 3013524,
@@ -90,8 +90,8 @@
       "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-MessagesThread-mobile.png",
       "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-MessagesThread-mobile.png",
       "diff": null,
-      "hash": "014e3900e3b6ecfddbfea0a291fed2dc26fde724a6df6698bb8f6702f67bfaca",
-      "baselineHash": "014e3900e3b6ecfddbfea0a291fed2dc26fde724a6df6698bb8f6702f67bfaca",
+      "hash": "1f0b1596f6a8ac1c5b040a3f5ff8ee783183d10cd1c35b74aeffc96ff699b804",
+      "baselineHash": "1f0b1596f6a8ac1c5b040a3f5ff8ee783183d10cd1c35b74aeffc96ff699b804",
       "changedPixelRatio": 0,
       "changedPixels": 0,
       "totalPixels": 3013524,
@@ -108,8 +108,8 @@
       "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-MyPage-mobile.png",
       "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-MyPage-mobile.png",
       "diff": null,
-      "hash": "250f2522ec50f902a1673a058aa088a318419efe116c3a48b7d8a73cb2b836e9",
-      "baselineHash": "250f2522ec50f902a1673a058aa088a318419efe116c3a48b7d8a73cb2b836e9",
+      "hash": "3779d33f28835905e8a9babd59db42899939578956a58d2e88a1496a2abc746a",
+      "baselineHash": "3779d33f28835905e8a9babd59db42899939578956a58d2e88a1496a2abc746a",
       "changedPixelRatio": 0,
       "changedPixels": 0,
       "totalPixels": 3013524,

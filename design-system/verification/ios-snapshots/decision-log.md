@@ -285,3 +285,48 @@ xcrun simctl io booted screenshot design-system/verification/ios-snapshots/iOS-F
 ## 2026-09-08 — Figma V4 / V5 native implementation review
 
 Reviewed all four fresh iPhone 15 captures against the approved Figma V4 references. Accepted the intentional redesign: Noto Sans KR, warm surface palette, floating five-tab bar with a thin selection indicator, pinned feed hero, unread rows, compact profile actions, and native chat composer. Captures contain fixture data, native safe areas and OS chrome; they are regression baselines, not evidence of exact raster equality with Figma. Promote these reviewed captures. V5 reverse-stacked forms and all 16 routes per platform are recorded separately in output/figma-design-review-2026-09-08/implementation/. Existing web design captures are unrelated and were not changed by this review.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-23T03:16:16.490Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+## 2026-09-23 — T09 Remember-style native redesign
+
+Reviewed fresh captures of Feed (expanded article/comments), MessagesList,
+MessagesThread and MyPage against the approved
+[Remember-style spec](../../docs/remember-style/SPEC.md) and
+[HTML pixel references](../../mockups/remember-style/). Accept the intentional
+T01–T08 redesign: large left titles, text tabs with navy underlines, flat white
+rows/sections and canvas gaps, amber chips/unread badges and compose FAB,
+three-way post actions, profile/contact/settings rows, and the labeled flat
+five-tab bar. The thread uses asymmetric navy/white bubbles with beside-bubble
+timestamps, a date pill and the existing composer. T09 additionally enforces
+`DSLayout.messageBubbleMaxWidthRatio` inside the shared bubble layout and names
+the existing 3px caption inset; the 11px profile copyright remains unchanged.
+
+Capture environment: `Codex iPhone 15` (`92D331D5-D3EE-410D-B7FC-CB99D29ADEA4`),
+iOS 26.0, 1179 × 2556 pixels, light appearance, Large text, Korean locale,
+Asia/Seoul timezone and 9:41 system status bar. The visual fixture's content,
+expanded feed state and native font/system chrome differ from the static HTML;
+these are regression baselines, not a claim of identical mockup raster output.
+Only the four existing capture targets are covered; alumni, donation, dark mode
+and interaction-state screenshots are not added by T09.
+
+`DFLH_IOS_VISUAL_DEVICE='Codex iPhone 15' npm run visual-check-ios:capture`
+built successfully and reported all four screens changed against the old
+baselines, with no missing images. Reviewed each capture for clipping, row and
+tab alignment, message wrapping and timestamp placement, then promoted the four
+images with `npm run visual-check-ios:update-baseline`. The subsequent
+`npm run visual-check-ios` passed with four unchanged captures, zero changed
+pixels and no accepted-delta bypass or tolerance increase. Regenerated the
+aggregate manifest with `npm run generate-visual-baseline-manifest`. The final
+`npm run verify-design-system` passed, including Android/iOS compliance,
+generated-token freshness and contract-doc freshness. The required generic iOS
+simulator `xcodebuild` also reported `BUILD SUCCEEDED`.

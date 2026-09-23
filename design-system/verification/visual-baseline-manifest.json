@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-07T13:44:56.125Z",
+  "generatedAt": "2026-09-23T03:17:31.230Z",
   "sourceRoot": "/Users/jerryhwang/Workspace/03_daeil",
   "versioning": {
     "strategy": "content-addressed-baseline-manifest",
@@ -436,8 +436,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-Feed-mobile.png",
       "fileName": "iOS-Feed-mobile.png",
       "exists": true,
-      "bytes": 1639628,
-      "sha256": "8d676433302a3c22334b3d943a1cfbef57e2f3235142172d8829bbddd60e7037",
+      "bytes": 224961,
+      "sha256": "3bf14b9a1b36888ebb0d33cbae838e9746ab72f6614f4bdfbf8b0a1ab8c89f52",
       "width": 1179,
       "height": 2556
     },
@@ -447,8 +447,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-MessagesList-mobile.png",
       "fileName": "iOS-MessagesList-mobile.png",
       "exists": true,
-      "bytes": 201542,
-      "sha256": "62350fd967d89f24d1e36e73779cee504282828564c8fd540760940235fd3cda",
+      "bytes": 292962,
+      "sha256": "cc2ec154941957632f741c566cf8e427c9a91b4f54497703a27b6f548aa758ba",
       "width": 1179,
       "height": 2556
     },
@@ -458,8 +458,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-MessagesThread-mobile.png",
       "fileName": "iOS-MessagesThread-mobile.png",
       "exists": true,
-      "bytes": 230572,
-      "sha256": "1a3a96fc4fad07b38d7f3abe368f5c5e8210eee53e9b42db424c136890b675ba",
+      "bytes": 160281,
+      "sha256": "1f0b1596f6a8ac1c5b040a3f5ff8ee783183d10cd1c35b74aeffc96ff699b804",
       "width": 1179,
       "height": 2556
     },
@@ -469,8 +469,8 @@
       "path": "design-system/verification/ios-snapshots/baseline/iOS-MyPage-mobile.png",
       "fileName": "iOS-MyPage-mobile.png",
       "exists": true,
-      "bytes": 445401,
-      "sha256": "9adf36fd37aa50c34d02c8fe3cd88c0fce6b12414743dc87696b98c97c89db42",
+      "bytes": 222531,
+      "sha256": "3779d33f28835905e8a9babd59db42899939578956a58d2e88a1496a2abc746a",
       "width": 1179,
       "height": 2556
     },
@@ -480,8 +480,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-Feed-mobile.png",
       "fileName": "iOS-Feed-mobile.png",
       "exists": true,
-      "bytes": 1639628,
-      "sha256": "8d676433302a3c22334b3d943a1cfbef57e2f3235142172d8829bbddd60e7037",
+      "bytes": 224961,
+      "sha256": "3bf14b9a1b36888ebb0d33cbae838e9746ab72f6614f4bdfbf8b0a1ab8c89f52",
       "width": 1179,
       "height": 2556
     },
@@ -491,8 +491,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-MessagesList-mobile.png",
       "fileName": "iOS-MessagesList-mobile.png",
       "exists": true,
-      "bytes": 201542,
-      "sha256": "62350fd967d89f24d1e36e73779cee504282828564c8fd540760940235fd3cda",
+      "bytes": 292962,
+      "sha256": "cc2ec154941957632f741c566cf8e427c9a91b4f54497703a27b6f548aa758ba",
       "width": 1179,
       "height": 2556
     },
@@ -502,8 +502,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-MessagesThread-mobile.png",
       "fileName": "iOS-MessagesThread-mobile.png",
       "exists": true,
-      "bytes": 230568,
-      "sha256": "b67e784c1355b185e3692decea5244693eea0bb52cd584b3e88c4be09a9681a3",
+      "bytes": 160281,
+      "sha256": "1f0b1596f6a8ac1c5b040a3f5ff8ee783183d10cd1c35b74aeffc96ff699b804",
       "width": 1179,
       "height": 2556
     },
@@ -513,8 +513,8 @@
       "path": "design-system/verification/ios-snapshots/captures/iOS-MyPage-mobile.png",
       "fileName": "iOS-MyPage-mobile.png",
       "exists": true,
-      "bytes": 445401,
-      "sha256": "9adf36fd37aa50c34d02c8fe3cd88c0fce6b12414743dc87696b98c97c89db42",
+      "bytes": 222531,
+      "sha256": "3779d33f28835905e8a9babd59db42899939578956a58d2e88a1496a2abc746a",
       "width": 1179,
       "height": 2556
     },
@@ -576,7 +576,7 @@
       "path": "design-system/verification/reports/visual-check-ios.json",
       "exists": true,
       "bytes": 3851,
-      "sha256": "3bfee178a7dde12ad0ebedc509f4bc891e60d30fa37626eb541f5fb4ca8bd383"
+      "sha256": "9c10baf10e8b643ce6742892a97eeab5f8e93f2b02b6c228dad9a676b7b72a24"
     },
     {
       "role": "report",
@@ -596,9 +596,9 @@
       "role": "report",
       "path": "design-system/verification/reports/accepted-deltas.json",
       "exists": true,
-      "bytes": 2981,
-      "sha256": "56db2114dea2295e6f5684de53d627913841d06b65b9990fdcfcf7950adb31dc"
+      "bytes": 13877,
+      "sha256": "b0aee254f5ab397fc48f6ce2156f20cd8605ad1f1bfc181c6c317c2cf3cc05bf"
     }
   ],
-  "manifestHash": "b5c80d0ac6a74b068b5097c798169f8c7cc60b03bbac295f97fb43a301464ff5"
+  "manifestHash": "5311bfdbc98aadc2f7074f26b895f925fd40feae36905042959c9ce77fa2f339"
 }
