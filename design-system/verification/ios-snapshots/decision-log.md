@@ -289,6 +289,76 @@ Reviewed all four fresh iPhone 15 captures against the approved Figma V4 referen
 
 ## Latest verification result
 - runMode: guard
+- generatedAt: 2026-09-10T02:42:48.266Z
+- pending items:
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-10T02:43:48.827Z
+- pending items:
+- iOS-MessagesThread-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-10T04:31:28.952Z
+- pending items:
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-10T05:43:38.402Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-10T06:09:34.315Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+2026-09-10 Feed V8 fidelity: reviewed new feed capture a8f61e9776de9a8b2e87fcc0ce4e2482c4e8cb58e5d9114227f46df5cf672732. Reduced vertical action whitespace, stronger action counts, quieter views. Accept exact hash against existing baseline; no baseline update. Delayed-image and inline-like-failure UI tests passed.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-10T06:22:19.082Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+2026-09-10 Navigation alignment: top-align native iOS stack; shared icon/label top
+14/38, optical vector correction in both platforms. Reviewed Feed, MessagesList,
+and MyPage; accepted exact hashes. MessagesThread unchanged from its existing date
+delta. Press-motion design is separate and remains unimplemented.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-10T07:11:47.230Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+
+## Latest verification result
+- runMode: guard
 - generatedAt: 2026-09-23T03:16:16.490Z
 - pending items:
 - iOS-Feed-mobile.png: changed
