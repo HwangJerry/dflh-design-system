@@ -1,8 +1,8 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "generatedAt": "deterministic",
-  "tokenDigest": "50899693be32cd01a168c0a5de1f1fb563d63ab729c3e9c5d65cc16cc55359c9",
+  "tokenDigest": "b8db0539d86c48a9042a87ea502eaa18c86b1e18e72d8741dc3eb838f622cc5c",
   "generator": {
     "name": "design-system/scripts/generate-platform-tokens.mjs",
     "outputMode": "deterministic"
@@ -17,58 +17,58 @@
     "kotlinCopy": "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt"
   },
   "fileDigests": {
-    "design-system/platform/web/design-tokens.css": "97dcdf732145266a4b8fbb82262e32c9d1ed322ec8fe8b2dbb2417f451171609",
-    "design-system/platform/ios/DesignTokens.swift": "7e8f92421522901e7185f62e8d171480ddf03d4b82e4f8d2cfb7151cafcc6857",
-    "design-system/platform/android/DesignTokens.kt": "060ea8ec0adffeb4ba1a596abf6aa83827115b96a70aed7e070d023a4739f908",
-    "dflh-saf-v2/frontend/src/generated/design-tokens.css": "97dcdf732145266a4b8fbb82262e32c9d1ed322ec8fe8b2dbb2417f451171609",
-    "dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift": "7e8f92421522901e7185f62e8d171480ddf03d4b82e4f8d2cfb7151cafcc6857",
-    "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt": "060ea8ec0adffeb4ba1a596abf6aa83827115b96a70aed7e070d023a4739f908"
+    "design-system/platform/web/design-tokens.css": "57d79f78989985c041db23afc5f650654586b89a781cf2437b9b9bd1dc6f8dd8",
+    "design-system/platform/ios/DesignTokens.swift": "6313b091641a931d334f0a976214c0c7fa0fe986870fbf2ad92c08e28ec09425",
+    "design-system/platform/android/DesignTokens.kt": "b4a998bf401fbd7920bef03fcc45b2a2a51ed29761558059884fa7724bd9b6bf",
+    "dflh-saf-v2/frontend/src/generated/design-tokens.css": "57d79f78989985c041db23afc5f650654586b89a781cf2437b9b9bd1dc6f8dd8",
+    "dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift": "6313b091641a931d334f0a976214c0c7fa0fe986870fbf2ad92c08e28ec09425",
+    "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt": "b4a998bf401fbd7920bef03fcc45b2a2a51ed29761558059884fa7724bd9b6bf"
   },
   "artifacts": [
     {
       "path": "design-system/platform/web/design-tokens.css",
-      "hash": "97dcdf732145266a4b8fbb82262e32c9d1ed322ec8fe8b2dbb2417f451171609",
-      "size": 8668,
+      "hash": "57d79f78989985c041db23afc5f650654586b89a781cf2437b9b9bd1dc6f8dd8",
+      "size": 11170,
       "relativePath": "design-system/platform/web/design-tokens.css"
     },
     {
       "path": "design-system/platform/ios/DesignTokens.swift",
-      "hash": "7e8f92421522901e7185f62e8d171480ddf03d4b82e4f8d2cfb7151cafcc6857",
-      "size": 16022,
+      "hash": "6313b091641a931d334f0a976214c0c7fa0fe986870fbf2ad92c08e28ec09425",
+      "size": 21797,
       "relativePath": "design-system/platform/ios/DesignTokens.swift"
     },
     {
       "path": "design-system/platform/android/DesignTokens.kt",
-      "hash": "060ea8ec0adffeb4ba1a596abf6aa83827115b96a70aed7e070d023a4739f908",
-      "size": 9960,
+      "hash": "b4a998bf401fbd7920bef03fcc45b2a2a51ed29761558059884fa7724bd9b6bf",
+      "size": 18731,
       "relativePath": "design-system/platform/android/DesignTokens.kt"
     },
     {
       "path": "dflh-saf-v2/frontend/src/generated/design-tokens.css",
-      "hash": "97dcdf732145266a4b8fbb82262e32c9d1ed322ec8fe8b2dbb2417f451171609",
-      "size": 8668,
+      "hash": "57d79f78989985c041db23afc5f650654586b89a781cf2437b9b9bd1dc6f8dd8",
+      "size": 11170,
       "relativePath": "dflh-saf-v2/frontend/src/generated/design-tokens.css"
     },
     {
       "path": "dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift",
-      "hash": "7e8f92421522901e7185f62e8d171480ddf03d4b82e4f8d2cfb7151cafcc6857",
-      "size": 16022,
+      "hash": "6313b091641a931d334f0a976214c0c7fa0fe986870fbf2ad92c08e28ec09425",
+      "size": 21797,
       "relativePath": "dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift"
     },
     {
       "path": "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt",
-      "hash": "060ea8ec0adffeb4ba1a596abf6aa83827115b96a70aed7e070d023a4739f908",
-      "size": 9960,
+      "hash": "b4a998bf401fbd7920bef03fcc45b2a2a51ed29761558059884fa7724bd9b6bf",
+      "size": 18731,
       "relativePath": "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt"
     }
   ],
   "sizes": {
-    "design-system/platform/web/design-tokens.css": 8668,
-    "design-system/platform/ios/DesignTokens.swift": 16022,
-    "design-system/platform/android/DesignTokens.kt": 9960,
-    "dflh-saf-v2/frontend/src/generated/design-tokens.css": 8668,
-    "dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift": 16022,
-    "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt": 9960
+    "design-system/platform/web/design-tokens.css": 11170,
+    "design-system/platform/ios/DesignTokens.swift": 21797,
+    "design-system/platform/android/DesignTokens.kt": 18731,
+    "dflh-saf-v2/frontend/src/generated/design-tokens.css": 11170,
+    "dflh-saf-v2-swift/Sources/App/DesignSystem/DesignTokens.swift": 21797,
+    "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DesignTokens.kt": 18731
   },
   "generatedBy": "generate-platform-tokens"
 }

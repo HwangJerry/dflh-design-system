@@ -13,6 +13,16 @@ Only edit:
 
 Do not edit generated platform files by hand.
 
+Define raw colors in matching `palette.light` / `palette.dark` maps. Semantic
+`colors` and `colorSchemes.*` values may use `{palette.name}` aliases; aliases
+resolve against light for base `colors` and against the named scheme for
+`colorSchemes`. Palette-to-palette aliases and missing references are invalid.
+Keep existing resolved light colors when replacing legacy hexes with aliases.
+Generation emits resolved colors plus `DSPalette.Light` / `DSPalette.Dark` on
+native platforms and light `--palette-*` CSS variables. Android theme wiring
+uses `DesignTokens.*` for light and `DesignTokens.Dark.*` for dark; iOS
+`DSColor` continues to switch appearance automatically.
+
 ## Generated Outputs
 
 - Web: `design-system/platform/web/design-tokens.css`
@@ -65,4 +75,3 @@ Figma variables, run the import script, then continue from step 3 of the change 
 - Generated artifacts match the canonical JSON.
 - Web, iOS, and Android consumers use generated tokens or DS aliases.
 - Any intentional platform difference is documented before merge.
-

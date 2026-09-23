@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
 import path from 'node:path';
+import { isHexColor, isPaletteAlias, resolveColor } from './resolve-token-colors.mjs';
 
 const root = process.cwd();
 const tokenPath = path.join(root, 'design-system', 'tokens', 'design-tokens.json');
@@ -12,6 +13,7 @@ const schema = readJson(schemaPath);
 const requiredRootSections = [
   'version',
   'sourceOfTruth',
+  'palette',
   'colors',
   'colorSchemes',
   'opacity',
@@ -49,10 +51,14 @@ const warnings = [];
 
 validateSchemaDocument(schema);
 validateRoot(tokens);
-validateTokenMap('colors', tokens.colors, isHexColor);
+validatePalette();
+validateColors('colors', tokens.colors, 'light');
 validateColorSchemes();
 validateTokenMap('opacity', tokens.opacity, isOpacityNumber);
 validateTokenMap('typography.size', tokens.typography?.size, isPixel);
+if (tokens.typography?.lineHeight) {
+  validateTokenMap('typography.lineHeight', tokens.typography.lineHeight, isPixel);
+}
 validateTokenMap('typography.weight', tokens.typography?.weight, isFontWeight);
 validateTokenMap('spacing', tokens.spacing, isPixel);
 validateTokenMap('radius', tokens.radius, isPixel);
@@ -163,6 +169,44 @@ function validateStateTokens() {
   }
 }
 
+function validatePalette() {
+  const palette = tokens.palette;
+  if (!palette || typeof palette !== 'object' || Array.isArray(palette)) {
+    errors.push('palette must be an object.');
+    return;
+  }
+  for (const scheme of Object.keys(palette)) {
+    if (!['light', 'dark'].includes(scheme)) errors.push(`Unknown palette scheme: ${scheme}`);
+  }
+  for (const scheme of ['light', 'dark']) {
+    validateTokenMap(`palette.${scheme}`, palette[scheme], isHexColor);
+    for (const key of schema.$defs.paletteHexMap.required) {
+      if (!Object.hasOwn(palette[scheme] ?? {}, key)) {
+        errors.push(`palette.${scheme} is missing required color: ${key}`);
+      }
+    }
+  }
+  if (Object.keys(palette.light ?? {}).sort().join('/') !== Object.keys(palette.dark ?? {}).sort().join('/')) {
+    errors.push('palette.light and palette.dark must define the same palette keys.');
+  }
+}
+
+function validateColors(label, map, scheme) {
+  validateTokenMap(label, map, (value) => isHexColor(value) || isPaletteAlias(value));
+  for (const [key, value] of Object.entries(map ?? {})) {
+    if (isPaletteAlias(value)) resolvedColor(`${label}.${key}`, value, scheme);
+  }
+}
+
+function resolvedColor(label, value, scheme) {
+  try {
+    return resolveColor(value, tokens.palette, scheme).toUpperCase();
+  } catch (error) {
+    errors.push(`${label}: ${error.message}`);
+    return undefined;
+  }
+}
+
 function validateColorSchemes() {
   const schemes = tokens.colorSchemes;
   if (!schemes || typeof schemes !== 'object' || Array.isArray(schemes)) {
@@ -170,8 +214,11 @@ function validateColorSchemes() {
     return;
   }
 
-  validateTokenMap('colorSchemes.light', schemes.light, isHexColor);
-  validateTokenMap('colorSchemes.dark', schemes.dark, isHexColor);
+  for (const scheme of Object.keys(schemes)) {
+    if (!['light', 'dark'].includes(scheme)) errors.push(`Unknown color scheme: ${scheme}`);
+  }
+  validateColors('colorSchemes.light', schemes.light, 'light');
+  validateColors('colorSchemes.dark', schemes.dark, 'dark');
 
   const lightKeys = Object.keys(schemes.light ?? {}).sort();
   const darkKeys = Object.keys(schemes.dark ?? {}).sort();
@@ -184,10 +231,13 @@ function validateColorSchemes() {
       errors.push(`colorSchemes.${key} must reference an existing colors.${key} token.`);
       continue;
     }
-    if (schemes.light?.[key] !== tokens.colors[key]) {
+    const base = resolvedColor(`colors.${key}`, tokens.colors[key], 'light');
+    const light = resolvedColor(`colorSchemes.light.${key}`, schemes.light?.[key], 'light');
+    const dark = resolvedColor(`colorSchemes.dark.${key}`, schemes.dark?.[key], 'dark');
+    if (light && base && light !== base) {
       errors.push(`colorSchemes.light.${key} must match the default colors.${key} value.`);
     }
-    if (schemes.light?.[key] === schemes.dark?.[key]) {
+    if (light && dark && light === dark) {
       warnings.push(`colorSchemes.${key} has identical light and dark values; keep shared colors in colors only.`);
     }
   }
@@ -282,7 +332,7 @@ function validateDuplicateValues() {
     }
     for (const [key, value] of Object.entries(node)) {
       const nextParts = [...parts, key];
-      if (nextParts[0] === 'colorSchemes') {
+      if (['colorSchemes', 'palette'].includes(nextParts[0]) || isPaletteAlias(value)) {
         continue;
       }
       if (isComparableScalar(value)) {
@@ -333,10 +383,6 @@ function isComparableScalar(value) {
 
 function normalizeValue(value) {
   return String(value).trim().toLowerCase();
-}
-
-function isHexColor(value) {
-  return typeof value === 'string' && /^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$/.test(value);
 }
 
 function isPixel(value) {

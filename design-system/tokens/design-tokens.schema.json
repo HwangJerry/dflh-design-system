@@ -7,6 +7,7 @@
   "required": [
     "version",
     "sourceOfTruth",
+    "palette",
     "colors",
     "colorSchemes",
     "opacity",
@@ -29,16 +30,25 @@
     "sourceOfTruth": {
       "const": "design-system/tokens/design-tokens.json"
     },
+    "palette": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["light", "dark"],
+      "properties": {
+        "light": { "$ref": "#/$defs/paletteHexMap" },
+        "dark": { "$ref": "#/$defs/paletteHexMap" }
+      }
+    },
     "colors": {
-      "$ref": "#/$defs/tokenMapHexColor"
+      "$ref": "#/$defs/tokenMapColor"
     },
     "colorSchemes": {
       "type": "object",
       "additionalProperties": false,
       "required": ["light", "dark"],
       "properties": {
-        "light": { "$ref": "#/$defs/tokenMapHexColor" },
-        "dark": { "$ref": "#/$defs/tokenMapHexColor" }
+        "light": { "$ref": "#/$defs/tokenMapColor" },
+        "dark": { "$ref": "#/$defs/tokenMapColor" }
       }
     },
     "opacity": {
@@ -52,6 +62,7 @@
         "fontSans": { "type": "string", "minLength": 1 },
         "fontSerif": { "type": "string", "minLength": 1 },
         "size": { "$ref": "#/$defs/tokenMapPixel" },
+        "lineHeight": { "$ref": "#/$defs/tokenMapPixel" },
         "weight": { "$ref": "#/$defs/tokenMapFontWeight" }
       }
     },
@@ -142,6 +153,60 @@
     "shadow": {
       "type": "string",
       "minLength": 1
+    },
+    "paletteHexMap": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/tokenName"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/hexColor"
+      },
+      "required": [
+        "brandPrimary",
+        "brandOnPrimary",
+        "brandAccent",
+        "brandOnAccent",
+        "brandAccentText",
+        "brandAccentSubtle",
+        "brandAccentBorder",
+        "ink1",
+        "ink2",
+        "ink3",
+        "ink4",
+        "paper",
+        "paperAlt",
+        "canvas",
+        "line",
+        "lineSoft",
+        "danger",
+        "positive"
+      ]
+    },
+    "paletteAlias": {
+      "type": "string",
+      "pattern": "^\\{palette\\.[a-z][A-Za-z0-9]*\\}$"
+    },
+    "color": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/hexColor"
+        },
+        {
+          "$ref": "#/$defs/paletteAlias"
+        }
+      ]
+    },
+    "tokenMapColor": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/tokenName"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/color"
+      }
     },
     "tokenMapHexColor": {
       "type": "object",
