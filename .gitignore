@@ -38,3 +38,4 @@ design-system/tokens/.figma-variables-export.json
 # full file listings of the PRIVATE app repositories. Keep them out of a public
 # history; CI uploads them as build artifacts instead.
 design-system/verification/reports/
+design-system/docs/remember-style/logs/

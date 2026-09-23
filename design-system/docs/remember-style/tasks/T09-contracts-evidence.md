@@ -13,3 +13,7 @@ and small compliance fixes in the mobile repos if verification finds any.
    visual baseline manifest. If the simulator is unavailable, say so explicitly and leave baselines untouched.
 4. Run npm run verify-design-system at the root; fix anything failing.
 Commit in the umbrella repo (and mobile repos if touched).
+5. Pre-existing blocker found during T01: `npm run verify-ios-design-system` fails with
+   [missing-contract-evidence] for dflh-saf-v2-swift/Sources/App/Feature/AppUpdate/ForceUpdateView.swift.
+   Register it under the appropriate contract's implementationEvidence.ios (create a `screen.forceUpdate` contract if
+   none fits) so the full gate passes.
