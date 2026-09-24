@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -150,7 +150,11 @@
     "bubbleTheirs": "{palette.paper}",
     "bubbleTheirsBorder": "{palette.line}",
     "destructiveText": "{palette.danger}",
-    "outline": "#79747E"
+    "outline": "#79747E",
+    "checkboxCheckedFill": "{palette.brandPrimary}",
+    "checkboxCheckmark": "{palette.brandOnPrimary}",
+    "checkboxUncheckedBorder": "{palette.ink2}",
+    "checkboxDisabled": "{palette.ink4}"
   },
   "colorSchemes": {
     "light": {
@@ -192,7 +196,11 @@
       "bubbleTheirs": "{palette.paper}",
       "bubbleTheirsBorder": "{palette.line}",
       "destructiveText": "{palette.danger}",
-      "outline": "#79747E"
+      "outline": "#79747E",
+      "checkboxCheckedFill": "{palette.brandPrimary}",
+      "checkboxCheckmark": "{palette.brandOnPrimary}",
+      "checkboxUncheckedBorder": "{palette.ink2}",
+      "checkboxDisabled": "{palette.ink4}"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -233,7 +241,11 @@
       "bubbleTheirs": "{palette.paper}",
       "bubbleTheirsBorder": "{palette.line}",
       "destructiveText": "{palette.danger}",
-      "outline": "#938F99"
+      "outline": "#938F99",
+      "checkboxCheckedFill": "{palette.brandPrimary}",
+      "checkboxCheckmark": "{palette.brandOnPrimary}",
+      "checkboxUncheckedBorder": "{palette.ink2}",
+      "checkboxDisabled": "{palette.ink4}"
     }
   },
   "opacity": {
