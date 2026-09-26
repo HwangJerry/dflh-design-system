@@ -51,10 +51,10 @@
 | 단계 | 작업 | 저장소 | 상태 |
 |---|---|---|---|
 | 1 기반 | TS01 iOS 테스트 실행 가드 + 로컬 base URL + ATS 예외 | swift | ✅ 머지 `b2bb707` (286 통과, Debug/Release Info.plist 검증) |
-| 1 기반 | TS02 iOS 공용 스텁·픽스처 로더 + 커버리지 스크립트 | swift | ✅ 머지 (290 통과, Sources/App 라인 17.6%) |
-| 1 기반 | TS03 Android 테스트 의존성 + Kover + MockWebServer 예시 | kotlin | ✅ 머지 (415 통과, 라인 34.6%·분기 22.9%) |
+| 1 기반 | TS02 iOS 공용 스텁·픽스처 로더 + 커버리지 스크립트 | swift | ✅ 머지 `7b6fc06` (TS05 재검증: 290 통과, Sources/App 라인 17.63%) |
+| 1 기반 | TS03 Android 테스트 의존성 + Kover + MockWebServer 예시 | kotlin | ✅ 머지 `47c8716` (TS05 재검증: 415 통과, 라인 34.63%·분기 22.94%) |
 | 1 기반 | TS04 백엔드 MariaDB 테스트 하네스 추출 + 골든 정규화 헬퍼 | backend | ✅ 머지 `71650d5` (914 통과·39 스킵, 커버리지 41.3%, 도커 격리 테스트 통과) |
-| 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | 진행 중 |
+| 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | ✅ 구현·검증 완료, 리뷰 대기 (`test/ts05-test-all`, 3개 스위트 통과, 러너 검증 15개 통과) |
 | 2 계약 | TS06 기준 스키마 반입 + 하네스 연결, TS07 Tier 1 골든 샘플 생성(백엔드) → TS08 iOS/Android 디코딩 테스트 | 전체 | TS04 머지 후 |
 | 3 구조 | iOS `AppState` 서비스 주입·폼 ViewModel 분리, Android 앱 셸 상태 홀더, 백엔드 라우터 export·시계 주입 | 전체 | 2단계와 병행 |
 | 4 통합 | Tier 1 L4 백엔드 통합 테스트, docker compose 로컬 백엔드 | backend | TS06 후 |
@@ -65,3 +65,20 @@
 - 2026-09-27: 계획 작성, 1단계 작업 명세(TS01–TS05) 작성. TS01·TS03·TS04 Codex 실행.
 - 2026-09-27: 출발점 커버리지 — 백엔드 41.3%(문장), Android 라인 34.6%·분기 22.9%, iOS Sources/App 라인 17.6%(Feed 3%, Message 4.5%, Alumni 8.6%, Shared 0%가 가장 낮음).
 - 2026-09-27: O1 해결. 운영 스키마를 읽기 전용으로 추출(테이블 103, 데이터 0, 마이그레이션 077까지).
+- 2026-09-27: TS05 전체 실행 통과(도커 비활성). 백엔드 최상위 테스트 914 통과·39 스킵, 하위 테스트 포함 1,400 통과·46 스킵, 문장 41.3%. Android 415 통과, 라인 34.63%(4,466/12,896)·분기 22.94%(2,079/9,062). iOS 290 통과, Sources/App 라인 17.63%(4,546/25,786). 순서·실패 후 계속 실행·선택 실행·도커 플래그·오래된 보고서 거부 등 합성 러너 검증 15개 통과.
+
+## 6. 전체 테스트 실행 (TS05)
+
+워크스페이스 루트에서 실행한다. 스크립트는 다른 작업 디렉터리에서도 호출할 수 있다.
+
+```bash
+docs/test-strategy/test-all.sh
+docs/test-strategy/test-all.sh --only android
+docs/test-strategy/test-all.sh --only backend --docker
+```
+
+- 백엔드 → Android → iOS 순서로 실행하고 실패해도 다음 스위트를 실행한다. 테스트 실패나 현재 실행의 테스트 수·커버리지 보고서 누락 시 종료 코드는 1, 잘못된 인자는 2다. `--only`로 제외한 스위트는 `NOT RUN`으로 표시한다.
+- 결과는 `docs/test-strategy/logs/summary-<날짜-시간>.<실행ID>.md`, 원본 로그는 같은 디렉터리의 `run-<날짜-시간>.<실행ID>/`에 저장한다. 기존 실행 기록을 덮어쓰지 않으며 `logs/`는 Git에서 제외한다. Go 테스트 수는 하위 테스트를 포함한다.
+- 의존성이 미리 캐시되어 있어야 한다. Go 모듈 다운로드와 Gradle 온라인 해석을 비활성화하고, iOS는 TS02 스크립트의 패키지 업데이트 금지 옵션을 사용한다. Python 3, Go, Android SDK/JDK 17, Xcode와 `iPhone 17` 시뮬레이터가 필요하다.
+- Android SDK는 `fastlane/.env.default`의 `ANDROID_HOME` 한 줄만 추출한다(파일을 source하지 않음). 없으면 환경변수, `~/Library/Android/sdk` 순으로 사용한다. macOS에서는 JDK 17을 선택하고, 로컬 서명 속성이 있으면 `sandbox-exec`로 keystore 디렉터리 읽기를 차단한다. 차단 도구가 없으면 Android 실패로 기록한다.
+- `--docker`는 `DFLH_DOCKER_TESTS=1`로 TS04 공용 MariaDB 하네스를 켠다. Docker가 없으면 해당 테스트만 스킵한다. 기존 개별 통합 테스트 opt-in, 외부 DB DSN, 골든 갱신 환경변수는 전달하지 않는다.
