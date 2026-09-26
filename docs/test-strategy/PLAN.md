@@ -55,7 +55,7 @@
 | 1 기반 | TS03 Android 테스트 의존성 + Kover + MockWebServer 예시 | kotlin | ✅ 머지 `47c8716` (TS05 재검증: 415 통과, 라인 34.63%·분기 22.94%) |
 | 1 기반 | TS04 백엔드 MariaDB 테스트 하네스 추출 + 골든 정규화 헬퍼 | backend | ✅ 머지 `71650d5` (914 통과·39 스킵, 커버리지 41.3%, 도커 격리 테스트 통과) |
 | 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | ✅ 머지 (3개 스위트 통과, 러너 검증 15개 통과) |
-| 2 계약 | ✅ TS06 기준 스키마 반입 + 하네스 연결(`mariadb.ProdBaseline`, 운영 InnoDB·sql_mode 옵션 반영). ✅ TS07 Tier 1 골든 14개(`327ab31`, 실제 라우터·운영 스키마, 24 테스트, 커버리지 42.0→43.3%) → TS08 iOS/Android 디코딩 테스트 | 전체 | TS04 머지 후 |
+| 2 계약 | ✅ TS06 기준 스키마 반입 + 하네스 연결(`mariadb.ProdBaseline`, 운영 InnoDB·sql_mode 옵션 반영). ✅ TS07 Tier 1 골든 14개(`327ab31`, 실제 라우터·운영 스키마, 24 테스트, 커버리지 42.0→43.3%) → ✅ TS08 iOS/Android 계약 테스트(각 14개, 실제 저장소·API 클라이언트 경로, `sync-golden.sh --check`를 test-all 첫 단계로) | 전체 | ✅ 2단계 완료 |
 | 3 구조 | iOS `AppState` 서비스 주입·폼 ViewModel 분리, Android 앱 셸 상태 홀더, 백엔드 라우터 export·시계 주입 | 전체 | 2단계와 병행 |
 | 4 통합 | Tier 1 L4 백엔드 통합 테스트, docker compose 로컬 백엔드 | backend | TS06 후 |
 | 5 E2E | Tier 1 E2E + 쪽지 | 전체 | 4단계 후 |
@@ -65,6 +65,7 @@
 - 2026-09-27: TS08 구현 완료(각 앱 `test/ts08-contract-tests`, umbrella `test/ts08-golden-sync`, 머지 전). TS07 골든 14개를 앱마다 실제 DTO/클라이언트로 검증한다. iOS 304 통과(기존 290 + 계약 14), Android 429 통과(기존 415 + 계약 14), 실패·스킵 0. `test-all.sh --only ios` / `--only android` 모두 첫 `contract-sync` 행 포함 통과. 동기화/무쓰기 검사·실패 후 러너 계속 실행 등 합성 스크립트 검증 6개 통과(`python3 docs/test-strategy/test-sync-golden.py -v`). 소비 중인 DTO 계약 불일치는 없다. 기존 가입 응답 무시 경로와 iOS 삭제 영수증 웹 시트 범위는 각 앱 `docs/operations/UNIT_TESTS.md`에 기록했다. 앱 동작·백엔드·디자인 시스템 변경 없음.
 - 2026-09-27: 계획 작성, 1단계 작업 명세(TS01–TS05) 작성. TS01·TS03·TS04 Codex 실행.
 - 2026-09-27: 출발점 커버리지 — 백엔드 41.3%(문장), Android 라인 34.6%·분기 22.9%, iOS Sources/App 라인 17.6%(Feed 3%, Message 4.5%, Alumni 8.6%, Shared 0%가 가장 낮음).
+- 2026-09-27: TS08 머지. iOS 304·Android 429 통과. 두 앱 모두 14개 골든을 실제 DTO로 디코딩 성공 — 현재 Tier 1 API 계약 불일치 없음. 2단계 완료.
 - 2026-09-27: TS07 머지. Tier 1 골든 14개를 실제 라우터로 생성(가입→SMS→로그인→갱신→내 정보→426→계정 삭제). 두 번 실행해 안정성 확인. TS08 착수.
 - 2026-09-27: TS06 머지. 운영 스키마(테이블 103, 트리거 7, 마이그레이션 001–077)를 테스트 DB에 그대로 재현. 운영 마이그레이션 해시 77개가 저장소 파일과 모두 일치함을 확인. 컨테이너를 운영과 같은 `innodb_file_format=Barracuda`, `innodb_large_prefix=ON`, `sql_mode`로 기동하도록 수정(기본값으로는 DYNAMIC 테이블의 긴 인덱스 생성 실패).
 - 2026-09-27: O1 해결. 운영 스키마를 읽기 전용으로 추출(테이블 103, 데이터 0, 마이그레이션 077까지).
