@@ -51,10 +51,10 @@
 | 단계 | 작업 | 저장소 | 상태 |
 |---|---|---|---|
 | 1 기반 | TS01 iOS 테스트 실행 가드 + 로컬 base URL + ATS 예외 | swift | ✅ 머지 `b2bb707` (286 통과, Debug/Release Info.plist 검증) |
-| 1 기반 | TS02 iOS 공용 스텁·픽스처 로더 + 커버리지 스크립트 | swift | 진행 중 |
+| 1 기반 | TS02 iOS 공용 스텁·픽스처 로더 + 커버리지 스크립트 | swift | ✅ 머지 (290 통과, Sources/App 라인 17.6%) |
 | 1 기반 | TS03 Android 테스트 의존성 + Kover + MockWebServer 예시 | kotlin | ✅ 머지 (415 통과, 라인 34.6%·분기 22.9%) |
 | 1 기반 | TS04 백엔드 MariaDB 테스트 하네스 추출 + 골든 정규화 헬퍼 | backend | ✅ 머지 `71650d5` (914 통과·39 스킵, 커버리지 41.3%, 도커 격리 테스트 통과) |
-| 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | 대기(TS01–04 후) |
+| 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | 진행 중 |
 | 2 계약 | TS06 기준 스키마 반입 + 하네스 연결, TS07 Tier 1 골든 샘플 생성(백엔드) → TS08 iOS/Android 디코딩 테스트 | 전체 | TS04 머지 후 |
 | 3 구조 | iOS `AppState` 서비스 주입·폼 ViewModel 분리, Android 앱 셸 상태 홀더, 백엔드 라우터 export·시계 주입 | 전체 | 2단계와 병행 |
 | 4 통합 | Tier 1 L4 백엔드 통합 테스트, docker compose 로컬 백엔드 | backend | TS06 후 |
@@ -63,4 +63,5 @@
 ## 5. 기록
 
 - 2026-09-27: 계획 작성, 1단계 작업 명세(TS01–TS05) 작성. TS01·TS03·TS04 Codex 실행.
+- 2026-09-27: 출발점 커버리지 — 백엔드 41.3%(문장), Android 라인 34.6%·분기 22.9%, iOS Sources/App 라인 17.6%(Feed 3%, Message 4.5%, Alumni 8.6%, Shared 0%가 가장 낮음).
 - 2026-09-27: O1 해결. 운영 스키마를 읽기 전용으로 추출(테이블 103, 데이터 0, 마이그레이션 077까지).
