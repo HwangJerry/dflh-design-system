@@ -24,7 +24,7 @@
 | D3 | Android 화면 테스트는 **Robolectric(JVM)** 우선. 전체 앱·WebView·스크린샷 증거 테스트만 에뮬레이터 유지 |
 | D4 | 구현: Claude 설계·리뷰, Codex 단위 구현 |
 | D5 | **Tier 1 E2E 통과를 Android production 승격의 필수 조건**으로 둠 |
-| O1 | (미정) 기준 스키마 출처: 상위 폴더 `dflh-saf-v2-production-schema-20260728-143718.sql`이 스키마 전용인지 사용자 확인 대기. 아니면 운영에서 `mysqldump --no-data` 추출(부서장 협의 권장) |
+| O1 | **해결 (2026-09-27):** 로컬 `*production-schema*.sql` 파일은 쓰지 않는다(사용자 지시). 운영(`daeil-prod`)에서 읽기 전용 `mysqldump --no-data`로 스키마만 추출했다: MariaDB 10.1.38, 테이블 103개, 데이터 행 0, 적용 마이그레이션 001–077, `AUTO_INCREMENT` 값과 `DEFINER` 제거. 테스트 기준 스키마로 백엔드 `migrations/testdata/`에 두고(TS06), 이후 마이그레이션은 그 위에 적용한다 |
 
 ## 2. 테스트 층
 
@@ -55,11 +55,12 @@
 | 1 기반 | TS03 Android 테스트 의존성 + Kover + MockWebServer 예시 | kotlin | 대기 |
 | 1 기반 | TS04 백엔드 MariaDB 테스트 하네스 추출 + 골든 정규화 헬퍼 | backend | 대기 |
 | 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | 대기(TS01–04 후) |
-| 2 계약 | TS06 Tier 1 골든 샘플 생성(백엔드) → TS07 iOS/Android 디코딩 테스트 | 전체 | O1 결정 후 설계 |
+| 2 계약 | TS06 기준 스키마 반입 + 하네스 연결, TS07 Tier 1 골든 샘플 생성(백엔드) → TS08 iOS/Android 디코딩 테스트 | 전체 | TS04 머지 후 |
 | 3 구조 | iOS `AppState` 서비스 주입·폼 ViewModel 분리, Android 앱 셸 상태 홀더, 백엔드 라우터 export·시계 주입 | 전체 | 2단계와 병행 |
-| 4 통합 | Tier 1 L4 백엔드 통합 테스트, docker compose 로컬 백엔드 | backend | O1 결정 후 |
+| 4 통합 | Tier 1 L4 백엔드 통합 테스트, docker compose 로컬 백엔드 | backend | TS06 후 |
 | 5 E2E | Tier 1 E2E + 쪽지 | 전체 | 4단계 후 |
 
 ## 5. 기록
 
-- 2026-09-27: 계획 작성, 1단계 작업 명세(TS01–TS05) 작성.
+- 2026-09-27: 계획 작성, 1단계 작업 명세(TS01–TS05) 작성. TS01·TS03·TS04 Codex 실행.
+- 2026-09-27: O1 해결. 운영 스키마를 읽기 전용으로 추출(테이블 103, 데이터 0, 마이그레이션 077까지).
