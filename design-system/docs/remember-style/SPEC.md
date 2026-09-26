@@ -167,6 +167,9 @@ Header "내정보" [bell, gear] → Profile section: avatar 64, name 22/700 + �
 학과, pen button 40 outlined; bio 15/22; tag chips; one full-width secondary 44 button "내 명함" that opens the registered business-card image full screen (label "명함 등록" → profile edit when none; "동문에게 보이는 화면" removed 2026-09-23) →
 Contact section: phone / mail rows 48px with 공개/비공개 outline chip → Settings section:
 비밀번호 변경, 로그인 연동 (trailing "카카오"), 알림 설정, 개인정보 설정, 로그아웃 (destructive) →
+앱 정보 section (added 2026-09-27, force-update D11/D12): one "앱 버전" row, trailing version 13 ink3;
+when an update is recommended/forced an accent chip "새 버전 있음" + chevron (opens the store); on an unsupported OS a
+13 ink3 second line "이 기기에서는 최신 버전을 받을 수 없습니다" + chevron (opens the notice dialog); otherwise not tappable →
 copyright 11 ink4 centered. Existing sub-screens (edit, password, account settings) restyle with the
 same tokens but keep their forms.
 
