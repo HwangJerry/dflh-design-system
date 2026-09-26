@@ -62,6 +62,7 @@
 
 ## 5. 기록
 
+- 2026-09-27: TS08 구현 완료(각 앱 `test/ts08-contract-tests`, umbrella `test/ts08-golden-sync`, 머지 전). TS07 골든 14개를 앱마다 실제 DTO/클라이언트로 검증한다. iOS 304 통과(기존 290 + 계약 14), Android 429 통과(기존 415 + 계약 14), 실패·스킵 0. `test-all.sh --only ios` / `--only android` 모두 첫 `contract-sync` 행 포함 통과. 동기화/무쓰기 검사·실패 후 러너 계속 실행 등 합성 스크립트 검증 6개 통과(`python3 docs/test-strategy/test-sync-golden.py -v`). 소비 중인 DTO 계약 불일치는 없다. 기존 가입 응답 무시 경로와 iOS 삭제 영수증 웹 시트 범위는 각 앱 `docs/operations/UNIT_TESTS.md`에 기록했다. 앱 동작·백엔드·디자인 시스템 변경 없음.
 - 2026-09-27: 계획 작성, 1단계 작업 명세(TS01–TS05) 작성. TS01·TS03·TS04 Codex 실행.
 - 2026-09-27: 출발점 커버리지 — 백엔드 41.3%(문장), Android 라인 34.6%·분기 22.9%, iOS Sources/App 라인 17.6%(Feed 3%, Message 4.5%, Alumni 8.6%, Shared 0%가 가장 낮음).
 - 2026-09-27: TS07 머지. Tier 1 골든 14개를 실제 라우터로 생성(가입→SMS→로그인→갱신→내 정보→426→계정 삭제). 두 번 실행해 안정성 확인. TS08 착수.
@@ -80,6 +81,7 @@ docs/test-strategy/test-all.sh --only backend --docker
 ```
 
 - 백엔드 → Android → iOS 순서로 실행하고 실패해도 다음 스위트를 실행한다. 테스트 실패나 현재 실행의 테스트 수·커버리지 보고서 누락 시 종료 코드는 1, 잘못된 인자는 2다. `--only`로 제외한 스위트는 `NOT RUN`으로 표시한다.
+- TS08: 모든 실행은 `sync-golden.sh --check`를 먼저 실행하고 `contract-sync` 행에 기록한다. 골든 불일치가 있어도 선택한 테스트는 계속 실행하며 최종 종료 코드는 1이다. 백엔드 골든을 의도적으로 갱신한 뒤 `docs/test-strategy/sync-golden.sh`로 두 앱의 복사본과 `SOURCE.md`를 함께 갱신한다. `--check`는 JSON 파일 목록·바이트와 `SOURCE.md` 존재 여부만 검사하므로 날짜 변경이나 무관한 백엔드 커밋만으로 실패하지 않는다. 동기화 시 제거된 골든의 앱 복사본도 정리한다.
 - 결과는 `docs/test-strategy/logs/summary-<날짜-시간>.<실행ID>.md`, 원본 로그는 같은 디렉터리의 `run-<날짜-시간>.<실행ID>/`에 저장한다. 기존 실행 기록을 덮어쓰지 않으며 `logs/`는 Git에서 제외한다. Go 테스트 수는 하위 테스트를 포함한다.
 - 의존성이 미리 캐시되어 있어야 한다. Go 모듈 다운로드와 Gradle 온라인 해석을 비활성화하고, iOS는 TS02 스크립트의 패키지 업데이트 금지 옵션을 사용한다. Python 3, Go, Android SDK/JDK 17, Xcode와 `iPhone 17` 시뮬레이터가 필요하다.
 - Android SDK는 `fastlane/.env.default`의 `ANDROID_HOME` 한 줄만 추출한다(파일을 source하지 않음). 없으면 환경변수, `~/Library/Android/sdk` 순으로 사용한다. macOS에서는 JDK 17을 선택하고, 로컬 서명 속성이 있으면 `sandbox-exec`로 keystore 디렉터리 읽기를 차단한다. 차단 도구가 없으면 Android 실패로 기록한다.

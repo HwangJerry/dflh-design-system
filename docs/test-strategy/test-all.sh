@@ -99,6 +99,16 @@ cat > "$summary" <<EOF
 EOF
 
 failed=0
+log="$run_dir/contract-sync.log"
+if bash "$script_dir/sync-golden.sh" --check > "$log" 2>&1; then
+  sync_result=PASS
+else
+  sync_result=FAIL
+  failed=1
+fi
+echo "| contract-sync | $sync_result | — | — | — | — | [contract-sync]($run_name/contract-sync.log) |" >> "$summary"
+tail -n 1 "$summary"
+
 for suite in backend android ios; do
   if [[ -n "$only" && "$only" != "$suite" ]]; then
     echo "| $suite | NOT RUN | — | — | — | — | — |" >> "$summary"
