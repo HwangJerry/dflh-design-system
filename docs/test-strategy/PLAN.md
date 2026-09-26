@@ -54,7 +54,7 @@
 | 1 기반 | TS02 iOS 공용 스텁·픽스처 로더 + 커버리지 스크립트 | swift | ✅ 머지 `7b6fc06` (TS05 재검증: 290 통과, Sources/App 라인 17.63%) |
 | 1 기반 | TS03 Android 테스트 의존성 + Kover + MockWebServer 예시 | kotlin | ✅ 머지 `47c8716` (TS05 재검증: 415 통과, 라인 34.63%·분기 22.94%) |
 | 1 기반 | TS04 백엔드 MariaDB 테스트 하네스 추출 + 골든 정규화 헬퍼 | backend | ✅ 머지 `71650d5` (914 통과·39 스킵, 커버리지 41.3%, 도커 격리 테스트 통과) |
-| 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | ✅ 구현·검증 완료, 리뷰 대기 (`test/ts05-test-all`, 3개 스위트 통과, 러너 검증 15개 통과) |
+| 1 기반 | TS05 통합 실행 스크립트 `test-all.sh` + 커버리지 요약 | umbrella | ✅ 머지 (3개 스위트 통과, 러너 검증 15개 통과) |
 | 2 계약 | TS06 기준 스키마 반입 + 하네스 연결, TS07 Tier 1 골든 샘플 생성(백엔드) → TS08 iOS/Android 디코딩 테스트 | 전체 | TS04 머지 후 |
 | 3 구조 | iOS `AppState` 서비스 주입·폼 ViewModel 분리, Android 앱 셸 상태 홀더, 백엔드 라우터 export·시계 주입 | 전체 | 2단계와 병행 |
 | 4 통합 | Tier 1 L4 백엔드 통합 테스트, docker compose 로컬 백엔드 | backend | TS06 후 |
