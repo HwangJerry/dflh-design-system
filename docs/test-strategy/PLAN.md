@@ -58,13 +58,14 @@
 | 2 계약 | ✅ TS06 기준 스키마 반입 + 하네스 연결(`mariadb.ProdBaseline`, 운영 InnoDB·sql_mode 옵션 반영). ✅ TS07 Tier 1 골든 14개(`327ab31`, 실제 라우터·운영 스키마, 24 테스트, 커버리지 42.0→43.3%) → ✅ TS08 iOS/Android 계약 테스트(각 14개, 실제 저장소·API 클라이언트 경로, `sync-golden.sh --check`를 test-all 첫 단계로) | 전체 | ✅ 2단계 완료 |
 | 3 구조 | ✅ TS10 iOS `AppState` 서비스 주입(`a359de3`, 322 통과, AppState 46→54%) → ✅ TS13 쪽지·피드 ViewModel 분리(380 통과, 쪽지 4.9→18.2%, 피드 3.4→13.2%, ViewModel 96–99%, 화면 픽셀 비교 동일) → 폼 ViewModel 분리, Android 앱 셸 상태 홀더, 백엔드 시계 주입 | 전체 | 진행 중 |
 | 4 통합 | Tier 1 L4 백엔드 통합(TS07로 일부 완료), ✅ TS09 docker compose 로컬 백엔드(`03cc5c3`, smoke 4/4) | backend | ✅ |
-| 5 E2E | ✅ TS11 Android Tier 1 E2E 6/6(`scripts/e2e-android.sh`, 에뮬레이터+로컬 백엔드, Claude 재실행으로 확인), TS12 iOS Tier 1 E2E(진행 중), 쪽지 E2E | 전체 | 진행 중 |
+| 5 E2E | ✅ TS11 Android Tier 1 E2E 6/6(`scripts/e2e-android.sh`, 에뮬레이터+로컬 백엔드, Claude 재실행으로 확인), ✅ TS12 iOS Tier 1 E2E 5/5+강제 업데이트 1 스킵(D13, `scripts/e2e-ios.sh`), 쪽지 E2E | 전체 | 진행 중 |
 
 ## 5. 기록
 
 - 2026-09-27: TS08 구현 완료(각 앱 `test/ts08-contract-tests`, umbrella `test/ts08-golden-sync`, 머지 전). TS07 골든 14개를 앱마다 실제 DTO/클라이언트로 검증한다. iOS 304 통과(기존 290 + 계약 14), Android 429 통과(기존 415 + 계약 14), 실패·스킵 0. `test-all.sh --only ios` / `--only android` 모두 첫 `contract-sync` 행 포함 통과. 동기화/무쓰기 검사·실패 후 러너 계속 실행 등 합성 스크립트 검증 6개 통과(`python3 docs/test-strategy/test-sync-golden.py -v`). 소비 중인 DTO 계약 불일치는 없다. 기존 가입 응답 무시 경로와 iOS 삭제 영수증 웹 시트 범위는 각 앱 `docs/operations/UNIT_TESTS.md`에 기록했다. 앱 동작·백엔드·디자인 시스템 변경 없음.
 - 2026-09-27: 계획 작성, 1단계 작업 명세(TS01–TS05) 작성. TS01·TS03·TS04 Codex 실행.
 - 2026-09-27: 출발점 커버리지 — 백엔드 41.3%(문장), Android 라인 34.6%·분기 22.9%, iOS Sources/App 라인 17.6%(Feed 3%, Message 4.5%, Alumni 8.6%, Shared 0%가 가장 낮음).
+- 2026-09-27: TS12 머지. iOS Tier 1 E2E 5개 통과(로그인·세션 유지, 비밀번호 오류, SMS 가입→승인 대기, 승인 대기 로그인, 계정 삭제), 강제 업데이트는 D13으로 스킵하고 TS07 골든·단위 테스트로 대체. Claude 재실행으로 확인.
 - 2026-09-27: TS11 머지. Android Tier 1 E2E 6개 통과(로그인·세션 유지, 비밀번호 오류, SMS 가입→승인 대기, 승인 대기 로그인, 계정 삭제, 강제 업데이트 화면). D13 때문에 Debug에서는 서버 426 경로 대신 정책 판정·차단 화면을 검증. 재실행 중 스크립트의 `rg` 의존을 발견해 `grep`으로 수정. **D5 조건(Tier 1 E2E 통과) 충족.**
 - 2026-09-27: TS13 머지. ViewModel 4개로 로직 이동, 전송·재시도·실시간 흐름은 원본과 줄 단위로 동일함을 리뷰로 확인.
 - 2026-09-27: TS10 머지. 주입은 됐지만 쪽지 4.9%·피드 3.4%로 거의 그대로 — 로직이 화면 코드 안에 있기 때문. TS13으로 ViewModel 분리.
