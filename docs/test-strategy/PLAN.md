@@ -58,7 +58,7 @@
 | 2 계약 | ✅ TS06 기준 스키마 반입 + 하네스 연결(`mariadb.ProdBaseline`, 운영 InnoDB·sql_mode 옵션 반영). ✅ TS07 Tier 1 골든 14개(`327ab31`, 실제 라우터·운영 스키마, 24 테스트, 커버리지 42.0→43.3%) → ✅ TS08 iOS/Android 계약 테스트(각 14개, 실제 저장소·API 클라이언트 경로, `sync-golden.sh --check`를 test-all 첫 단계로) | 전체 | ✅ 2단계 완료 |
 | 3 구조 | ✅ TS10 iOS `AppState` 서비스 주입(`a359de3`, 322 통과, AppState 46→54%) → ✅ TS13 쪽지·피드 ViewModel 분리(380 통과, 쪽지 4.9→18.2%, 피드 3.4→13.2%, ViewModel 96–99%, 화면 픽셀 비교 동일) → 폼 ViewModel 분리, Android 앱 셸 상태 홀더, 백엔드 시계 주입 | 전체 | 진행 중 |
 | 4 통합 | Tier 1 L4 백엔드 통합(TS07로 일부 완료), ✅ TS09 docker compose 로컬 백엔드(`03cc5c3`, smoke 4/4) | backend | ✅ |
-| 5 E2E | ✅ TS11 Android Tier 1 E2E 6/6(`scripts/e2e-android.sh`, 에뮬레이터+로컬 백엔드, Claude 재실행으로 확인), TS12 iOS Tier 1 E2E(TS10 후), 쪽지 E2E | 전체 | 진행 중 |
+| 5 E2E | ✅ TS11 Android Tier 1 E2E 6/6(`scripts/e2e-android.sh`, 에뮬레이터+로컬 백엔드, Claude 재실행으로 확인), TS12 iOS Tier 1 E2E(진행 중), 쪽지 E2E | 전체 | 진행 중 |
 
 ## 5. 기록
 
