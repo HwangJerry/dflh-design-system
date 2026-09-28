@@ -119,6 +119,7 @@
 | `screen.webSheet` | screen | `ios` | `loading`, `data`, `error` | `DSColor`, `DSSpace`, `DSRadius`, `DSOpacity`, `DSLineWidth` |
 | `screen.accountDeletion` | screen | `android` | `idle`, `submitting`, `data`, `empty`, `invalid`, `error` | `DSColor`, `DSFont`, `DSSpace`, `DSRadius` |
 | `screen.notificationSettings` | screen | `ios`, `android` | `loading`, `ready`, `saving`, `error`, `unavailable` | `DSColor`, `DSFont`, `DSSpace`, `DSRadius`, `DSSizing` |
+| `screen.notificationInbox` | screen | `ios` | `loading`, `empty`, `error`, `data`, `refreshing`, `paginating`, `paginationError` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout`, `DSSizing`, `DSIconography` |
 | `screen.forceUpdate` | screen | `ios`, `android` | `required`, `storeUrlUnavailable` | `DSColor`, `DSTextStyle`, `DSSpace` |
 
 ## Contract Details
@@ -947,6 +948,39 @@ Implementation evidence:
 Rules:
 
 - None declared
+
+### `screen.notificationInbox`
+
+- Type: `screen`
+- Mandatory: `false`
+- Platforms: `ios`
+- States: `loading`, `empty`, `error`, `data`, `refreshing`, `paginating`, `paginationError`
+- Required blocks: `subHeader`, `notificationRow`, `emptyState`, `errorState`, `paginationFooter`
+
+Required token families:
+
+- `DSColor`
+- `DSTextStyle`
+- `DSSpace`
+- `DSLayout`
+- `DSSizing`
+- `DSIconography`
+
+Required token usage:
+
+- notificationRow: `DSNotificationRow`, `DSColor.rowSurface`, `DSColor.unreadBadge`, `DSTextStyle.rememberTabSelected`, `DSTextStyle.rememberMeta`
+- headerDot: `DSMainTabHeaderAction`, `DSColor.unreadBadge`
+- states: `DSEmptyState`, `DSStateView`, `DSLoadingState`
+
+Implementation evidence:
+
+- ios: `dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Notification/NotificationInboxView.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Notification/NotificationInboxHeaderAction.swift`
+
+Rules:
+
+- `Header bell uses DSMainTabHeaderAction(showsDot:) with the shared unread dot; accessibility value 읽지 않은 알림 있음 while unread.`
+- `Rows use DSNotificationRow: leading icon, title, two-line body, relative time; unread rows keep bold title and dot for the current visit after the seen mark.`
+- `Empty state copy is 받은 알림이 없어요; load errors offer 다시 시도; tapping a row closes the inbox and opens the linked feed post.`
 
 ### `screen.forceUpdate`
 
