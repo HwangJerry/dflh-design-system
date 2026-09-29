@@ -19,7 +19,7 @@ on 기부 (account balance).
 | Black text underline tabs | Segmented text tabs, 2px underline in `brand.primary` (navy) |
 | "전체 (N) ⌄" + right utilities row | 44px filter row on 동문 |
 | Name 18 bold + 1촌 chip; 2 gray lines; card thumbnail right | 동문 row: name + 기수 chip (accent), 직함/학과, 회사, 96×60 명함 thumbnail (or 48 avatar) |
-| Feed: avatar, name, time, body, "좋아요 N개 · 댓글 N개", 3-way action bar | Same structure; pinned notice shows "고정된 공지" row + 공지 chip |
+| Feed: avatar, name, time, body, "좋아요 N개 · 댓글 N개", 3-way action bar | Same structure; pinned notice shows "고정된 공지" row; posts carry no category chip |
 | White surfaces separated by light gray gaps, no rounded cards | Sections are flat `surface` blocks with 8px `background` gaps |
 | Orange camera FAB | Amber `brand.accent` FAB 56, used on 쪽지 (새 쪽지) |
 | Remember orange | **Kept brand amber `#F59E0B`** (text form `#B45309` on light) |

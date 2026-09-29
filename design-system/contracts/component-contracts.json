@@ -864,7 +864,7 @@
         ]
       },
       "rules": [
-        "Flat article surface with optional 고정된 공지 and 공지 chip; avatar, author, time, role, overflow action, body/link preview, engagement summary and action bar retain their order.",
+        "Flat article surface with optional 고정된 공지 row (no per-post category chip); avatar, author, time, role, overflow action, body/link preview, engagement summary and action bar retain their order.",
         "Keep inline expansion, comments, likes, sharing, analytics and accessible actions."
       ]
     },
