@@ -669,7 +669,7 @@ Implementation evidence:
 
 Rules:
 
-- `Native header is 소식 with search and notifications; category order is 전체 / 공지 / 장학 / 동문 when exposed by the API.`
+- `Native header is 소식 with search and notifications; tabs are 전체 plus only the categories present in loaded posts, ordered 공지 / 장학 / 동문 / 행사; a post without a category counts as 공지; the card shows the category as grey text under the author, never as a chip.`
 - `Pinned notices render first; flat post sections have sectionGap spacing. Keep the banner slot after the first post and preserve likes, comments, inline expansion and analytics.`
 - `Web retains its existing hero/sidebar layout; Remember-style blocks apply only to iOS/Android.`
 
