@@ -1986,6 +1986,69 @@
       "notes": "Account-level message, preview and 새 소식 push preferences reached from My Page on both native platforms. Preserve permission/unavailable states, optimistic writes and rollback behavior."
     },
     {
+      "name": "screen.notificationInbox",
+      "contractType": "screen",
+      "mandatory": false,
+      "platforms": [
+        "ios"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "error",
+        "data",
+        "refreshing",
+        "paginating",
+        "paginationError"
+      ],
+      "requiredBlocks": [
+        "subHeader",
+        "notificationRow",
+        "emptyState",
+        "errorState",
+        "paginationFooter"
+      ],
+      "requiredTokenUsage": {
+        "notificationRow": [
+          "DSNotificationRow",
+          "DSColor.rowSurface",
+          "DSColor.unreadBadge",
+          "DSTextStyle.rememberTabSelected",
+          "DSTextStyle.rememberMeta"
+        ],
+        "headerDot": [
+          "DSMainTabHeaderAction",
+          "DSColor.unreadBadge"
+        ],
+        "states": [
+          "DSEmptyState",
+          "DSStateView",
+          "DSLoadingState"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSSpace",
+        "DSLayout",
+        "DSSizing",
+        "DSIconography"
+      ],
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Notification/NotificationInboxView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Notification/NotificationInboxHeaderAction.swift"
+        ]
+      },
+      "notes": "In-app 알림 inbox opened from the header bell on every main tab (full-screen cover over the tab shell). Lists admin 새 소식 notifications newest first with cursor pagination; the bell shows an unread dot while unreadNotifications > 0. The 알림 설정 row in My Page still opens screen.notificationSettings.",
+      "rules": [
+        "Header bell uses DSMainTabHeaderAction(showsDot:) with the shared unread dot; accessibility value 읽지 않은 알림 있음 while unread.",
+        "Rows use DSNotificationRow: leading icon, title, two-line body, relative time; unread rows keep bold title and dot for the current visit after the seen mark.",
+        "Empty state copy is 받은 알림이 없어요; load errors offer 다시 시도; tapping a row closes the inbox and opens the linked feed post."
+      ]
+    },
+    {
       "name": "screen.forceUpdate",
       "contractType": "screen",
       "mandatory": false,
