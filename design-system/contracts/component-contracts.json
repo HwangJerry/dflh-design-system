@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "schema": "2026-06-14-token-driven-contracts",
   "scope": "cross-platform web/ios/android; Remember-style UI on ios/android",
   "requiredSurfaces": [
@@ -192,30 +192,29 @@
       "requiredTokenUsage": {
         "surfaceLayers": [
           "DSColor.background",
-          "DSColor.surface"
+          "DSColor.rowSurface"
         ],
         "layout": [
           "DSLayout.screenPadMobile",
           "DSLayout.screenPadTablet",
-          "DSLayout.safeBottomNavHeight"
+          "DSSizing.touchTarget"
         ],
         "radius": [
           "DSRadius.md"
         ],
         "interaction": [
           "DSOpacity.surfaceSubtle",
-          "DSOpacity.surfaceStrong"
+          "DSOpacity.textEmphasis"
         ]
       },
       "tokens": {
         "background": [
           "background",
-          "surface"
+          "rowSurface"
         ],
         "spacing": [
           "screenPad.mobile",
           "screenPad.tablet",
-          "safeBottomNavHeight",
           "touchTarget"
         ],
         "radius": [
@@ -1546,11 +1545,10 @@
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSelection.kt"
         ]
       },
-      "notes": "iOS DSRecipientChip; Android DSRecipientChip. Label type is chipLabel 14/20 medium.",
+      "notes": "iOS DSRecipientChip (DSRecipientSelection.swift) and Android DSRecipientChip (DSSelection.kt). Label type is chipLabel 14/20 medium.",
       "rules": [
-        "Selected recipients collect under the search field as navy-outline chips with an × that removes the person; the remove control is labelled \"<name> 선택 해제\" (spec G.2).",
-        "Chips persist while the search text changes and while moving between step 1 and step 2.",
-        "The chip is removable with at least a 44 touch target: Android makes the whole chip (× included) one ≥44 target; iOS gives the × a 44pt hit area around the 24pt glyph without growing the 32 chip."
+        "Selected recipients collect under the search field as navy-outline chips with an × (spec G.2). On both apps the whole chip, × included, is one remove button with a touch target of at least 44 while the capsule keeps its 32 look; it is announced as \"<name> 선택 해제\".",
+        "Chips persist while the search text changes and while moving between step 1 and step 2."
       ]
     },
     {
@@ -2290,68 +2288,6 @@
       ]
     },
     {
-      "name": "screen.socialLink",
-      "contractType": "screen",
-      "mandatory": false,
-      "platforms": [
-        "ios"
-      ],
-      "states": [
-        "default",
-        "invalid",
-        "submitting",
-        "expired"
-      ],
-      "requiredBlocks": [
-        "header",
-        "accountLinkToggle",
-        "profileFields",
-        "submitAction",
-        "expiredNotice"
-      ],
-      "tokens": {
-        "spacing": [
-          "small",
-          "large",
-          "xxlarge"
-        ],
-        "typography": [
-          "title",
-          "bodyXs"
-        ],
-        "states": [
-          "errorText",
-          "warningSubtle",
-          "warningText"
-        ]
-      },
-      "requiredTokenUsage": {
-        "form": [
-          "DSColor.textPrimary",
-          "DSColor.textTertiary",
-          "DSColor.errorText",
-          "DSLabeledField"
-        ],
-        "expired": [
-          "DSCardView",
-          "DSColor.warningSubtle",
-          "DSColor.warningText"
-        ]
-      },
-      "requiredTokenFamilies": [
-        "DSColor",
-        "DSTextStyle",
-        "DSSpace",
-        "DSLayout"
-      ],
-      "implementationEvidence": {
-        "ios": [
-          "dflh-saf-v2-swift/Sources/App/Feature/Login/SocialLinkView.swift"
-        ]
-      },
-      "notes": "Post-social-login account link/registration form. Authored after the fact to close a design-system contract gap; non-mandatory until web/Android ship an equivalent screen."
-    },
-    {
       "name": "screen.messageCompose",
       "contractType": "screen",
       "mandatory": false,
@@ -2845,7 +2781,7 @@
           "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/SignUpPhoto.kt"
         ]
       },
-      "notes": "Spec C.2 (iOS C16/C27/C28, Android C14/C17/C25) and C.3 (iOS C20–C26, Android C18–C24). Social sign-up has no id/password steps (C.5).",
+      "notes": "Spec C.2 (iOS C16/C27/C28, Android C14/C17/C25) and C.3 (iOS C20–C26, Android C18–C24). Social sign-up has no id/password steps (C.5). Replaces the former iOS-only screen.socialLink contract: the social account link/registration form is SocialSignUpView (LoginView.swift) driven by SocialSignUpFlow.swift on iOS and KakaoSignUpScreen.kt on Android; the old SocialLinkView.swift evidence never existed in the repository and its expired-link state is no longer shown.",
       "rules": [
         "Starting sign-up shows the fullScreenLoader without a form: 카카오 정보를 불러오고 있어요 / 잠시만 기다려 주세요. (iOS: 가입 정보를…). A failed prefill changes only the copy to 조금만 더 기다려 주세요 and retries silently: at most 3 attempts, spaced 1s and 2s (proposed default), with attempt dots. Only transport, timeout, 5xx and 429 failures are retried.",
         "After 3 failures a dialog: 회원가입에 문제가 생겼어요 / 카카오 정보를 불러오지 못해 지금은 가입을 진행할 수 없어요. 오픈채팅으로 문의를 남겨 주시면 확인 후 도와드릴게요. with 닫기 (back to login) and 오픈채팅 문의 (the login-help open chat). No 카카오 정보 없이도 가입 / 다시 불러오기.",
