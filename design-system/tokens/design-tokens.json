@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -157,7 +157,10 @@
     "checkboxDisabled": "{palette.ink4}",
     "stateIcon": "#767676",
     "statePullHint": "#9A9A9A",
-    "validationText": "#92400E"
+    "validationText": "#92400E",
+    "cautionBorder": "#F3C66B",
+    "cautionSurface": "{palette.brandAccentSubtle}",
+    "rejectionBorder": "#FECACA"
   },
   "colorSchemes": {
     "light": {
@@ -206,7 +209,10 @@
       "checkboxDisabled": "{palette.ink4}",
       "stateIcon": "#767676",
       "statePullHint": "#9A9A9A",
-      "validationText": "#92400E"
+      "validationText": "#92400E",
+      "cautionBorder": "#F3C66B",
+      "cautionSurface": "{palette.brandAccentSubtle}",
+      "rejectionBorder": "#FECACA"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -254,7 +260,10 @@
       "checkboxDisabled": "{palette.ink4}",
       "stateIcon": "{palette.ink3}",
       "statePullHint": "{palette.ink4}",
-      "validationText": "{palette.brandAccentText}"
+      "validationText": "{palette.brandAccentText}",
+      "cautionBorder": "{palette.brandAccentBorder}",
+      "cautionSurface": "{palette.brandAccentSubtle}",
+      "rejectionBorder": "#7F1D1D"
     }
   },
   "opacity": {
@@ -276,7 +285,8 @@
     "textEmphasis": 0.92,
     "donationTreeGroundShadow": 0.12,
     "donationTreeGloss": 0.3,
-    "navigationPressed": 0.55
+    "navigationPressed": 0.55,
+    "failedBubble": 0.6
   },
   "typography": {
     "fontSans": "Noto Sans KR, Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif",
@@ -306,7 +316,10 @@
       "stateTitle": "16px",
       "stateMessage": "14px",
       "inlineStatus": "13px",
-      "chipLabel": "14px"
+      "chipLabel": "14px",
+      "statusTitle": "20px",
+      "statusMessage": "18px",
+      "cardAction": "13px"
     },
     "weight": {
       "regular": 400,
@@ -319,7 +332,10 @@
       "stateTitle": "24px",
       "stateMessage": "20px",
       "inlineStatus": "18px",
-      "chipLabel": "20px"
+      "chipLabel": "20px",
+      "statusTitle": "28px",
+      "statusMessage": "28px",
+      "cardAction": "18px"
     }
   },
   "spacing": {
@@ -425,7 +441,10 @@
     "actionBarHeight": "48px",
     "primaryButtonHeight": "52px",
     "secondaryButtonHeight": "44px",
-    "bottomTabHeight": "56px"
+    "bottomTabHeight": "56px",
+    "signupPhoto": "140px",
+    "fullScreenLoader": "72px",
+    "composeMessageMinHeight": "220px"
   },
   "motion": {
     "duration": {
@@ -517,7 +536,8 @@
       "lg": "18px",
       "xl": "20px",
       "xxl": "24px",
-      "state": "40px"
+      "state": "40px",
+      "statusGlyph": "36px"
     },
     "lineWeight": {
       "light": 1,

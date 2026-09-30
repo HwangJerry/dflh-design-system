@@ -58,6 +58,14 @@ dark variant; `iconography.size.state` (40px); and the named type pairs
 14/20, `inlineStatus` 13/18 and `chipLabel` 14/20. Weights stay in the platform
 text styles (iOS `DSTextStyle`, Android DS `TextStyle`s).
 
+Entry flows and compose (spec B–D, G) add `colors.cautionSurface` /
+`cautionBorder` (calm amber notice, light border #F3C66B) and `rejectionBorder`
+(dark-safe), `opacity.failedBubble` (0.6), `sizing.signupPhoto` (140px),
+`fullScreenLoader` (72px) and `composeMessageMinHeight` (220px),
+`iconography.size.statusGlyph` (36px), and the type pairs `statusTitle` 20/28,
+`statusMessage` 18/28 and `cardAction` 13/18. The 88px status circle reuses
+`sizing.mobileLoginEmblemSize`.
+
 ## Generated Artifact Policy
 
 Generated files under `design-system/platform/*` and copied platform token files must not be edited manually. Change `design-system/tokens/design-tokens.json`, then run:

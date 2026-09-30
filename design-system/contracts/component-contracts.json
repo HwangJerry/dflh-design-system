@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "schema": "2026-06-14-token-driven-contracts",
   "scope": "cross-platform web/ios/android; Remember-style UI on ios/android",
   "requiredSurfaces": [
@@ -29,7 +29,14 @@
     "reservedErrorSlot",
     "stepChoiceGrid",
     "selectableRecipientRow",
-    "recipientChip"
+    "recipientChip",
+    "statusIcon",
+    "fullScreenLoader",
+    "stepForm",
+    "screen.login",
+    "screen.socialSignUp",
+    "screen.signUpComplete",
+    "screen.verification"
   ],
   "globalRules": [
     "All platform implementations must use canonical tokens for color/spacing/radius/typography/radius/elevation values.",
@@ -59,14 +66,21 @@
     "reservedErrorSlot",
     "stepChoiceGrid",
     "selectableRecipientRow",
-    "recipientChip"
+    "recipientChip",
+    "statusIcon",
+    "fullScreenLoader",
+    "stepForm"
   ],
   "mandatoryScreenContracts": [
     "screen.feed",
     "screen.messages",
     "screen.myPage",
     "screen.alumni",
-    "screen.donation"
+    "screen.donation",
+    "screen.login",
+    "screen.socialSignUp",
+    "screen.signUpComplete",
+    "screen.verification"
   ],
   "violationRules": [
     {
@@ -1535,7 +1549,203 @@
       "notes": "iOS DSRecipientChip; Android DSRecipientChip. Label type is chipLabel 14/20 medium.",
       "rules": [
         "Selected recipients collect under the search field as navy-outline chips with an × that removes the person; the remove control is labelled \"<name> 선택 해제\" (spec G.2).",
-        "Chips persist while the search text changes and while moving between step 1 and step 2."
+        "Chips persist while the search text changes and while moving between step 1 and step 2.",
+        "The chip is removable with at least a 44 touch target: Android makes the whole chip (× included) one ≥44 target; iOS gives the × a 44pt hit area around the 24pt glyph without growing the 32 chip."
+      ]
+    },
+    {
+      "name": "statusIcon",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default"
+      ],
+      "variants": [
+        "done",
+        "document",
+        "pending",
+        "unknown",
+        "rejected"
+      ],
+      "tokens": {
+        "semantic": [
+          "mobileLoginEmblemSize",
+          "sizeStatusGlyph",
+          "border",
+          "textPrimary",
+          "errorText",
+          "errorSubtle"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSSizing",
+        "DSIconography"
+      ],
+      "requiredTokenUsage": {
+        "layout": [
+          "DSSizing.mobileLoginEmblemSize",
+          "DSIconography.sizeStatusGlyph"
+        ],
+        "colors": [
+          "DSColor.border",
+          "DSColor.textPrimary",
+          "DSColor.errorText",
+          "DSColor.errorSubtle"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSStatusViews.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt"
+        ]
+      },
+      "notes": "iOS DSStatusIcon(Kind); Android DSStatusIcon(DSStatusIconKind). The 88 circle reuses sizing.mobileLoginEmblemSize (same 88 value). Android draws the rejected circle as colors.error at DSOpacity.subtle; iOS uses DSColor.errorSubtle, which has no dark variant yet.",
+      "rules": [
+        "Spec 0.7: an 88 circle (border #E8E5DF) holding a 36 navy line glyph: check for 완료·접수, document for 미신청, clock for 대기, question mark for 확인 불가. 반려 is a red exclamation on a light red circle.",
+        "Decorative only: hidden from accessibility; the page title carries the meaning."
+      ]
+    },
+    {
+      "name": "fullScreenLoader",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "loading",
+        "retrying"
+      ],
+      "tokens": {
+        "semantic": [
+          "fullScreenLoader",
+          "statusTitle",
+          "lineHeightStatusTitle",
+          "stateMessage",
+          "primary",
+          "textPrimary",
+          "textSecondary",
+          "screenPadMobile"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSFont",
+        "DSSizing",
+        "DSLayout"
+      ],
+      "requiredTokenUsage": {
+        "layout": [
+          "DSSizing.fullScreenLoader",
+          "DSLayout.screenPadMobile"
+        ],
+        "typography": [
+          "DSTextStyle.statusTitle",
+          "DSFont.lineHeightStatusTitle",
+          "DSTextStyle.stateMessage"
+        ],
+        "colors": [
+          "DSColor.primary",
+          "DSColor.textPrimary",
+          "DSColor.textSecondary"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSStatusViews.kt"
+        ]
+      },
+      "notes": "iOS DSFullScreenLoader(title:message:attempt:attemptCount:) keeps the native extra-large spinner inside the 72 frame; Android DSFullScreenLoader(title, message, step, stepCount) draws a 72 CircularProgressIndicator.",
+      "rules": [
+        "A whole-screen wait (C16/C14 sign-up prefill, D11 verification auto-submit): 72 spinner, title 20/28 semibold, one grey 14/20 line, and optional attempt dots showing which silent attempt is running.",
+        "While a request retries silently only the copy changes (e.g. 조금만 더 기다려 주세요); it never shows an error, server text or a retry button."
+      ]
+    },
+    {
+      "name": "stepForm",
+      "contractType": "primitive",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "error",
+        "review",
+        "submitting",
+        "disabled"
+      ],
+      "variants": [
+        "fieldStep",
+        "choiceGridStep",
+        "pageStep",
+        "review",
+        "startsAtReview"
+      ],
+      "tokens": {
+        "semantic": [
+          "stepInputHeight",
+          "stepCompletedHeight",
+          "stepActionHeight",
+          "stepCardGap",
+          "validationText",
+          "textSecondary",
+          "stepTransition",
+          "stepReduced"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSSizing",
+        "DSRadius"
+      ],
+      "requiredTokenUsage": {
+        "layout": [
+          "DSSizing.stepInputHeight",
+          "DSSizing.stepCompletedHeight",
+          "DSSizing.stepCardGap"
+        ],
+        "colors": [
+          "DSColor.validationText"
+        ],
+        "parts": [
+          "DSChoiceGrid",
+          "DSReservedErrorSlot",
+          "DSStepPage"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSReverseStepForm.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSelection.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSStateViews.kt"
+        ]
+      },
+      "notes": "The reverse step form (iOS DSReverseStepForm + DSStepField/DSStepPage; Android DSReverseStepForm + DSStepPage). iOS attaches the page to a field (DSStepField.page) and opens on review with startsAtReview + reviewHeader; Android passes finalPage and startOnReview + reviewLeadingContent / reviewHint.",
+      "rules": [
+        "One field per step with \"N / total\" and a progress bar; completed answers stack above as editable rows. Choice fields default to the 2-column stepChoiceGrid; the menu variant remains for other callers.",
+        "An optional page step (finalPage / DSStepPage) is its own centred page with its own single action (e.g. the C.3 profile photo, 8 / 8) before the review; its review row reopens it.",
+        "Re-application (D09) opens directly on the review with prior answers filled (startsAtReview / startOnReview) and a review header such as the rejection-reason card; only the rows the user taps are edited.",
+        "The reservedErrorSlot sits above the submit button; save failures are grey, and field errors the user can fix use validationText, never red."
       ]
     },
     {
@@ -1645,7 +1855,8 @@
         "Load failures stay calm (spec 0.3/0.4): no red cards or text, no server/network wording, no internal numbers and no 다시 시도 / 다시 불러오기 buttons; use the stateView template. First-load failure: 소식을 불러오지 못했어요 / 화면을 아래로 당겨 새로고침해 주세요. with the pull arrow; empty: 표시할 소식이 없어요 / 검색어나 카테고리를 바꿔 확인해 주세요.",
         "Pull-to-refresh reloads the first page; on success the list is replaced, on failure the existing list (or the calm state) stays with no message (spec 0.6). Android shows no red 새로고침하지 못했습니다 · 다시 시도 line.",
         "A failed next page keeps only the stateView loading row, retries silently after 2s and 4s (two more attempts), then hides the row until the user reaches the list end again or pulls to refresh (spec 0.6, proposed defaults).",
-        "Expanded body failure is one grey line 내용을 불러오지 못했어요. 당겨서 새로고침해 주세요.; a missing post reads 삭제되었거나 볼 수 없는 소식이에요. without a number; a failed like silently reverts the optimistic state; a failed comment keeps the draft in the composer."
+        "Expanded body failure is one grey line 내용을 불러오지 못했어요. 당겨서 새로고침해 주세요.; a missing post reads 삭제되었거나 볼 수 없는 소식이에요. without a number; a failed like silently reverts the optimistic state; a failed comment keeps the draft in the composer.",
+        "Copy per spec 0.4/E: empty E05 (iOS) / E04 (Android) 표시할 소식이 없어요 / 검색어나 카테고리를 바꿔 확인해 주세요.; a missing post (iOS E12) reads 삭제되었거나 볼 수 없는 소식이에요."
       ]
     },
     {
@@ -1720,6 +1931,9 @@
         ],
         "dateDivider": [
           "DSSpace.captionInset"
+        ],
+        "failedMessage": [
+          "DSOpacity.failedBubble"
         ]
       },
       "requiredTokenFamilies": [
@@ -1733,7 +1947,8 @@
           "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageListView.swift",
           "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageConversationDetailView.swift",
-          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageReportSheet.swift"
+          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageReportSheet.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageConversationDetailViewModel.swift"
         ],
         "web": [
           "dflh-saf-v2/frontend/src/pages/MessagePage.tsx",
@@ -1769,7 +1984,8 @@
         "Unread count remains on the bottom tab bar. Existing web layout and behavior are unchanged.",
         "Load failures stay calm (spec 0.3/0.4): no red cards or text, no server/network wording, no internal numbers and no 다시 시도 / 다시 불러오기 buttons; use the stateView template. Pull-arrow states: 대화 내역이 없어요 (G05), 안 읽은 쪽지가 없어요 (Android G03), 쪽지함을 불러오지 못했어요 (G06), 대화를 불러오지 못했어요 (G10); search with no results (iOS G04) has no arrow.",
         "Pull-to-refresh reloads the first page; on success the list is replaced, on failure the existing list (or the calm state) stays with no message (spec 0.6).",
-        "A failed send keeps the bubble dimmed (opacity 0.6) with one grey button line 보내지 못했어요 · 눌러서 다시 보내기 under it that resends the same text; no red 전송하지 못했어요 card or 다시 보내기 / 내용 수정 buttons."
+        "A failed send keeps the bubble in the thread faded to DSOpacity.failedBubble (0.6) with one grey line 보내지 못했어요 · 눌러서 다시 보내기 under it that resends the same text with the same client id; no red 전송하지 못했어요 card or 다시 보내기 / 내용 수정 buttons.",
+        "An empty thread shows the stateView 아직 대화 내용이 없어요 / 첫 쪽지를 보내 대화를 시작해 보세요."
       ]
     },
     {
@@ -1868,7 +2084,8 @@
         "Flat contact rows show 공개 / 비공개 chips; settings keep 비밀번호 변경, 로그인 연동, 알림 설정, 개인정보 설정 and destructive 로그아웃.",
         "Use 11px rememberCaption and placeholder ink for the centered copyright. Existing web layout is unchanged.",
         "Load failures stay calm (spec 0.3/0.4): no red cards or text, no server/network wording, no internal numbers and no 다시 시도 / 다시 불러오기 buttons; use the stateView template. Android load failure (J04): 내정보를 불러오지 못했어요 / 화면을 아래로 당겨 새로고침해 주세요. with the arrow; a failed refresh with a profile on screen shows nothing (the red 프로필 정보를 새로 가져오지 못했습니다. line is removed).",
-        "Profile save failure is a grey line in the reservedErrorSlot above the button, whose label stays 저장; input errors (business card over 5MB, tag count) keep their copy in validationText, and the 명함 picker drops its 다시 시도 button."
+        "My Page supports pull-to-refresh; single-item and settings failures are grey one-liners. Profile save failure (Android J11) is a grey line in the reservedErrorSlot above the button, whose label stays 저장.",
+        "Input errors (business card over 5MB iOS J09, tag count iOS J12, unsupported file) keep their copy in validationText; business-card upload failures are grey; the J09 다시 시도 button is removed because 다시 선택 does the same."
       ]
     },
     {
@@ -1975,7 +2192,8 @@
         "Detail retains 학교 / 직장 / 연락처 / 전문분야·태그, privacy badges, message/business-card actions, block/report and self handling.",
         "Load failures stay calm (spec 0.3/0.4): no red cards or text, no server/network wording, no internal numbers and no 다시 시도 / 다시 불러오기 buttons; use the stateView template. List failure: 동문 목록을 불러오지 못했어요 / 화면을 아래로 당겨 새로고침해 주세요. with the arrow; search with no results: 검색 결과가 없어요 / 검색어나 필터를 바꿔 다시 찾아보세요. without the arrow.",
         "Pull-to-refresh reloads the first page; on success the list is replaced, on failure the existing list (or the calm state) stays with no message (spec 0.6). A failed next page keeps only the stateView loading row, retries silently after 2s and 4s (two more attempts), then hides the row until the user reaches the list end again or pulls to refresh (spec 0.6, proposed defaults).",
-        "Detail failure: 프로필을 불러오지 못했어요 / 잠시 후 다시 열어 주세요. without the arrow; business-card failure is one grey line 명함을 불러오지 못했어요. 잠시 후 다시 열어 주세요. with no button."
+        "Detail failure: 프로필을 불러오지 못했어요 / 잠시 후 다시 열어 주세요. without the arrow; business-card failure is one grey line 명함을 불러오지 못했어요. 잠시 후 다시 열어 주세요. with no button.",
+        "Notices the user can act on in alumni flows (e.g. a blocked or unavailable action) use the calm validationText tone, never red."
       ]
     },
     {
@@ -2065,9 +2283,10 @@
         "Native 기부 summary shows 장학회 전체 누적 기부, optional goal/progress, 이번 달 기부액 and optional 계좌 잔액.",
         "Hide the balance card when balanceAmount is absent; display 계좌 잔액 기준일 YYYY.MM.DD · 장학회 관리자 입력 when dated. Never render 참여 동문/donorCount.",
         "Keep 내 나무 and the 해피나눔에서 기부하기 external CTA; do not introduce an in-app payment flow.",
-        "Summary failure (iOS I05 / Android I04) is calm: the cards show grey 기부 현황을 불러오지 못했어요 and 나의 기부 현황을 불러오지 못했어요 with one line above, 화면을 아래로 당겨 새로고침해 주세요.; the donate button stays. No red text or retry button.",
         "Pull-to-refresh reloads the first page; on success the list is replaced, on failure the existing list (or the calm state) stays with no message (spec 0.6).",
-        "If the external browser cannot open (iOS I06), show one grey line under the button, 브라우저를 열지 못했어요. 잠시 후 다시 눌러 주세요., instead of an alert."
+        "Summary failure (iOS I05 / Android I04): the cards show grey 기부 현황을 불러오지 못했어요 and 나의 기부 현황을 불러오지 못했어요 with one line above, 화면을 아래로 당겨 새로고침해 주세요.; the donate button stays; the tab supports pull-to-refresh. No red text or retry button.",
+        "If the external browser cannot open (iOS I06), one grey line under the button, 브라우저를 열지 못했어요. 잠시 후 다시 눌러 주세요., replaces the alert.",
+        "At 0원 the tree line under 나의 누적 기부 reads 첫 기부를 하면 새싹이 돋아요. instead of 다음 단계까지 1원."
       ]
     },
     {
@@ -2146,13 +2365,23 @@
         "empty",
         "error",
         "selected",
-        "sending"
+        "limitReached",
+        "composing",
+        "sending",
+        "partialFailure",
+        "sent"
       ],
       "requiredBlocks": [
-        "recipientSearch",
+        "header",
+        "stepProgress",
+        "searchField",
+        "recipientChips",
         "recipientResults",
-        "messageEditor",
-        "sendBar"
+        "nextButton",
+        "recipientSummary",
+        "messageField",
+        "sendButton",
+        "errorSlot"
       ],
       "tokens": {
         "spacing": [
@@ -2181,15 +2410,18 @@
       "requiredTokenUsage": {
         "recipient": [
           "DSAvatar",
-          "DSDivider",
           "DSEmptyState",
           "DSLoadingState",
-          "DSStateView"
+          "DSSelectableRecipientRow",
+          "DSRecipientChip"
         ],
         "sendBar": [
           "DSButton",
-          "DSSizing.messageComposerHeight",
-          "DSOpacity.surfaceSubtle"
+          "DSReservedErrorSlot"
+        ],
+        "messageField": [
+          "DSSizing.composeMessageMinHeight",
+          "DSRadius.lg"
         ]
       },
       "requiredTokenFamilies": [
@@ -2203,17 +2435,26 @@
       ],
       "implementationEvidence": {
         "ios": [
-          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageComposeSheetView.swift"
+          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageComposeSheetView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Message/MessageComposeViewModel.swift",
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSRecipientSelection.swift"
         ],
         "android": [
-          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/ui/MessageComposeScreen.kt"
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/ui/MessageComposeScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/MessageComposeViewModel.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/messages/model/MessageComposeModels.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSelection.kt"
         ]
       },
-      "notes": "Modal presented from screen.messages for composing a new message with recipient search. Authored after the fact to close a design-system contract gap; kept as its own contract rather than folded into screen.messages because it has an independent presentation lifecycle (sheet) and its own required states.",
+      "notes": "Full-screen two-step new message (spec G.2; iOS G16–G23, Android G15–G22) presented from screen.messages. The message API is 1:1 only, so each recipient is its own POST.",
       "rules": [
+        "Full screen without the tab bar; header with back/close, 쪽지 새로 보내기, 1 / 2 or 2 / 2 and a progress bar.",
+        "Step 1: 받는 사람을 골라 주세요. 여러 명을 고를 수 있어요.; search 이름으로 동문 검색 (clear button, debounced); picks collect as recipientChip under the field and survive new searches; results are selectableRecipientRow; bottom 다음 is disabled at 0 and reads 다음 (N명). At most 20 recipients: the 21st pick shows the grey line 받는 사람은 최대 20명까지 고를 수 있어요.",
+        "The signed-in user is never listed, and people the user blocked (GET /api/blocks, loaded once per compose) cannot be picked; picks made before the block list arrives are dropped.",
         "Recipient search with no results shows the stateView 검색 결과가 없어요 / 이름을 바꿔 다시 찾아보세요. without the pull arrow (iOS G19 / Android G17); a search failure is one grey line in the result area, 검색 결과를 불러오지 못했어요. 검색어를 다시 입력해 주세요.",
-        "Recipient selection uses selectableRecipientRow results and recipientChip selections (spec G.2); no red errors, server text or retry buttons.",
-        "A partial send failure shows one grey line above the button naming who was not reached plus a text button 다시 보내기 for those recipients only (iOS G23 / Android G22)."
+        "Step 2: 보낼 내용을 입력해 주세요.; summary card 받는 사람 N명 / names [변경] (back to step 1, selection kept); field of at least 220 (composeMessageMinHeight), radius 16, 쪽지 내용을 입력하세요, counter N/1000; note 각 동문에게 1:1 쪽지로 보내져요.; 쪽지 보내기 disabled while empty, spinner + 보내는 중… while sending.",
+        "Sending posts once per recipient with its own client message id (idempotency key). One recipient → that thread; several → the message list.",
+        "Partial failure: one grey line above the button naming who was not reached (e.g. 이서준 동문에게는 보내지 못했어요.) plus a text button 다시 보내기 that resends the same text to the failed recipients only; the primary button becomes 완료 and recipients and text are frozen."
       ]
     },
     {
@@ -2276,9 +2517,9 @@
           "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationWebSheet.kt"
         ]
       },
-      "notes": "Generic in-app web sheet (GenericWebSheet) reused by Donation and other features to open external links inside the app. Authored after the fact to close a design-system contract gap; not folded into app-shell because it has its own loading-skeleton and error states.",
+      "notes": "Generic in-app web sheet: iOS WebSheetView (GenericWebSheet), Android DonationWebSheet for 해피나눔. Donation on iOS opens the default browser (see screen.donation).",
       "rules": [
-        "Load failure (Android I07) renders the calm stateView inside the sheet, 페이지를 열지 못했어요 / 아래로 당겨 새로고침하거나 잠시 후 다시 열어 주세요.; the header and bottom toolbar stay. No red error, raw web error text or retry button."
+        "Load failure renders the calm stateView inside the sheet on both apps, 페이지를 열지 못했어요 / 아래로 당겨 새로고침하거나 잠시 후 다시 열어 주세요. (Android I07); the header and bottom toolbar stay. No red error, raw web error text or retry button."
       ]
     },
     {
@@ -2347,7 +2588,8 @@
       ],
       "implementationEvidence": {
         "ios": [
-          "dflh-saf-v2-swift/Sources/App/ProfileView.swift"
+          "dflh-saf-v2-swift/Sources/App/ProfileView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Push/NotificationSettingsModel.swift"
         ],
         "android": [
           "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/notificationsettings/NotificationSettingsScreen.kt"
@@ -2356,7 +2598,7 @@
       "notes": "Account-level message, preview and 새 소식 push preferences reached from My Page on both native platforms. Preserve permission/unavailable states, optimistic writes and rollback behavior.",
       "rules": [
         "A switch whose save fails rolls back silently to its previous state with no message (Android J19, both platforms).",
-        "If settings cannot load, iOS (J22) shows one grey line under the card, 설정을 불러오지 못했어요. 화면을 아래로 당겨 새로고침해 주세요., and the screen supports pull-to-refresh; no red text or retry button."
+        "If settings cannot load, one grey line under the card, 설정을 불러오지 못했어요. 화면을 아래로 당겨 새로고침해 주세요. (iOS J22), and the screen supports pull-to-refresh; no red text or retry button."
       ]
     },
     {
@@ -2476,6 +2718,277 @@
       "rules": [
         "Blocking minimum-version screen preserves the update link and prevents continuing into the app.",
         "If the store URL is unavailable, display store-install instructions; styling remains token-driven."
+      ]
+    },
+    {
+      "name": "screen.login",
+      "contractType": "screen",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "signingIn",
+        "error"
+      ],
+      "requiredBlocks": [
+        "navyHero",
+        "title",
+        "intro",
+        "loginButtons",
+        "errorSlot",
+        "helpLink"
+      ],
+      "tokens": {
+        "semantic": [
+          "mobileLoginHero",
+          "mobileLoginEmblemSize",
+          "mobileLoginHeadline",
+          "kakao",
+          "kakaoText",
+          "primaryButtonHeight"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "hero": [
+          "DSColor.mobileLoginHero",
+          "DSSizing.mobileLoginEmblemSize",
+          "DSTextStyle.mobileLoginHeadline"
+        ],
+        "actions": [
+          "DSColor.kakao",
+          "DSReservedErrorSlot"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/LoginView.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/ui/AuthScreens.kt"
+        ]
+      },
+      "notes": "Spec B (iOS B01–B03, Android B01–B03, B07 background).",
+      "rules": [
+        "Navy (#172849) hero with the emblem and the title 대일외국어고등학교 장학회 (26 bold, centred); the navy fills the whole background so no white shows behind the card corners, and the card runs to the bottom edge.",
+        "Card, top to bottom: 동문 인증 후 커뮤니티를 이용할 수 있어요. (centred, above the buttons), login buttons (카카오 / Apple on iOS only / 아이디로 로그인), the reservedErrorSlot, space, and 로그인 도움말 centred at the bottom.",
+        "Removed: 동문과 이어지고, 후배의 내일을 응원해요., DAEIL SCHOLARSHIP FOUNDATION, 대일외고 동문을 위한 커뮤니티, 처음이라면 동문 정보를 입력해 주세요."
+      ]
+    },
+    {
+      "name": "screen.socialSignUp",
+      "contractType": "screen",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "prefilling",
+        "prefillRetrying",
+        "prefillFailed",
+        "form",
+        "photo",
+        "photoUploading",
+        "photoUploadFailed",
+        "review",
+        "submitting"
+      ],
+      "requiredBlocks": [
+        "fullScreenLoader",
+        "failureDialog",
+        "stepForm",
+        "photoPage",
+        "review"
+      ],
+      "tokens": {
+        "semantic": [
+          "fullScreenLoader",
+          "signupPhoto",
+          "avatarMd",
+          "statusTitle",
+          "stateMessage",
+          "progressFill"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "loader": [
+          "DSFullScreenLoader"
+        ],
+        "photo": [
+          "DSSizing.signupPhoto",
+          "DSTextStyle.statusTitle",
+          "DSTextStyle.stateMessage"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/SocialSignUpFlow.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/LoginView.swift",
+          "dflh-saf-v2-swift/Sources/App/SilentRetryPolicy.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/ui/KakaoSignUpScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/SessionViewModel.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/SignUpPhoto.kt"
+        ]
+      },
+      "notes": "Spec C.2 (iOS C16/C27/C28, Android C14/C17/C25) and C.3 (iOS C20–C26, Android C18–C24). Social sign-up has no id/password steps (C.5).",
+      "rules": [
+        "Starting sign-up shows the fullScreenLoader without a form: 카카오 정보를 불러오고 있어요 / 잠시만 기다려 주세요. (iOS: 가입 정보를…). A failed prefill changes only the copy to 조금만 더 기다려 주세요 and retries silently: at most 3 attempts, spaced 1s and 2s (proposed default), with attempt dots. Only transport, timeout, 5xx and 429 failures are retried.",
+        "After 3 failures a dialog: 회원가입에 문제가 생겼어요 / 카카오 정보를 불러오지 못해 지금은 가입을 진행할 수 없어요. 오픈채팅으로 문의를 남겨 주시면 확인 후 도와드릴게요. with 닫기 (back to login) and 오픈채팅 문의 (the login-help open chat). No 카카오 정보 없이도 가입 / 다시 불러오기.",
+        "The last step (8 / 8) is a separate profile-photo page: 140 round photo that is itself the button (navy pencil badge), question 20 semibold, explanation 14 regular, one action 이 사진 사용. Uploading disables photo and button; an upload failure keeps the old photo and adds one grey line 사진을 올리지 못했어요. 다시 시도해 주세요.",
+        "이 사진 사용 without a new photo confirms (카카오 사진을 그대로 사용할까요? or 사진 없이 가입할까요?, [사진 고르기] [그대로 사용 / 사진 없이 계속]); a replaced photo continues without a dialog. The review lists 프로필 사진 (카카오 사진 사용 / 새 사진 / 사진 없음)."
+      ]
+    },
+    {
+      "name": "screen.signUpComplete",
+      "contractType": "screen",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "default",
+        "submitting",
+        "error"
+      ],
+      "requiredBlocks": [
+        "header",
+        "statusIcon",
+        "message",
+        "errorSlot",
+        "primaryButton"
+      ],
+      "tokens": {
+        "semantic": [
+          "statusMessage",
+          "lineHeightStatusMessage",
+          "primaryButtonHeight",
+          "textPrimary"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSSizing"
+      ],
+      "requiredTokenUsage": {
+        "body": [
+          "DSStatusIcon",
+          "DSTextStyle.statusMessage",
+          "DSFont.lineHeightStatusMessage",
+          "DSReservedErrorSlot"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/NativeSignUpView.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/ui/NativeSignUpScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/ui/AuthStatusScaffold.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSStatusViews.kt"
+        ]
+      },
+      "notes": "Spec C.4 (iOS C15, Android C13): shown when the account was created but automatic sign-in failed.",
+      "rules": [
+        "Separate page titled 회원가입 완료: centred 88 check statusIcon and 계정이 생성되었습니다. / 로그인 후 인증 신청을 이어서 진행합니다. (18/28 semibold); the reservedErrorSlot right above the bottom 로그인하고 인증 신청하기 (52) button.",
+        "Errors use plain copy such as 로그인하지 못했어요. 잠시 후 다시 눌러 주세요.; the former Android input lock + 로그인 연결 다시 시도 is gone."
+      ]
+    },
+    {
+      "name": "screen.verification",
+      "contractType": "screen",
+      "mandatory": true,
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "states": [
+        "unsubmitted",
+        "pending",
+        "pendingNotificationsOff",
+        "rejected",
+        "unknown",
+        "autoSubmitting",
+        "autoSubmitFailed",
+        "form",
+        "reapplying",
+        "saveError"
+      ],
+      "requiredBlocks": [
+        "header",
+        "statusIcon",
+        "title",
+        "message",
+        "card",
+        "errorSlot",
+        "primaryButton",
+        "footerLinks"
+      ],
+      "tokens": {
+        "semantic": [
+          "statusTitle",
+          "lineHeightStatusTitle",
+          "cautionSurface",
+          "cautionBorder",
+          "rejectionBorder",
+          "validationText",
+          "cardAction"
+        ]
+      },
+      "requiredTokenFamilies": [
+        "DSColor",
+        "DSTextStyle",
+        "DSFont"
+      ],
+      "requiredTokenUsage": {
+        "status": [
+          "DSStatusIcon",
+          "DSTextStyle.statusTitle",
+          "DSFont.lineHeightStatusTitle",
+          "DSReservedErrorSlot"
+        ],
+        "cards": [
+          "DSColor.cautionSurface",
+          "DSColor.cautionBorder",
+          "DSColor.rejectionBorder",
+          "DSColor.validationText",
+          "DSTextStyle.cardAction"
+        ]
+      },
+      "implementationEvidence": {
+        "ios": [
+          "dflh-saf-v2-swift/Sources/App/RootView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Login/VerificationStatusPresentation.swift"
+        ],
+        "android": [
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/ui/VerificationScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/auth/ui/AuthStatusScaffold.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSStatusViews.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSTheme.kt"
+        ]
+      },
+      "notes": "Spec D (D01–D13). Android resolves the card colours through DflhTheme.colors.cautionSurface / cautionBorder / rejectionBorder and the button style through DSStatusStyle.cardAction.",
+      "rules": [
+        "Header shows only 동문 인증 with no back button (back used to sign out). Centre: statusIcon, title 20/28 semibold, explanation 15 regular, optional card; bottom: reservedErrorSlot, primary button when needed, and small links 다른 계정으로 로그인 | 계정 삭제 요청 (the first signs out to the login landing).",
+        "D01 unsubmitted: document, 동문 인증이 필요해요, 인증 신청하기. D02 pending and reapproval_pending (shown the same, D05 removed): clock, 동문 인증을 확인하고 있어요, no button; D03 adds the calm amber card 알림이 꺼져 있어요 with [알림 켜기] (cautionSurface / cautionBorder, validationText, 13 semibold action) opening the app notification settings or the permission prompt.",
+        "D04 rejected: red exclamation, 신청이 반려되었어요, rejection-reason card on the page (rejectionBorder; fallback 반려 사유가 등록되지 않았습니다. 담당자에게 문의해 주세요.), 정보 수정 후 재신청, which opens the form on its review step with prior values (D09). D06 unknown: question mark, 인증 상태를 확인할 수 없어요, 다시 로그인.",
+        "After sign-up, D11 shows the fullScreenLoader 동문 인증을 신청하고 있어요 while the application is sent, retrying silently up to 3 times (1s, 2s); if all fail, D12 is the D01 page with the slot line 인증 신청을 완료하지 못했어요. 연결 상태를 확인한 뒤 다시 시도해 주세요. and the button 인증 신청 다시 시도. Pending refreshes on appear, on return to the app and on the verification push."
       ]
     }
   ]
