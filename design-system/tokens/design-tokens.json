@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -160,7 +160,8 @@
     "validationText": "#92400E",
     "cautionBorder": "#F3C66B",
     "cautionSurface": "{palette.brandAccentSubtle}",
-    "rejectionBorder": "#FECACA"
+    "rejectionBorder": "#FECACA",
+    "statusRejectedSurface": "#FEF2F2"
   },
   "colorSchemes": {
     "light": {
@@ -212,7 +213,8 @@
       "validationText": "#92400E",
       "cautionBorder": "#F3C66B",
       "cautionSurface": "{palette.brandAccentSubtle}",
-      "rejectionBorder": "#FECACA"
+      "rejectionBorder": "#FECACA",
+      "statusRejectedSurface": "#FEF2F2"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -263,7 +265,8 @@
       "validationText": "{palette.brandAccentText}",
       "cautionBorder": "{palette.brandAccentBorder}",
       "cautionSurface": "{palette.brandAccentSubtle}",
-      "rejectionBorder": "#7F1D1D"
+      "rejectionBorder": "#7F1D1D",
+      "statusRejectedSurface": "#3A1F26"
     }
   },
   "opacity": {

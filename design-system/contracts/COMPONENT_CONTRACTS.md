@@ -840,7 +840,7 @@ Required token families:
 Required token usage:
 
 - layout: `DSSizing.mobileLoginEmblemSize`, `DSIconography.sizeStatusGlyph`
-- colors: `DSColor.border`, `DSColor.textPrimary`, `DSColor.errorText`, `DSColor.errorSubtle`
+- colors: `DSColor.border`, `DSColor.textPrimary`, `DSColor.errorText`, `DSColor.statusRejectedSurface`
 
 Implementation evidence:
 

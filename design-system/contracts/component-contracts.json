@@ -1578,7 +1578,7 @@
           "border",
           "textPrimary",
           "errorText",
-          "errorSubtle"
+          "statusRejectedSurface"
         ]
       },
       "requiredTokenFamilies": [
@@ -1595,7 +1595,7 @@
           "DSColor.border",
           "DSColor.textPrimary",
           "DSColor.errorText",
-          "DSColor.errorSubtle"
+          "DSColor.statusRejectedSurface"
         ]
       },
       "implementationEvidence": {
@@ -1607,7 +1607,7 @@
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt"
         ]
       },
-      "notes": "iOS DSStatusIcon(Kind); Android DSStatusIcon(DSStatusIconKind). The 88 circle reuses sizing.mobileLoginEmblemSize (same 88 value). Android draws the rejected circle as colors.error at DSOpacity.subtle; iOS uses DSColor.errorSubtle, which has no dark variant yet.",
+      "notes": "iOS DSStatusIcon(Kind); Android DSStatusIcon(DSStatusIconKind). The 88 circle reuses sizing.mobileLoginEmblemSize (same 88 value). The rejected circle uses statusRejectedSurface on both apps (light #FEF2F2, dark #3A1F26; Android via DflhTheme.colors.statusRejectedSurface).",
       "rules": [
         "Spec 0.7: an 88 circle (border #E8E5DF) holding a 36 navy line glyph: check for 완료·접수, document for 미신청, clock for 대기, question mark for 확인 불가. 반려 is a red exclamation on a light red circle.",
         "Decorative only: hidden from accessibility; the page title carries the meaning."
