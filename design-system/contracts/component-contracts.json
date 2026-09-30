@@ -1,5 +1,5 @@
 {
-  "version": "1.6.0",
+  "version": "1.7.0",
   "schema": "2026-06-14-token-driven-contracts",
   "scope": "cross-platform web/ios/android; Remember-style UI on ios/android",
   "requiredSurfaces": [
@@ -418,8 +418,12 @@
           "DSColor.textSecondary"
         ],
         "typography": [
-          "DSTextStyle.body",
-          "DSTextStyle.button"
+          "DSTextStyle.buttonLabel",
+          "DSTextStyle.buttonLabelRegular",
+          "DSTextStyle.buttonLabelCompact",
+          "DSFont.buttonLabel",
+          "DSFont.buttonLabelRegular",
+          "DSFont.buttonLabelCompact"
         ],
         "states": [
           "DSAnimation.quick",
@@ -454,6 +458,15 @@
           "textPrimary",
           "textSecondary",
           "error"
+        ],
+        "typography": [
+          "buttonLabel",
+          "buttonLabelRegular",
+          "buttonLabelCompact",
+          "lineHeight.buttonLabel",
+          "lineHeight.buttonLabelRegular",
+          "lineHeight.buttonLabelCompact",
+          "weight.semibold"
         ]
       },
       "requiredTokenFamilies": [
@@ -468,8 +481,10 @@
       "rules": [
         "Minimum tap target 44x44",
         "Use token durations/easing for press feedback",
-        "Map enabled/disabled visual affordance to tokenized surface/elevation"
-      ]
+        "Map enabled/disabled visual affordance to tokenized surface/elevation",
+        "Labels are semibold (600) at every size and variant (primary, secondary, outline/tertiary, text) on iOS and Android: buttonLabel 16/24 for primary, large and standard buttons, buttonLabelRegular 15/22 for regular/secondary actions, buttonLabelCompact 13/18 for compact buttons. iOS: DSTextStyle.buttonLabel*; Android: DSButtonLabelTextStyle (DSButton sizes, DSButtonPrimary, DSButtonSecondary, DSButtonTertiary). Android LARGE keeps its 18 size, also semibold."
+      ],
+      "notes": "Label weight is not a token field (the schema has size/lineHeight pairs only); 600 is typography.weight.semibold, applied by the platform text styles."
     },
     {
       "name": "navigation",

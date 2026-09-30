@@ -1,5 +1,5 @@
 {
-  "version": "1.7.0",
+  "version": "1.8.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -322,7 +322,10 @@
       "chipLabel": "14px",
       "statusTitle": "20px",
       "statusMessage": "18px",
-      "cardAction": "13px"
+      "cardAction": "13px",
+      "buttonLabel": "16px",
+      "buttonLabelRegular": "15px",
+      "buttonLabelCompact": "13px"
     },
     "weight": {
       "regular": 400,
@@ -338,7 +341,10 @@
       "chipLabel": "20px",
       "statusTitle": "28px",
       "statusMessage": "28px",
-      "cardAction": "18px"
+      "cardAction": "18px",
+      "buttonLabel": "24px",
+      "buttonLabelRegular": "22px",
+      "buttonLabelCompact": "18px"
     }
   },
   "spacing": {

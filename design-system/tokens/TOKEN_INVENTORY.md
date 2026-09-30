@@ -66,6 +66,12 @@ Entry flows and compose (spec B–D, G) add `colors.cautionSurface` /
 `statusMessage` 18/28 and `cardAction` 13/18. The 88px status circle reuses
 `sizing.mobileLoginEmblemSize`.
 
+Button labels use `typography.size` / `lineHeight` `buttonLabel` 16/24 (primary,
+large and standard), `buttonLabelRegular` 15/22 and `buttonLabelCompact` 13/18.
+Every button label is `typography.weight.semibold` (600) at every size and
+variant; the weight is applied by the platform text styles (iOS
+`DSTextStyle.buttonLabel*`, Android `DSButtonLabelTextStyle`).
+
 ## Generated Artifact Policy
 
 Generated files under `design-system/platform/*` and copied platform token files must not be edited manually. Change `design-system/tokens/design-tokens.json`, then run:
