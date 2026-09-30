@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.8.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -154,7 +154,14 @@
     "checkboxCheckedFill": "{palette.brandPrimary}",
     "checkboxCheckmark": "{palette.brandOnPrimary}",
     "checkboxUncheckedBorder": "{palette.ink2}",
-    "checkboxDisabled": "{palette.ink4}"
+    "checkboxDisabled": "{palette.ink4}",
+    "stateIcon": "#767676",
+    "statePullHint": "#9A9A9A",
+    "validationText": "#92400E",
+    "cautionBorder": "#F3C66B",
+    "cautionSurface": "{palette.brandAccentSubtle}",
+    "rejectionBorder": "#FECACA",
+    "statusRejectedSurface": "#FEF2F2"
   },
   "colorSchemes": {
     "light": {
@@ -200,7 +207,14 @@
       "checkboxCheckedFill": "{palette.brandPrimary}",
       "checkboxCheckmark": "{palette.brandOnPrimary}",
       "checkboxUncheckedBorder": "{palette.ink2}",
-      "checkboxDisabled": "{palette.ink4}"
+      "checkboxDisabled": "{palette.ink4}",
+      "stateIcon": "#767676",
+      "statePullHint": "#9A9A9A",
+      "validationText": "#92400E",
+      "cautionBorder": "#F3C66B",
+      "cautionSurface": "{palette.brandAccentSubtle}",
+      "rejectionBorder": "#FECACA",
+      "statusRejectedSurface": "#FEF2F2"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -245,7 +259,14 @@
       "checkboxCheckedFill": "{palette.brandPrimary}",
       "checkboxCheckmark": "{palette.brandOnPrimary}",
       "checkboxUncheckedBorder": "{palette.ink2}",
-      "checkboxDisabled": "{palette.ink4}"
+      "checkboxDisabled": "{palette.ink4}",
+      "stateIcon": "{palette.ink3}",
+      "statePullHint": "{palette.ink4}",
+      "validationText": "{palette.brandAccentText}",
+      "cautionBorder": "{palette.brandAccentBorder}",
+      "cautionSurface": "{palette.brandAccentSubtle}",
+      "rejectionBorder": "#7F1D1D",
+      "statusRejectedSurface": "#3A1F26"
     }
   },
   "opacity": {
@@ -267,7 +288,8 @@
     "textEmphasis": 0.92,
     "donationTreeGroundShadow": 0.12,
     "donationTreeGloss": 0.3,
-    "navigationPressed": 0.55
+    "navigationPressed": 0.55,
+    "failedBubble": 0.6
   },
   "typography": {
     "fontSans": "Noto Sans KR, Instrument Sans, Pretendard Variable, ui-sans-serif, system-ui, -apple-system, sans-serif",
@@ -293,7 +315,17 @@
       "listName": "18px",
       "meta": "13px",
       "metaLg": "14px",
-      "captionLg": "12px"
+      "captionLg": "12px",
+      "stateTitle": "16px",
+      "stateMessage": "14px",
+      "inlineStatus": "13px",
+      "chipLabel": "14px",
+      "statusTitle": "20px",
+      "statusMessage": "18px",
+      "cardAction": "13px",
+      "buttonLabel": "16px",
+      "buttonLabelRegular": "15px",
+      "buttonLabelCompact": "13px"
     },
     "weight": {
       "regular": 400,
@@ -302,7 +334,17 @@
       "bold": 700
     },
     "lineHeight": {
-      "body": "26px"
+      "body": "26px",
+      "stateTitle": "24px",
+      "stateMessage": "20px",
+      "inlineStatus": "18px",
+      "chipLabel": "20px",
+      "statusTitle": "28px",
+      "statusMessage": "28px",
+      "cardAction": "18px",
+      "buttonLabel": "24px",
+      "buttonLabelRegular": "22px",
+      "buttonLabelCompact": "18px"
     }
   },
   "spacing": {
@@ -408,7 +450,10 @@
     "actionBarHeight": "48px",
     "primaryButtonHeight": "52px",
     "secondaryButtonHeight": "44px",
-    "bottomTabHeight": "56px"
+    "bottomTabHeight": "56px",
+    "signupPhoto": "140px",
+    "fullScreenLoader": "72px",
+    "composeMessageMinHeight": "220px"
   },
   "motion": {
     "duration": {
@@ -499,7 +544,9 @@
       "md": "16px",
       "lg": "18px",
       "xl": "20px",
-      "xxl": "24px"
+      "xxl": "24px",
+      "state": "40px",
+      "statusGlyph": "36px"
     },
     "lineWeight": {
       "light": 1,
