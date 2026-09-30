@@ -51,6 +51,13 @@ and `tagChipHeight` (24px) for tags. Type variants are `meta` / `metaLg`
 `typography.lineHeight.body` (26px). Existing metrics retain their values except
 the specified `layout.screenPad.mobile` change to 20px.
 
+Calm states and forms (2026-09 UI/UX review, spec 0.3–0.5) use `colors.stateIcon`
+(#767676), `statePullHint` (#9A9A9A) and `validationText` (#92400E), each with a
+dark variant; `iconography.size.state` (40px); and the named type pairs
+`typography.size` / `typography.lineHeight` `stateTitle` 16/24, `stateMessage`
+14/20, `inlineStatus` 13/18 and `chipLabel` 14/20. Weights stay in the platform
+text styles (iOS `DSTextStyle`, Android DS `TextStyle`s).
+
 ## Generated Artifact Policy
 
 Generated files under `design-system/platform/*` and copied platform token files must not be edited manually. Change `design-system/tokens/design-tokens.json`, then run:

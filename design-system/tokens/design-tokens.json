@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -154,7 +154,10 @@
     "checkboxCheckedFill": "{palette.brandPrimary}",
     "checkboxCheckmark": "{palette.brandOnPrimary}",
     "checkboxUncheckedBorder": "{palette.ink2}",
-    "checkboxDisabled": "{palette.ink4}"
+    "checkboxDisabled": "{palette.ink4}",
+    "stateIcon": "#767676",
+    "statePullHint": "#9A9A9A",
+    "validationText": "#92400E"
   },
   "colorSchemes": {
     "light": {
@@ -200,7 +203,10 @@
       "checkboxCheckedFill": "{palette.brandPrimary}",
       "checkboxCheckmark": "{palette.brandOnPrimary}",
       "checkboxUncheckedBorder": "{palette.ink2}",
-      "checkboxDisabled": "{palette.ink4}"
+      "checkboxDisabled": "{palette.ink4}",
+      "stateIcon": "#767676",
+      "statePullHint": "#9A9A9A",
+      "validationText": "#92400E"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -245,7 +251,10 @@
       "checkboxCheckedFill": "{palette.brandPrimary}",
       "checkboxCheckmark": "{palette.brandOnPrimary}",
       "checkboxUncheckedBorder": "{palette.ink2}",
-      "checkboxDisabled": "{palette.ink4}"
+      "checkboxDisabled": "{palette.ink4}",
+      "stateIcon": "{palette.ink3}",
+      "statePullHint": "{palette.ink4}",
+      "validationText": "{palette.brandAccentText}"
     }
   },
   "opacity": {
@@ -293,7 +302,11 @@
       "listName": "18px",
       "meta": "13px",
       "metaLg": "14px",
-      "captionLg": "12px"
+      "captionLg": "12px",
+      "stateTitle": "16px",
+      "stateMessage": "14px",
+      "inlineStatus": "13px",
+      "chipLabel": "14px"
     },
     "weight": {
       "regular": 400,
@@ -302,7 +315,11 @@
       "bold": 700
     },
     "lineHeight": {
-      "body": "26px"
+      "body": "26px",
+      "stateTitle": "24px",
+      "stateMessage": "20px",
+      "inlineStatus": "18px",
+      "chipLabel": "20px"
     }
   },
   "spacing": {
@@ -499,7 +516,8 @@
       "md": "16px",
       "lg": "18px",
       "xl": "20px",
-      "xxl": "24px"
+      "xxl": "24px",
+      "state": "40px"
     },
     "lineWeight": {
       "light": 1,
