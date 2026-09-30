@@ -400,3 +400,30 @@ aggregate manifest with `npm run generate-visual-baseline-manifest`. The final
 `npm run verify-design-system` passed, including Android/iOS compliance,
 generated-token freshness and contract-doc freshness. The required generic iOS
 simulator `xcodebuild` also reported `BUILD SUCCEEDED`.
+
+
+## Latest verification result
+- runMode: guard
+- generatedAt: 2026-09-30T16:16:16.073Z
+- pending items:
+- iOS-Feed-mobile.png: changed
+- iOS-MessagesList-mobile.png: changed
+- iOS-MyPage-mobile.png: changed
+- action: review baseline/capture/diff images; fix regressions or document intentional changes before updating baselines.
+
+## 2026-10-01 — App UX review (feature/app-ux-review) baseline refresh
+The guard run above flagged Feed, MessagesList and MyPage. Each capture was
+compared with its baseline and diff image; every change is intentional:
+
+- iOS-Feed-mobile.png: the per-post 공지 chip is removed (2026-09-29 request),
+  so the post body moves up and the comment input bar now shows above the tab
+  bar. Tabs are built from loaded feed categories, like Android; the visual
+  fixture only has notice and scholarship posts, so the tabs are 전체 · 공지 · 장학.
+- iOS-MessagesList-mobile.png: the new-message FAB glyph is "+" to match
+  Android (UX review G).
+- iOS-MyPage-mobile.png: a single business-card action (b16abf7, 2026-09-23)
+  replaces the 내 명함 / 동문에게 보이는 화면 pair; the fixture has no card, so it
+  reads 명함 등록. The old baseline predates that change.
+
+No clipping, overlap or alignment regressions were found. Baselines were
+promoted with `npm run visual-check-ios:update-baseline` after user approval.
