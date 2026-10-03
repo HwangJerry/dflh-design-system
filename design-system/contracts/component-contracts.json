@@ -859,7 +859,8 @@
         "collapsed",
         "expanded",
         "liked",
-        "unliked"
+        "unliked",
+        "officialProfile"
       ],
       "tokens": {
         "semantic": [
@@ -895,15 +896,19 @@
       },
       "implementationEvidence": {
         "ios": [
-          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift"
+          "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedListView.swift"
         ],
         "android": [
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPostCard.kt"
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPostCard.kt",
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPersonRow.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/feed/ui/FeedScreen.kt"
         ]
       },
       "rules": [
         "Flat article surface with optional 고정된 공지 row (no per-post category chip); avatar, author, time, role, overflow action, body/link preview, engagement summary and action bar retain their order.",
-        "Keep inline expansion, comments, likes, sharing, analytics and accessible actions."
+        "Keep inline expansion, comments, likes, sharing, analytics and accessible actions.",
+        "officialProfile: when a post's officialProfile flag is true the author avatar is the foundation emblem inside the same DSSizing.avatarMd white circle (iOS DSAvatar.foundationEmblem with the FoundationEmblem asset; Android DSEmblemAvatar), with accessibility label / contentDescription '대일외고장학회 공식 프로필'; otherwise the initial-letter avatar is unchanged. Comments are unaffected."
       ]
     },
     {

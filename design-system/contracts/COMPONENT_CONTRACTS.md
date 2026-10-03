@@ -114,7 +114,7 @@
 | `personRow` | primitive | `ios`, `android` | `default`, `self`, `imageLoading`, `imageUnavailable` | `DSColor`, `DSLayout`, `DSSizing`, `DSTextStyle` |
 | `chip` | primitive | `ios`, `android` | `default` | `DSColor`, `DSRadius`, `DSSizing` |
 | `postActionBar` | primitive | `ios`, `android` | `default`, `liked`, `unliked`, `disabled` | `DSColor`, `DSSizing`, `DSTextStyle` |
-| `postCard` | primitive | `ios`, `android` | `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked` | `DSColor`, `DSFont`, `DSLayout`, `DSSizing` |
+| `postCard` | primitive | `ios`, `android` | `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked`, `officialProfile` | `DSColor`, `DSFont`, `DSLayout`, `DSSizing` |
 | `conversationRow` | primitive | `ios`, `android` | `read`, `unread`, `imageUnavailable` | `DSColor`, `DSSizing` |
 | `settingsRow` | primitive | `ios`, `android` | `default`, `destructive`, `disabled` | `DSColor`, `DSFont`, `DSLayout`, `DSTextStyle` |
 | `fab` | primitive | `ios`, `android` | `default`, `press` | `DSColor`, `DSLayout`, `DSOpacity`, `DSSizing`, `DSSpace` |
@@ -470,7 +470,7 @@ Rules:
 - Type: `primitive`
 - Mandatory: `true`
 - Platforms: `ios`, `android`
-- States: `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked`
+- States: `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked`, `officialProfile`
 
 Required token families:
 
@@ -487,13 +487,14 @@ Required token usage:
 
 Implementation evidence:
 
-- ios: `dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift`
-- android: `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPostCard.kt`
+- ios: `dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedListView.swift`
+- android: `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPostCard.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSPersonRow.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/feed/ui/FeedScreen.kt`
 
 Rules:
 
 - `Flat article surface with optional 고정된 공지 row (no per-post category chip); avatar, author, time, role, overflow action, body/link preview, engagement summary and action bar retain their order.`
 - `Keep inline expansion, comments, likes, sharing, analytics and accessible actions.`
+- `officialProfile: when a post's officialProfile flag is true the author avatar is the foundation emblem inside the same DSSizing.avatarMd white circle (iOS DSAvatar.foundationEmblem with the FoundationEmblem asset; Android DSEmblemAvatar), with accessibility label / contentDescription '대일외고장학회 공식 프로필'; otherwise the initial-letter avatar is unchanged. Comments are unaffected.`
 
 ### `conversationRow`
 
