@@ -492,7 +492,7 @@ Implementation evidence:
 
 Rules:
 
-- `Flat article surface with optional 고정된 공지 row (no per-post category chip); avatar, author, time, role, overflow action, body/link preview, engagement summary and action bar retain their order.`
+- `Flat article surface with optional 고정된 공지 row (no per-post category chip); avatar, author, time, role, body/link preview, engagement summary and action bar retain their order; feed posts have no overflow (kebab) menu.`
 - `Keep inline expansion, comments, likes, sharing, analytics and accessible actions.`
 - `officialProfile: when a post's officialProfile flag is true the author avatar is the foundation emblem inside the same DSSizing.avatarMd white circle (iOS DSAvatar.foundationEmblem with the FoundationEmblem asset; Android DSEmblemAvatar), with accessibility label / contentDescription '대일외고장학회 공식 프로필'; otherwise the initial-letter avatar is unchanged. Comments are unaffected.`
 
