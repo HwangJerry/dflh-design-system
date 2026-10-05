@@ -21,6 +21,7 @@
 - `chip`
 - `postActionBar`
 - `postCard`
+- `feedCardSkeleton`
 - `conversationRow`
 - `settingsRow`
 - `fab`
@@ -114,7 +115,8 @@
 | `personRow` | primitive | `ios`, `android` | `default`, `self`, `imageLoading`, `imageUnavailable` | `DSColor`, `DSLayout`, `DSSizing`, `DSTextStyle` |
 | `chip` | primitive | `ios`, `android` | `default` | `DSColor`, `DSRadius`, `DSSizing` |
 | `postActionBar` | primitive | `ios`, `android` | `default`, `liked`, `unliked`, `disabled` | `DSColor`, `DSSizing`, `DSTextStyle` |
-| `postCard` | primitive | `ios`, `android` | `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked`, `officialProfile` | `DSColor`, `DSFont`, `DSLayout`, `DSSizing` |
+| `postCard` | primitive | `ios`, `android` | `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked`, `officialProfile`, `preparing`, `collapsing`, `focusHighlighted` | `DSColor`, `DSFont`, `DSLayout`, `DSSizing` |
+| `feedCardSkeleton` | primitive | `ios`, `android` | `initialLoad`, `initialLoadTabRow`, `loadingMore`, `reducedMotion` | `DSColor`, `DSSizing`, `DSLayout`, `DSSpace`, `DSRadius` |
 | `conversationRow` | primitive | `ios`, `android` | `read`, `unread`, `imageUnavailable` | `DSColor`, `DSSizing` |
 | `settingsRow` | primitive | `ios`, `android` | `default`, `destructive`, `disabled` | `DSColor`, `DSFont`, `DSLayout`, `DSTextStyle` |
 | `fab` | primitive | `ios`, `android` | `default`, `press` | `DSColor`, `DSLayout`, `DSOpacity`, `DSSizing`, `DSSpace` |
@@ -470,7 +472,7 @@ Rules:
 - Type: `primitive`
 - Mandatory: `true`
 - Platforms: `ios`, `android`
-- States: `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked`, `officialProfile`
+- States: `default`, `pinned`, `collapsed`, `expanded`, `liked`, `unliked`, `officialProfile`, `preparing`, `collapsing`, `focusHighlighted`
 
 Required token families:
 
@@ -481,7 +483,7 @@ Required token families:
 
 Required token usage:
 
-- surface: `DSColor.rowSurface`, `DSColor.rowDivider`
+- surface: `DSColor.rowSurface`, `DSColor.rowDivider`, `DSColor.feedFocusHighlight`
 - spacing: `DSLayout.screenPadMobile`, `DSLayout.sectionGap`
 - content: `DSSizing.avatarMd`, `DSFont.body`, `DSFont.lineHeightBody`
 
@@ -495,6 +497,51 @@ Rules:
 - `Flat article surface with optional 고정된 공지 row (no per-post category chip); avatar, author, time, role, body/link preview, engagement summary and action bar retain their order; feed posts have no overflow (kebab) menu.`
 - `Keep inline expansion, comments, likes, sharing, analytics and accessible actions.`
 - `officialProfile: when a post's officialProfile flag is true the author avatar is the foundation emblem inside the same DSSizing.avatarMd white circle (iOS DSAvatar.foundationEmblem with the FoundationEmblem asset; Android DSEmblemAvatar), with accessibility label / contentDescription '대일외고장학회 공식 프로필'; otherwise the initial-letter avatar is unchanged. Comments are unaffected.`
+- `Inline expansion (feed include=detail): a post whose list item carries contentHtml expands with no network request; only POST /api/feed/{seq}/view is sent, once per post per app session, fire-and-forget (failures and 404 ignored). An item without contentHtml (older server) falls back to the detail + comments requests.`
+- `Expand is one atomic swap: the collapsed preview stays until the body is laid out (prepared off screen at its final height), then preview -> title + body + attachments + 접기 and the comment section appear in a single animated height change. No spinner row, no 1pt or blank body, no comments before the body; a body slow to load (e.g. late images) is shown at its provisional height and grows with animation.`
+- `The HTML body uses the preview's typography: Noto Sans KR (DSFont.sans) regular, DSFont.body / DSFont.lineHeightBody scaled with Dynamic Type, the preview's body tracking and DSColor.textPrimary.`
+- `Measured body heights are cached per (post, rendering width, content + text size) and reused for re-expands and recycled rows, so they lay out at their final height immediately.`
+- `Collapse with the card's top visible: one animation source rolls the card up in place with non-overlapping elements (no crossfade of preview and body) and the list does not scroll.`
+- `Collapse with the card's top above the viewport: no animated roll-up and no animated programmatic scroll (animating a scroll across a tall web body hangs iOS 26). The list jumps to the card's top and the card collapses without animation (iOS: jump on the unchanged layout, collapse on the next main-queue turn - collapsing and scrolling in one transaction loses the LazyVStack offset and blanks the list), so no blank strip appears while rows are realised; the list may stop short of the card's top only where the content below is too short to scroll further. The collapsed card is then focus-highlighted.`
+- `Focus highlight (orientation after an unanimated jump): a full-bleed DSColor.feedFocusHighlight layer behind the card content (above rowSurface), tinting in over DSAnimation.base, held DSAnimation.default, fading out over DSAnimation.slow; a newer highlight replaces an older one. Under Reduce Motion / animator duration scale 0 there is no fade: a static tint for DSAnimation.slow, then none. Purely visual - no accessibility change. The same highlight marks the comment section (header, comments and composer, full width) after the comment button's unanimated jump.`
+- `Expanding a post never collapses another one, so nothing above the tapped card changes height and the tapped card stays where it is.`
+- `Engagement counts never change while a card is open: a view count returned by the view request is applied at the next expand/collapse swap. A thumbnail/link-preview tap expands a collapsed post and does nothing on an expanded one.`
+- `Pull-to-refresh replaces open posts' bodies, comments and counts with the refreshed inline data (keeping comment drafts) and retries bodies that failed to load. Sharing uses the inline body without a request.`
+
+### `feedCardSkeleton`
+
+- Type: `primitive`
+- Mandatory: `true`
+- Platforms: `ios`, `android`
+- States: `initialLoad`, `initialLoadTabRow`, `loadingMore`, `reducedMotion`
+
+Required token families:
+
+- `DSColor`
+- `DSSizing`
+- `DSLayout`
+- `DSSpace`
+- `DSRadius`
+
+Required token usage:
+
+- surface: `DSColor.rowSurface`, `DSColor.rowDivider`, `DSColor.skeletonFill`
+- layout: `DSSizing.avatarMd`, `DSSizing.actionBarHeight`, `DSSizing.segmentedTabHeight`, `DSSizing.segmentedTabIndicator`, `DSLayout.screenPadMobile`, `DSLayout.sectionGap`
+- shape: `DSRadius.chip`
+- motion: `DSOpacity.surfaceSoft`, `DSAnimation.slow`
+
+Implementation evidence:
+
+- ios: `dflh-saf-v2-swift/Sources/App/DesignSystem/DSFeedCardSkeleton.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Feed/FeedListView.swift`
+- android: `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSFeedCardSkeleton.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/feed/ui/FeedScreen.kt`
+
+Rules:
+
+- `Placeholder for feed post cards while a feed page loads: the same flat DSColor.rowSurface card and geometry as postCard - DSSizing.avatarMd circle, name bar and shorter meta bar, three body lines (the last shorter), a short engagement bar, the rowDivider and an action bar of DSSizing.actionBarHeight with three centred bars. Bones are DSColor.skeletonFill with DSRadius.chip corners; cards are DSLayout.sectionGap apart.`
+- `Tab-row skeleton: while the initial card skeleton shows (no categories yet) the segmentedTabs row is replaced by three equal placeholder slots, each a centred DSSizing.avatarMd-wide skeletonFill label bar, with a skeletonFill bar of DSSizing.segmentedTabIndicator height under the first slot; same DSSizing.segmentedTabHeight, side inset, bottom rowDivider and rowSurface as the real row, so the row does not jump when the categories arrive. It pulses with the cards and never shows a lone 전체 tab. Shown exactly when the initial card skeleton is (not for pagination, pull-to-refresh or a failed first load).`
+- `Motion: a slow opacity pulse of the bones between 1 and DSOpacity.surfaceSoft (easeInOut, DSAnimation.slow x2 per phase); no motion at all under Reduce Motion / animator duration scale 0. No spinner and no text.`
+- `Accessibility: the whole skeleton group is one element labelled 피드를 불러오는 중 (identifier ds-feed-skeleton on iOS); bones are hidden. The tab-row skeleton is hidden from VoiceOver / TalkBack and is represented by that same element.`
+- `Usage: three cards replace the list on the first load when no posts are cached; one card is the pagination footer while a next page loads or silently retries (it replaces the 다음 소식을 불러오는 중... loading row and keeps the 2s/4s silent retry and pause rules). Pull-to-refresh over an existing list shows no skeleton; a first-load failure shows the calm stateView instead.`
 
 ### `conversationRow`
 
@@ -950,9 +997,11 @@ Rules:
 - `Web retains its existing hero/sidebar layout; Remember-style blocks apply only to iOS/Android.`
 - `Load failures stay calm (spec 0.3/0.4): no red cards or text, no server/network wording, no internal numbers and no 다시 시도 / 다시 불러오기 buttons; use the stateView template. First-load failure: 소식을 불러오지 못했어요 / 화면을 아래로 당겨 새로고침해 주세요. with the pull arrow; empty: 표시할 소식이 없어요 / 검색어나 카테고리를 바꿔 확인해 주세요.`
 - `Pull-to-refresh reloads the first page; on success the list is replaced, on failure the existing list (or the calm state) stays with no message (spec 0.6). Android shows no red 새로고침하지 못했습니다 · 다시 시도 line.`
-- `A failed next page keeps only the stateView loading row, retries silently after 2s and 4s (two more attempts), then hides the row until the user reaches the list end again or pulls to refresh (spec 0.6, proposed defaults).`
+- `A failed next page keeps only the pagination footer (one feedCardSkeleton card), retries silently after 2s and 4s (two more attempts), then hides it until the user reaches the list end again or pulls to refresh (spec 0.6, proposed defaults).`
 - `Expanded body failure is one grey line 내용을 불러오지 못했어요. 당겨서 새로고침해 주세요.; a missing post reads 삭제되었거나 볼 수 없는 소식이에요. without a number; a failed like silently reverts the optimistic state; a failed comment keeps the draft in the composer.`
 - `Copy per spec 0.4/E: empty E05 (iOS) / E04 (Android) 표시할 소식이 없어요 / 검색어나 카테고리를 바꿔 확인해 주세요.; a missing post (iOS E12) reads 삭제되었거나 볼 수 없는 소식이에요.`
+- `First load with no cached posts shows three feedCardSkeleton cards under the feedCardSkeleton tab-row skeleton (three placeholder tabs, never a lone 전체 tab); pagination shows one card as the list-end footer; pull-to-refresh keeps the existing list and tabs. Expansion follows postCard's inline-expansion rules (GET /api/feed?include=detail; local expand; one view request per post per session).`
+- `Orientation after unanimated jumps: collapsing a card from below (its top above the viewport) and the comment button's jump to the comment section never animate the scroll; the landing target (the collapsed card, or the comment section) gets postCard's brief feedFocusHighlight tint (static and short under Reduce Motion). A collapse with the card's top visible animates in place with no scroll and no highlight.`
 
 ### `screen.messages`
 
