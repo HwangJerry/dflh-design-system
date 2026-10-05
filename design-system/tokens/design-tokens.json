@@ -1,5 +1,5 @@
 {
-  "version": "1.9.0",
+  "version": "1.10.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -132,6 +132,7 @@
     "rowSurface": "{palette.paper}",
     "rowDivider": "{palette.lineSoft}",
     "skeletonFill": "{palette.lineSoft}",
+    "feedFocusHighlight": "{palette.brandAccentSubtle}",
     "sectionGap": "{palette.canvas}",
     "chipAccentBg": "{palette.brandAccentSubtle}",
     "chipAccentText": "{palette.brandAccentText}",
@@ -186,6 +187,7 @@
       "rowSurface": "{palette.paper}",
       "rowDivider": "{palette.lineSoft}",
       "skeletonFill": "{palette.lineSoft}",
+      "feedFocusHighlight": "{palette.brandAccentSubtle}",
       "sectionGap": "{palette.canvas}",
       "chipAccentBg": "{palette.brandAccentSubtle}",
       "chipAccentText": "{palette.brandAccentText}",
@@ -239,6 +241,7 @@
       "rowSurface": "{palette.paper}",
       "rowDivider": "{palette.lineSoft}",
       "skeletonFill": "{palette.lineSoft}",
+      "feedFocusHighlight": "{palette.brandAccentSubtle}",
       "sectionGap": "{palette.canvas}",
       "chipAccentBg": "{palette.brandAccentSubtle}",
       "chipAccentText": "{palette.brandAccentText}",
