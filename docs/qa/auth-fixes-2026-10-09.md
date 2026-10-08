@@ -90,3 +90,6 @@ DFLH_DOCKER_TESTS=1 go test -count=1 -timeout=12m ./cmd/server -run 'TestAuthQAS
 남은 항목은 수정 소스 통합·서버 적용, 수정 앱 설치, 실제 기기에서 오프라인 cold start → 재시도, 로그아웃 → 재실행, native 회원의 Kakao 연결 → 해제 → 재연결 → Kakao/ID-PW 재로그인이다. 앱 서명이 다를 경우 기존 실기기 앱을 임의로 삭제해서 설치하지 않는다.
 
 작업 3 이후의 카카오 취소/fallback·탈퇴 결함은 이 수정에 포함하지 않았다. iOS 작업은 중지 상태를 유지하며, Apple의 이번 결과는 공통 backend 경로의 합성 검증이다.
+
+
+작업 3·4·5의 후속 구현·검증과 추가 커밋은 [별도 기록](auth-fixes-steps-3-5-2026-10-09.md)에 정리했다.
