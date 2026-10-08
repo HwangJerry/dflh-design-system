@@ -2,6 +2,8 @@
 
 Samsung Galaxy Note9(SM-N960N), Android 10에서 수정 앱으로 실제 회원가입·로그인·로그아웃·연동·탈퇴를 검수했다. **Android 수정 경로는 아래 범위에서 통과했지만, 운영 서버의 재연결 및 탈퇴 최종 완료 결함은 남아 있다.** iOS는 사용자의 요청대로 재개하지 않았다.
 
+이 보고서는 운영 배포 전 검수 결과다. 이후 사용자가 승인한 운영 migration·서버/관리자 배포와 재연결 재검수는 [운영 배포 보고서](auth-production-rollout-2026-10-09.md)에 기록했다.
+
 ## 검수 앱과 환경
 
 - Android 소스: `6bf4c61`, `fix/auth-session-generation-20261009`.
