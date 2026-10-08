@@ -160,7 +160,14 @@ Balance is entered manually in the admin SPA Donation config section and stored 
 Header "쪽지" [search, bell] → SegmentedTabs [전체, 안 읽음] → ConversationRow list on `rowSurface`
 → FAB 새 쪽지 (opens existing compose). Thread: sub header with back, avatar 32, name 16/700,
 "기수 학과 · 회사" 12 ink3, kebab → date pill centered → bubbles → composer: 44px pill input on
-`paperAlt` + 44 round send button `bubbleMine`. Unread count remains on the tab bar.
+`paperAlt` + 44 round send button `bubbleMine`. Unread message count remains on the tab bar.
+For a sent message, place the unread recipient count immediately left of the bubble, above
+its timestamp, using the accessible amber `messageUnreadCount` text color. Display the exact
+number of other participants who have not read the message, excluding its sender. Hide zero;
+received, pending and failed messages carry no count. The current 1:1 API maps `read=false`
+to 1 and `read=true` to 0. Native decoders accept an optional future `unreadRecipientCount`
+integer that overrides this fallback, so group chats can use the same component. A read
+message shows only its timestamp; remove the previous “읽음” text.
 
 ### 5.6 내정보 (MyPage.dc.html)
 Header "내정보" [bell, gear] → Profile section: avatar 64, name 22/700 + 기수 chip, "직함 | 회사",
