@@ -2176,7 +2176,8 @@
       "implementationEvidence": {
         "ios": [
           "dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift",
-          "dflh-saf-v2-swift/Sources/App/ProfileView.swift"
+          "dflh-saf-v2-swift/Sources/App/ProfileView.swift",
+          "dflh-saf-v2-swift/Sources/App/Feature/Profile/BlockedMembersView.swift"
         ],
         "web": [
           "dflh-saf-v2/frontend/src/pages/MyPage.tsx",
@@ -2195,7 +2196,9 @@
           "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/profile/ui/BusinessCardEditor.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSChip.kt",
           "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSettingsRow.kt",
-          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSectionBlock.kt"
+          "dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSSectionBlock.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/profile/ui/MessagePreferencesScreen.kt",
+          "dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/profile/ui/BlockedMembersScreen.kt"
         ]
       },
       "notes": "The copyright uses rememberCaption (11px), matching the mockup; the former footnote/mini requirement (10px) is obsolete. Edit/password/account forms retain their existing behavior.",
