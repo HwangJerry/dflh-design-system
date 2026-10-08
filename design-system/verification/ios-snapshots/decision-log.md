@@ -427,3 +427,29 @@ compared with its baseline and diff image; every change is intentional:
 
 No clipping, overlap or alignment regressions were found. Baselines were
 promoted with `npm run visual-check-ios:update-baseline` after user approval.
+
+## 2026-10-08 — Native message unread recipient count
+
+The user requested a KakaoTalk-style number beside sent bubbles, with the integer
+representing other participants who have not read the message in future group chats.
+Reviewed fresh light and dark screenshots on Codex iPhone 15 (iOS 26.0, Korean,
+Large text, 9:41). The amber count is left of the bubble, right-aligned above its
+time; the old 읽음 label is removed. No clipping or overlap was found.
+
+Only `iOS-MessagesThread-mobile.png` was promoted, using the baseline-update command
+with the manifest scoped to `screen.messages.thread`, followed by a passing scoped
+guard. The manifest's pre-existing working-tree edit was preserved byte-for-byte.
+A fresh parent build at `9de86b5` was captured on the same simulator: parent/current
+Feed and MyPage pixels are identical with a three-second settling delay. The only
+parent/current thread difference is 1,038 pixels in the count/time metadata area.
+The previous thread baseline also predates an existing bottom safe-area background
+change; the new thread image reflects current main plus the requested receipt.
+
+The fresh full-screen capture guard detected pre-existing Feed and MyPage baseline
+drift; their baselines, tracked captures and screen implementations were left
+unchanged. Its 1.8-second capture
+also caught Feed before the fixture's expanded WebView settled; the parent/current
+comparison uses three seconds. iOS focused tests: 49 passed; Android message and
+component tests: 108 passed, including exact group counts and light/dark placement.
+The iOS read-event regression found stale cached records taking precedence over
+fresh server read state; latest-page records now win while older pages remain.
