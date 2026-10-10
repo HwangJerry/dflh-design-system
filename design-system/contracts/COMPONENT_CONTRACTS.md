@@ -1349,7 +1349,7 @@ Rules:
 - Mandatory: `true`
 - Platforms: `ios`, `android`
 - States: `default`, `signingIn`, `error`
-- Required blocks: `navyHero`, `title`, `intro`, `loginButtons`, `errorSlot`, `helpLink`
+- Required blocks: `brandHeader`, `title`, `intro`, `loginButtons`, `errorSlot`, `helpLink`
 
 Required token families:
 
@@ -1359,7 +1359,7 @@ Required token families:
 
 Required token usage:
 
-- hero: `DSColor.mobileLoginHero`, `DSSizing.mobileLoginEmblemSize`, `DSTextStyle.mobileLoginHeadline`
+- brandHeader: `DSSizing.loginLandingEmblemSize`, `DSTextStyle.loginSchoolName`, `DSTextStyle.loginFoundationName`
 - actions: `DSColor.kakao`, `DSReservedErrorSlot`
 
 Implementation evidence:
@@ -1369,9 +1369,11 @@ Implementation evidence:
 
 Rules:
 
-- `Navy (#172849) hero with the emblem and the title 대일외국어고등학교 장학회 (26 bold, centred); the navy fills the whole background so no white shows behind the card corners, and the card runs to the bottom edge.`
-- `Card, top to bottom: 동문 인증 후 커뮤니티를 이용할 수 있어요. (centred, above the buttons), login buttons (카카오 / Apple on iOS only / 아이디로 로그인), the reservedErrorSlot, space, and 로그인 도움말 centred at the bottom.`
-- `Removed: 동문과 이어지고, 후배의 내일을 응원해요., DAEIL SCHOLARSHIP FOUNDATION, 대일외고 동문을 위한 커뮤니티, 처음이라면 동문 정보를 입력해 주세요.`
+- `Use one theme-aware background from the top safe area through the bottom edge, with no hero/card boundary.`
+- `Show the unpadded 72-point emblem above two centred lines: 대일외국어고등학교 (21 semibold), 장학회 (28 bold).`
+- `Keep the centred helper above the login actions; actions have a minimum height of 52, radius 14, and a 12-point gap. Order is Kakao, Apple on iOS only, then credentials.`
+- `Reserve an error slot and keep 로그인 도움말 at the bottom when space permits; the whole column scrolls in short windows or at large text sizes.`
+- `Dark mode uses the dark canvas and action surface, light title text, and a white native Apple button; Kakao yellow stays constant.`
 
 ### `screen.socialSignUp`
 

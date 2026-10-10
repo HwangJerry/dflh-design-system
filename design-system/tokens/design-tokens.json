@@ -1,5 +1,5 @@
 {
-  "version": "1.11.0",
+  "version": "1.12.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -164,7 +164,9 @@
     "cautionSurface": "{palette.brandAccentSubtle}",
     "rejectionBorder": "#FECACA",
     "statusRejectedSurface": "#FEF2F2",
-    "messageUnreadCount": "{palette.brandAccentText}"
+    "messageUnreadCount": "{palette.brandAccentText}",
+    "loginHeading": "#172849",
+    "loginActionSurface": "{palette.paper}"
   },
   "colorSchemes": {
     "light": {
@@ -220,7 +222,9 @@
       "cautionSurface": "{palette.brandAccentSubtle}",
       "rejectionBorder": "#FECACA",
       "statusRejectedSurface": "#FEF2F2",
-      "messageUnreadCount": "{palette.brandAccentText}"
+      "messageUnreadCount": "{palette.brandAccentText}",
+      "loginHeading": "#172849",
+      "loginActionSurface": "{palette.paper}"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -275,7 +279,9 @@
       "cautionSurface": "{palette.brandAccentSubtle}",
       "rejectionBorder": "#7F1D1D",
       "statusRejectedSurface": "#3A1F26",
-      "messageUnreadCount": "{palette.brandAccentText}"
+      "messageUnreadCount": "{palette.brandAccentText}",
+      "loginHeading": "{palette.ink1}",
+      "loginActionSurface": "{palette.paper}"
     }
   },
   "opacity": {
@@ -334,7 +340,9 @@
       "cardAction": "13px",
       "buttonLabel": "16px",
       "buttonLabelRegular": "15px",
-      "buttonLabelCompact": "13px"
+      "buttonLabelCompact": "13px",
+      "loginSchoolName": "21px",
+      "loginFoundationName": "28px"
     },
     "weight": {
       "regular": 400,
@@ -380,7 +388,8 @@
     "button": "8px",
     "chip": "4px",
     "thumb": "4px",
-    "section": "0px"
+    "section": "0px",
+    "loginAction": "14px"
   },
   "elevation": {
     "xs": "0 1px 2px 0 rgba(0,0,0,0.03)",
@@ -462,7 +471,13 @@
     "bottomTabHeight": "56px",
     "signupPhoto": "140px",
     "fullScreenLoader": "72px",
-    "composeMessageMinHeight": "220px"
+    "composeMessageMinHeight": "220px",
+    "loginLandingEmblemSize": "72px",
+    "loginLandingMaxWidth": "390px",
+    "loginLandingHorizontalInset": "28px",
+    "loginLandingBrandTopInset": "132px",
+    "loginLandingActionsGap": "72px",
+    "loginLandingMinimumHeight": "640px"
   },
   "motion": {
     "duration": {
