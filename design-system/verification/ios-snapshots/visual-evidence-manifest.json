@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T16:33:39.608Z",
+  "generatedAt": "2026-10-11T09:19:57.539Z",
   "status": "passed",
   "baselineDir": "design-system/verification/ios-snapshots/baseline",
   "captureDir": "design-system/verification/ios-snapshots/captures",
@@ -90,8 +90,8 @@
       "capture": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/captures/iOS-MessagesThread-mobile.png",
       "baseline": "/Users/jerryhwang/Workspace/03_daeil/design-system/verification/ios-snapshots/baseline/iOS-MessagesThread-mobile.png",
       "diff": null,
-      "hash": "1f0b1596f6a8ac1c5b040a3f5ff8ee783183d10cd1c35b74aeffc96ff699b804",
-      "baselineHash": "1f0b1596f6a8ac1c5b040a3f5ff8ee783183d10cd1c35b74aeffc96ff699b804",
+      "hash": "04ef355dad77d97de8bdffba069c300ecdf9f2bcc2d1f37fbb023d29f4e85b3b",
+      "baselineHash": "04ef355dad77d97de8bdffba069c300ecdf9f2bcc2d1f37fbb023d29f4e85b3b",
       "changedPixelRatio": 0,
       "changedPixels": 0,
       "totalPixels": 3013524,
