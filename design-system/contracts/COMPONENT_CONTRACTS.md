@@ -135,7 +135,7 @@
 | `screen.messages` | screen | `web`, `ios`, `android` | `loading`, `empty`, `error`, `data`, `refreshing`, `all`, `unread`, `thread`, `sending`, `sendError`, `blocked`, `reporting` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
 | `screen.myPage` | screen | `web`, `ios`, `android` | `loading`, `error`, `authenticated`, `signedOut`, `editing`, `saving`, `signingOut`, `publicContact`, `privateContact` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
 | `screen.alumni` | screen | `ios`, `android` | `loading`, `loadingMore`, `empty`, `error`, `data`, `searching`, `all`, `sameCohort`, `sameJob`, `filtered`, `sorted`, `self`, `detail`, `privateContact`, `imageUnavailable` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
-| `screen.donation` | screen | `ios`, `android` | `loading`, `data`, `empty`, `error`, `refreshing`, `balanceAvailable`, `balanceUnavailable`, `goalAvailable`, `goalUnavailable`, `linkUnavailable` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
+| `screen.donation` | screen | `ios`, `android` | `preparing`, `linkUnavailable`, `browserOpenError` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
 | `screen.messageCompose` | screen | `ios`, `android` | `default`, `searching`, `empty`, `error`, `selected`, `limitReached`, `composing`, `sending`, `partialFailure`, `sent` | `DSColor`, `DSTextStyle`, `DSRadius`, `DSSpace`, `DSSizing`, `DSOpacity`, `DSLineWidth` |
 | `screen.webSheet` | screen | `ios`, `android` | `loading`, `data`, `error` | `DSColor`, `DSSpace`, `DSRadius`, `DSOpacity`, `DSLineWidth` |
 | `screen.accountDeletion` | screen | `android` | `idle`, `submitting`, `data`, `empty`, `invalid`, `error` | `DSColor`, `DSFont`, `DSSpace`, `DSRadius` |
@@ -1120,8 +1120,8 @@ Rules:
 - Type: `screen`
 - Mandatory: `true`
 - Platforms: `ios`, `android`
-- States: `loading`, `data`, `empty`, `error`, `refreshing`, `balanceAvailable`, `balanceUnavailable`, `goalAvailable`, `goalUnavailable`, `linkUnavailable`
-- Required blocks: `header`, `cumulativeAmount`, `goalProgress`, `monthAmount`, `optionalBalanceAmount`, `optionalBalanceAsOf`, `myTree`, `externalDonationCta`
+- States: `preparing`, `linkUnavailable`, `browserOpenError`
+- Required blocks: `header`, `gratitude`, `preparingState`, `externalDonationCta`
 
 Required token families:
 
@@ -1132,8 +1132,8 @@ Required token families:
 
 Required token usage:
 
-- summary: `DSColor.rowSurface`, `DSColor.progressFill`, `DSColor.progressTrack`, `DSColor.chipAccentText`, `DSRadius.button`
-- sections: `DSLayout.sectionGap`, `DSLayout.screenPadMobile`
+- preparing: `DSEmptyState`, `DSColor.background`, `DSTextStyle.rememberCaptionLarge`
+- layout: `DSLayout.screenPadMobile`, `DSSpace.xlarge`
 - cta: `DSPrimaryButton`
 
 Implementation evidence:
@@ -1143,13 +1143,14 @@ Implementation evidence:
 
 Rules:
 
-- `Native 기부 summary shows 장학회 전체 누적 기부, optional goal/progress, 이번 달 기부액 and optional 계좌 잔액.`
-- `Hide the balance card when balanceAmount is absent; display 계좌 잔액 기준일 YYYY.MM.DD · 장학회 관리자 입력 when dated. Never render 참여 동문/donorCount.`
-- `Keep 내 나무 and the 해피나눔에서 기부하기 external CTA; do not introduce an in-app payment flow.`
-- `Pull-to-refresh reloads the first page; on success the list is replaced, on failure the existing list (or the calm state) stays with no message (spec 0.6).`
-- `Summary failure (iOS I05 / Android I04): the cards show grey 기부 현황을 불러오지 못했어요 and 나의 기부 현황을 불러오지 못했어요 with one line above, 화면을 아래로 당겨 새로고침해 주세요.; the donate button stays; the tab supports pull-to-refresh. No red text or retry button.`
-- `If the external browser cannot open (iOS I06), one grey line under the button, 브라우저를 열지 못했어요. 잠시 후 다시 눌러 주세요., replaces the alert.`
-- `At 0원 the tree line under 나의 누적 기부 reads 첫 기부를 하면 새싹이 돋아요. instead of 다음 단계까지 1원.`
+- `Keep the navigation tab label 기부 and use 명예의 전당 as the single screen header.`
+- `Show 장학회와 함께해 주셔서 감사합니다. below the shared header and a calm heart icon with 준비중입니다. centered in the available body.`
+- `Use the shared app background, header, calm-state and button components in light and dark appearance. Do not add a separate Hall surface, decorative card, duplicate title or helper text below the CTA.`
+- `Remove 장학회 전체 기부 현황 and 내 나무 from the active tab. Do not load donation summary or personal donation data for this preparing screen; no fake donor records or auto-scroll are shown.`
+- `Keep 해피나눔에서 기부하기 fixed above the existing bottom navigation (or at the bottom of the readable column when the navigation rail is used). The CTA stays available independently of Hall data.`
+- `Preserve the hosted Happy Nanum URL and platform navigation behavior. No native payment form, order or subscription flow is added.`
+- `If the iOS external browser cannot open, show a grey 브라우저를 열지 못했어요. 잠시 후 다시 눌러 주세요. line above the fixed CTA. Android disables the CTA only if the configured URL is invalid.`
+- `The future donor wall will use the approved plaques, slow downward flow, top/bottom fades, manual scrolling and a seamless last-to-first cycle after real data is supplied. This preparing screen does not imply that feature is live.`
 
 ### `screen.messageCompose`
 
