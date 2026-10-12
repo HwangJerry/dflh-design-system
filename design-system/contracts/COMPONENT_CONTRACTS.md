@@ -1121,7 +1121,7 @@ Rules:
 - Mandatory: `true`
 - Platforms: `ios`, `android`
 - States: `unengraved`, `linkUnavailable`, `browserOpenError`
-- Required blocks: `header`, `gratitude`, `hallPlaqueWall`, `externalDonationCta`
+- Required blocks: `header`, `hallPlaqueWall`, `externalDonationCta`
 
 Required token families:
 
@@ -1132,7 +1132,7 @@ Required token families:
 
 Required token usage:
 
-- hallWall: `DonationHallOfFameView`, `DSColor.hallPlaqueSurface`, `DSColor.hallPlaqueBorder`, `DSColor.hallPlaqueHeading`, `DSSizing.hallPlaqueHeight`, `DSTextStyle.rememberCaptionLarge`
+- hallWall: `DonationHallOfFameView`, `DSColor.hallPlaqueSurface`, `DSColor.hallPlaqueBorder`, `DSColor.hallPlaqueHeading`, `DSSizing.hallPlaqueHeight`
 - layout: `DSLayout.screenPadMobile`, `DSSpace.xlarge`
 - cta: `DSPrimaryButton`
 
@@ -1144,7 +1144,7 @@ Implementation evidence:
 Rules:
 
 - `Keep the navigation tab label 기부 and use 명예의 전당 as the single screen header with its existing notification action.`
-- `Show 장학회와 함께해 주셔서 감사합니다. below the shared header. Replace the preparing heart and notice with the approved unengraved plaque wall.`
+- `Mount the unengraved plaque wall directly below the shared header. The gratitude line was removed at the user’s request.`
 - `Render one rectangular plaque for each approved tier, in descending order: 5,000만원 이상, 1,000만원 이상, 500만원 이상, 300만원 이상, 100만원 이상. Use the scheme-aware ivory/charcoal hallPlaqueSurface, thin hallPlaqueBorder, and muted gold hallPlaqueHeading flanked by fine rules. Keep names and affiliations completely blank; add no mock donor names, skeleton bars, counts or loading animation.`
 - `Use 280pt/dp blank plaques, 24pt/dp gaps and shared 20pt/dp horizontal insets. Only the wall scrolls manually; 48pt/dp top and 56pt/dp bottom fades blend into the shared background and must not intercept gestures or accessibility. Content padding keeps every tier readable at either end.`
 - `Keep shared app background, header, CTA and existing bottom navigation in light and dark appearance. No duplicate title or helper text below the CTA.`
