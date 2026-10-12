@@ -349,6 +349,8 @@ object DesignTokens {
         val feedPostCardRadius = 18.dp
         val feedPostDetailSectionSpacing = 10.dp
         val feedPostDetailSpacing = 16.dp
+        val hallHeartbeatFirstAmplitude = 0.06f
+        val hallHeartbeatSecondAmplitude = 0.035f
         val messageBubbleMaxWidthRatio = 0.76f
         val navigationMotionEasingX1 = 0.25f
         val navigationMotionEasingX2 = 0.3f

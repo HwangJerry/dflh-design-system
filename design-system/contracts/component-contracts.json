@@ -2394,7 +2394,8 @@
       "notes": "Native 기부 tabs show the Hall of Fame preparing state until real donor data is available. The existing Happy Nanum flow remains available: default browser on iOS, in-app web sheet on Android. Legacy donation cards stay in the source tree but are not mounted or fetched by the tab.",
       "rules": [
         "Keep the navigation tab label 기부 and use 명예의 전당 as the single screen header.",
-        "Show 장학회와 함께해 주셔서 감사합니다. below the shared header and a calm heart icon with 준비중입니다. centered in the available body. Dim the preparing icon and label together with the shared mutedIcon opacity token (0.6), while the gratitude and CTA retain their standard styles.",
+        "Show 장학회와 함께해 주셔서 감사합니다. below the shared header and a calm heart icon with 2026년 명예의 전당을 준비중입니다. centered in the available body. Dim the preparing icon and label together with the shared mutedIcon opacity token (0.6), while the gratitude and CTA retain their standard styles.",
+        "Animate only the decorative heart with a 2.45-second double beat: 6% then 3.5% scale increase using hallHeartbeat amplitude tokens and the shared quick/base/slow durations. Keep the title stationary. Stop when the app is inactive or Reduce Motion / remove animations is enabled; other calm states remain static by default.",
         "Use the shared app background, header, calm-state and button components in light and dark appearance. Do not add a separate Hall surface, decorative card, duplicate title or helper text below the CTA.",
         "Remove 장학회 전체 기부 현황 and 내 나무 from the active tab. Do not load donation summary or personal donation data for this preparing screen; no fake donor records or auto-scroll are shown.",
         "Keep 해피나눔에서 기부하기 fixed above the existing bottom navigation (or at the bottom of the readable column when the navigation rail is used). The CTA stays available independently of Hall data.",
