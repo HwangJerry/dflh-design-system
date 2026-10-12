@@ -135,7 +135,7 @@
 | `screen.messages` | screen | `web`, `ios`, `android` | `loading`, `empty`, `error`, `data`, `refreshing`, `all`, `unread`, `thread`, `sending`, `sendError`, `blocked`, `reporting` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
 | `screen.myPage` | screen | `web`, `ios`, `android` | `loading`, `error`, `authenticated`, `signedOut`, `editing`, `saving`, `signingOut`, `publicContact`, `privateContact` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
 | `screen.alumni` | screen | `ios`, `android` | `loading`, `loadingMore`, `empty`, `error`, `data`, `searching`, `all`, `sameCohort`, `sameJob`, `filtered`, `sorted`, `self`, `detail`, `privateContact`, `imageUnavailable` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
-| `screen.donation` | screen | `ios`, `android` | `preparing`, `linkUnavailable`, `browserOpenError` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
+| `screen.donation` | screen | `ios`, `android` | `unengraved`, `linkUnavailable`, `browserOpenError` | `DSColor`, `DSTextStyle`, `DSSpace`, `DSLayout` |
 | `screen.messageCompose` | screen | `ios`, `android` | `default`, `searching`, `empty`, `error`, `selected`, `limitReached`, `composing`, `sending`, `partialFailure`, `sent` | `DSColor`, `DSTextStyle`, `DSRadius`, `DSSpace`, `DSSizing`, `DSOpacity`, `DSLineWidth` |
 | `screen.webSheet` | screen | `ios`, `android` | `loading`, `data`, `error` | `DSColor`, `DSSpace`, `DSRadius`, `DSOpacity`, `DSLineWidth` |
 | `screen.accountDeletion` | screen | `android` | `idle`, `submitting`, `data`, `empty`, `invalid`, `error` | `DSColor`, `DSFont`, `DSSpace`, `DSRadius` |
@@ -1120,8 +1120,8 @@ Rules:
 - Type: `screen`
 - Mandatory: `true`
 - Platforms: `ios`, `android`
-- States: `preparing`, `linkUnavailable`, `browserOpenError`
-- Required blocks: `header`, `gratitude`, `preparingState`, `externalDonationCta`
+- States: `unengraved`, `linkUnavailable`, `browserOpenError`
+- Required blocks: `header`, `gratitude`, `hallPlaqueWall`, `externalDonationCta`
 
 Required token families:
 
@@ -1132,26 +1132,27 @@ Required token families:
 
 Required token usage:
 
-- preparing: `DSEmptyState`, `DSColor.background`, `DSTextStyle.rememberCaptionLarge`
+- hallWall: `DonationHallOfFameView`, `DSColor.hallPlaqueSurface`, `DSColor.hallPlaqueBorder`, `DSColor.hallPlaqueHeading`, `DSSizing.hallPlaqueHeight`, `DSTextStyle.rememberCaptionLarge`
 - layout: `DSLayout.screenPadMobile`, `DSSpace.xlarge`
 - cta: `DSPrimaryButton`
 
 Implementation evidence:
 
-- ios: `dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationLinkView.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Donation/MyDonationTreeCard.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationTreeIllustration.swift`
-- android: `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSRememberStyle.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationScreen.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationSummarySection.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/MyDonationTreeCard.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationTreeIllustration.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSActionButtons.kt`
+- ios: `dflh-saf-v2-swift/Sources/App/DesignSystem/DSComponents.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationLinkView.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Donation/MyDonationTreeCard.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationTreeIllustration.swift`, `dflh-saf-v2-swift/Sources/App/Feature/Donation/DonationHallOfFameView.swift`
+- android: `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSComponents.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSRememberStyle.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/TargetScreenDesignSystemBindings.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/screens/ScreenTokenMaps.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationScreen.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationSummarySection.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/MyDonationTreeCard.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationTreeIllustration.kt`, `dflh-saf-v2-kotlin/design-system/src/main/kotlin/com/dflh/designsystem/DSActionButtons.kt`, `dflh-saf-v2-kotlin/app/src/main/kotlin/com/dflh/app/feature/donation/ui/DonationHallOfFame.kt`
 
 Rules:
 
-- `Keep the navigation tab label 기부 and use 명예의 전당 as the single screen header.`
-- `Show 장학회와 함께해 주셔서 감사합니다. below the shared header and a calm heart icon with 2026년 명예의 전당을 준비중입니다. centered in the available body. Dim the preparing icon and label together with the shared mutedIcon opacity token (0.6), while the gratitude and CTA retain their standard styles.`
-- `Animate only the decorative heart with a 2.45-second double beat: 6% then 3.5% scale increase using hallHeartbeat amplitude tokens and the shared quick/base/slow durations. Keep the title stationary. Stop when the app is inactive or Reduce Motion / remove animations is enabled; other calm states remain static by default.`
-- `Use the shared app background, header, calm-state and button components in light and dark appearance. Do not add a separate Hall surface, decorative card, duplicate title or helper text below the CTA.`
-- `Remove 장학회 전체 기부 현황 and 내 나무 from the active tab. Do not load donation summary or personal donation data for this preparing screen; no fake donor records or auto-scroll are shown.`
-- `Keep 해피나눔에서 기부하기 fixed above the existing bottom navigation (or at the bottom of the readable column when the navigation rail is used). The CTA stays available independently of Hall data.`
+- `Keep the navigation tab label 기부 and use 명예의 전당 as the single screen header with its existing notification action.`
+- `Show 장학회와 함께해 주셔서 감사합니다. below the shared header. Replace the preparing heart and notice with the approved unengraved plaque wall.`
+- `Render one rectangular plaque for each approved tier, in descending order: 5,000만원 이상, 1,000만원 이상, 500만원 이상, 300만원 이상, 100만원 이상. Use the scheme-aware ivory/charcoal hallPlaqueSurface, thin hallPlaqueBorder, and muted gold hallPlaqueHeading flanked by fine rules. Keep names and affiliations completely blank; add no mock donor names, skeleton bars, counts or loading animation.`
+- `Use 280pt/dp blank plaques, 24pt/dp gaps and shared 20pt/dp horizontal insets. Only the wall scrolls manually; 48pt/dp top and 56pt/dp bottom fades blend into the shared background and must not intercept gestures or accessibility. Content padding keeps every tier readable at either end.`
+- `Keep shared app background, header, CTA and existing bottom navigation in light and dark appearance. No duplicate title or helper text below the CTA.`
+- `Remove 장학회 전체 기부 현황 and 내 나무 from the active tab. Do not load donation summary or personal donation data for this wall; no donor records, automatic flow or network loading state is implied.`
+- `Keep 해피나눔에서 기부하기 fixed above the existing bottom navigation, or at the bottom of the readable column when the navigation rail is used. The CTA remains reachable when the wall is scrolled or a donation sheet is dismissed.`
 - `Preserve the hosted Happy Nanum URL and platform navigation behavior. No native payment form, order or subscription flow is added.`
 - `If the iOS external browser cannot open, show a grey 브라우저를 열지 못했어요. 잠시 후 다시 눌러 주세요. line above the fixed CTA. Android disables the CTA only if the configured URL is invalid.`
-- `The future donor wall will use the approved plaques, slow downward flow, top/bottom fades, manual scrolling and a seamless last-to-first cycle after real data is supplied. This preparing screen does not imply that feature is live.`
+- `Expose the tier and 빈 현판 together to assistive technology. Decorative frames, rules and fades are not separate accessibility elements. Automatic downward flow and last-to-first cycling remain deferred until actual donor records are supplied.`
 
 ### `screen.messageCompose`
 
