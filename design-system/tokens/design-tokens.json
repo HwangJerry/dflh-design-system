@@ -518,6 +518,10 @@
       "easingX2": "0.3",
       "easingY2": "1.0"
     },
+    "hallHeartbeat": {
+      "firstAmplitude": "0.06",
+      "secondAmplitude": "0.035"
+    },
     "adaptive": {
       "shortHeight": "520px",
       "largeWidth": "840px",

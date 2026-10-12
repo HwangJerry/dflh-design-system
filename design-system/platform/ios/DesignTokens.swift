@@ -413,6 +413,8 @@ public enum DSLayout {
   public static let feedPostCardRadius: CGFloat = 18
   public static let feedPostDetailSectionSpacing: CGFloat = 10
   public static let feedPostDetailSpacing: CGFloat = 16
+  public static let hallHeartbeatFirstAmplitude: CGFloat = 0.06
+  public static let hallHeartbeatSecondAmplitude: CGFloat = 0.035
   public static let messageBubbleMaxWidthRatio: CGFloat = 0.76
   public static let navigationMotionEasingX1: CGFloat = 0.25
   public static let navigationMotionEasingX2: CGFloat = 0.3
