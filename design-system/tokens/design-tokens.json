@@ -1,5 +1,5 @@
 {
-  "version": "1.12.0",
+  "version": "1.12.1",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -166,7 +166,10 @@
     "statusRejectedSurface": "#FEF2F2",
     "messageUnreadCount": "{palette.brandAccentText}",
     "loginHeading": "#172849",
-    "loginActionSurface": "{palette.paper}"
+    "loginActionSurface": "{palette.paper}",
+    "hallPlaqueSurface": "#FAF8F2",
+    "hallPlaqueBorder": "#D8D0BD",
+    "hallPlaqueHeading": "#8C7947"
   },
   "colorSchemes": {
     "light": {
@@ -224,7 +227,10 @@
       "statusRejectedSurface": "#FEF2F2",
       "messageUnreadCount": "{palette.brandAccentText}",
       "loginHeading": "#172849",
-      "loginActionSurface": "{palette.paper}"
+      "loginActionSurface": "{palette.paper}",
+      "hallPlaqueSurface": "#FAF8F2",
+      "hallPlaqueBorder": "#D8D0BD",
+      "hallPlaqueHeading": "#8C7947"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -281,7 +287,10 @@
       "statusRejectedSurface": "#3A1F26",
       "messageUnreadCount": "{palette.brandAccentText}",
       "loginHeading": "{palette.ink1}",
-      "loginActionSurface": "{palette.paper}"
+      "loginActionSurface": "{palette.paper}",
+      "hallPlaqueSurface": "#22231F",
+      "hallPlaqueBorder": "#3D3D33",
+      "hallPlaqueHeading": "#B5A064"
     }
   },
   "opacity": {
@@ -477,7 +486,10 @@
     "loginLandingHorizontalInset": "28px",
     "loginLandingBrandTopInset": "132px",
     "loginLandingActionsGap": "72px",
-    "loginLandingMinimumHeight": "640px"
+    "loginLandingMinimumHeight": "640px",
+    "hallPlaqueHeight": "280px",
+    "hallWallTopFadeHeight": "48px",
+    "hallWallBottomFadeHeight": "56px"
   },
   "motion": {
     "duration": {

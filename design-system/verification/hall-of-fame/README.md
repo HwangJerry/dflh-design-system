@@ -1,40 +1,50 @@
-# 명예의 전당 준비중 · 2026-10-12
+# 명예의 전당 · 빈 현판 · 2026-10-12
 
-실제 후원자 데이터가 준비될 때까지 두 네이티브 앱은 공통 스타일의 준비중 상태를 표시한다.
-준비중 아이콘과 문구는 공통 mutedIcon 불투명도 60%로 흐리게 표시한다.
-안내 문구는 `2026년 명예의 전당을 준비중입니다.`이다.
-하트만 2.45초 주기로 6%, 3.5%의 두 번 박동을 반복한다. 문구와 CTA는 움직이지 않는다.
-동작 줄이기/애니메이션 제거 설정 또는 앱 비활성 상태에서는 박동을 멈춘다.
-기부 탭 이름, 알림, 기존 해피나눔 CTA를 유지한다. 버튼은 내비게이션 위에 고정한다.
+Figma HOF D 시안의 금액 구간별 현판을 iOS와 Android 기부 탭에 구현했다.
+이전 중앙 하트와 `2026년 명예의 전당을 준비중입니다.` 문구를 대체한다.
+후원자 이름과 소속은 완전히 비워두며, 예시 인명·로딩 막대·기부자 수를 표시하지 않는다.
 
-- [Figma · 현재 적용 시안 5종](https://www.figma.com/design/6XaX36E3p7uGWo0WMNYzX1/?node-id=79-8950)
-- [Figma 화면 비교](figma-preparing.png)
-- [iOS 실제 하트 박동 영상](ios-heartbeat.mp4): 실제 시뮬레이터 캡처. 하트의 크기 변화만 적용됐으며 문구는 고정돼 있다.
-- [iOS 밝음](ios-light.png), [iOS 어두움](ios-dark.png): Codex iPhone 15, iOS 26.0, visual fixture의 기부 탭.
-- [Android 밝음](android-light-360x640.png), [Android 어두움](android-dark-360x640.png): API 36, 360×640, 실제 공통 내비게이션을 사용한 Compose 검증 호스트의 최종 문구/dimming 캡처.
+- [Figma · HOF D1 현판](https://www.figma.com/design/6XaX36E3p7uGWo0WMNYzX1/?node-id=79-5330)
+- [사용자가 확인해 준 Figma D1–D4 시안](figma-plaques.png)
+- [iOS 밝음](ios-plaques-light.png), [iOS 어두움](ios-plaques-dark.png), [마지막 현판](ios-plaques-scrolled.png)
+- [Android 밝음](android-plaques-light-360x640.png), [Android 어두움](android-plaques-dark-360x640.png), [마지막 현판](android-plaques-scrolled-360x640.png)
 
-Figma의 P1–P5는 현재 프로젝트 토큰을 따른다: 공통 배경, 24pt 헤더, 40pt 상태 아이콘,
-16pt 상태 제목, 52pt/radius 8 CTA, 56pt 플랫 탭. 기존 D 시안은 데이터 연결 후 사용할
-명예의 전당 현판 구상의 참고 자료이며 현재 앱 화면으로 배포하지 않는다.
+구간은 `5,000만원 이상`, `1,000만원 이상`, `500만원 이상`, `300만원 이상`,
+`100만원 이상` 순서다. 한 구간당 한 개의 현판을 표시한다. 각 현판은 280pt/dp 높이,
+24pt/dp 간격, 20pt/dp 좌우 여백을 사용한다. 아이보리/차콜 바탕, 얇은 테두리,
+금빛 제목과 양옆의 선은 `hallPlaque*` 공통 토큰으로 구현했다.
 
-검증:
+현판 영역만 수동 스크롤되며 양 끝의 48/56pt/dp 페이드는 공통 배경으로 이어진다.
+콘텐츠 여백으로 첫 구간과 마지막 구간도 페이드 밖에서 읽을 수 있다.
+알림, 감사 문구, 기존 기부 CTA와 앱 내비게이션은 기존 공통 컴포넌트를 사용한다.
+기부 CTA는 내비게이션 위에 고정한다. 현판은 접근성 도구에 구간과 `빈 현판`을 함께 읽는다.
+
+기부 요약·개인 기부 데이터를 요청하지 않는다. 실제 후원자 데이터 연결과 자동 아래 방향
+흐름·마지막→처음 순환은 데이터 준비 후 연결한다. 현재 빈 현판은 수동 스크롤만 제공한다.
+
+## 검증
 
 - iOS Simulator Debug `xcodebuild build`: 통과.
-- 최종 2026 안내 문구와 하트 박동을 포함한 iOS/Android Debug 빌드: 통과.
-- iOS 밝음/어두움 최종 캡처: 긴 문구와 CTA가 잘리거나 하단 탭에 겹치지 않음을 확인.
-- 실제 iOS 박동 영상의 157개 프레임에서 하트 픽셀 너비 38–41 변화 확인.
-- iOS 기부 상태/UX 관련 단위 테스트: 화면 도입 시 8개 통과.
-- Android `:app:assembleDebug`: 통과.
-- Android 기부·내비게이션 단위 테스트: 화면 도입 시 통과.
-- Android `DonationPreparingScreenTest`: 360×640 에뮬레이터에서 밝음/어두움,
-  최종 문구 표시, CTA와 하단 탭의 겹침 방지, 해피나눔 시트 열기/닫기 후 복귀 통과(1개 시험).
-  첫 cold boot 시 System UI/서비스 ANR로 시험 시작 전 실패했으며, 환경 복구 후 재실행해 통과했다.
+- iOS 밝음/어두움: Codex iPhone 15, iOS 26.0, 실제 앱의 기부 fixture 캡처.
 - `npm run verify-design-system`: 통과.
-- `npm run visual-check-ios`: 기존 4개 공통 화면 baseline guard 통과.
-  준비중 화면은 위의 별도 시뮬레이터 캡처로 검수했다.
+- `npm run visual-check-ios`: 기존 4개 공통 화면의 baseline guard 통과.
 
-기부 결제를 진행하지 않았으며, 명예의 전당 순환 목록이나 후원자 데이터는 활성화하지 않았다.
+- iOS `testDonationBlankPlaquesScrollWithFixedCTA`: 통과(1개 시험, 실패 0개).
+  실제 현판 영역을 끝까지/처음으로 스크롤하며 기부 CTA의 위치와 터치 가능 상태를 확인했다.
+- Android `:app:assembleDebug`, `:app:assembleDebugAndroidTest`: 통과.
+- Android `DonationHallOfFameScreenTest`: API 36, 360×640에서 통과(1개 시험, 실패 0개).
+  밝음/어두움, 마지막 현판까지 스크롤, CTA와 하단 탭 겹침 방지, 기부 시트 열기·닫기 후 복귀를 확인했다.
+  첫 cold boot 시험은 시작 전에 에뮬레이터 프로세스가 종료됐으며, 환경 복구 후 재시험해 통과했다.
+- iOS/Android 로컬 main에 통합 후 Debug 빌드: 통과.
 
-Figma 편집 화면에 연결 복구 대기 안내가 남아 있어 클라우드 동기화 완료를 주장하지 않는다.
-위 비교 캡처는 데스크톱의 최신 편집 상태다.
-최신 Figma 전체 문서의 로컬 백업도 `~/Downloads/DFLH-Hall-2026-20261012.fig`에 저장했다.
+Android 캡처는 실제 공통 하단 내비게이션을 사용하는 Compose 검증 호스트다.
+Gradle이 시험 후 앱과 외부 파일을 제거하므로, 동일 시험을 `am instrument`로 한 번 더 실행해
+통과(1개 시험, 실패 0개) 후 밝음/어두움/마지막 현판 캡처를 추출했다.
+모든 이미지에서 이름·소속이 없고 현판·CTA가 잘리지 않음을 확인했다.
+
+## 이전 준비중 화면 기록
+
+`figma-preparing.png`, `ios-light.png`, `ios-dark.png`, `ios-heartbeat.mp4`,
+`android-light-360x640.png`, `android-dark-360x640.png`는 이전 준비중 화면의 역사적 검증 자료다.
+현재 화면은 위의 현판 캡처를 기준으로 한다. Figma 원본의 로컬 백업은
+`~/Downloads/DFLH-Hall-2026-20261012.fig`에 있다.
