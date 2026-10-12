@@ -1,12 +1,13 @@
 # 명예의 전당 준비중 · 2026-10-12
 
 실제 후원자 데이터가 준비될 때까지 두 네이티브 앱은 공통 스타일의 준비중 상태를 표시한다.
+준비중 아이콘과 문구는 공통 mutedIcon 불투명도 60%로 흐리게 표시한다.
 기부 탭 이름, 알림, 기존 해피나눔 CTA를 유지한다. 버튼은 내비게이션 위에 고정한다.
 
 - [Figma · 현재 적용 시안 5종](https://www.figma.com/design/6XaX36E3p7uGWo0WMNYzX1/?node-id=79-8950)
 - [Figma 화면 비교](figma-preparing.png)
 - [iOS 밝음](ios-light.png), [iOS 어두움](ios-dark.png): Codex iPhone 15, iOS 26.0, visual fixture의 기부 탭.
-- [Android 밝음](android-light-360x640.png), [Android 어두움](android-dark-360x640.png): API 36, 360×640, 실제 공통 내비게이션을 사용한 Compose 검증 호스트.
+- [Android 밝음](android-light-360x640-layout-before-dimming.png), [Android 어두움](android-dark-360x640-layout-before-dimming.png): API 36, 360×640, 실제 공통 내비게이션을 사용한 Compose 검증 호스트의 dimming 이전 배치 검증 캡처. 최종 불투명도는 Figma와 iOS 캡처를 참고한다.
 
 Figma의 P1–P5는 현재 프로젝트 토큰을 따른다: 공통 배경, 24pt 헤더, 40pt 상태 아이콘,
 16pt 상태 제목, 52pt/radius 8 CTA, 56pt 플랫 탭. 기존 D 시안은 데이터 연결 후 사용할
