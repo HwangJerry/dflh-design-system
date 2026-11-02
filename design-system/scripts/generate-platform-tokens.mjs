@@ -90,12 +90,12 @@ for (const [key, value] of sortedEntries(tokens.iconography.size)) {
 for (const [key, value] of sortedEntries(tokens.iconography.lineWeight)) {
   web.push(`  --icon-line-weight-${toKebab(key)}: ${value};`);
 }
-web.push(`  --motion-duration-quick: ${tokens.motion.duration.quick};`);
-web.push(`  --motion-duration-default: ${tokens.motion.duration.default};`);
-web.push(`  --motion-duration-base: ${tokens.motion.duration.base};`);
-web.push(`  --motion-duration-slow: ${tokens.motion.duration.slow};`);
-web.push(`  --motion-easing-smooth: ${tokens.motion.easing.smooth};`);
-web.push(`  --motion-easing-standard: ${tokens.motion.easing.standard};`);
+for (const [key, value] of sortedEntries(tokens.motion.duration)) {
+  web.push(`  --motion-duration-${toKebab(key)}: ${value};`);
+}
+for (const [key, value] of sortedEntries(tokens.motion.easing)) {
+  web.push(`  --motion-easing-${toKebab(key)}: ${value};`);
+}
 web.push('}');
 
 const ios = [];
@@ -365,8 +365,9 @@ android.push('    object AnimationMs {');
 for (const [key, value] of sortedEntries(tokens.motion.duration)) {
   android.push(`        const val ${toCamel(key)}Ms = ${parseMs(value)}L`);
 }
-android.push('        const val easingSmooth = "' + tokens.motion.easing.smooth + '"');
-android.push('        const val easingStandard = "' + tokens.motion.easing.standard + '"');
+for (const [key, value] of sortedEntries(tokens.motion.easing)) {
+  android.push(`        const val easing${capitalize(toCamel(key))} = ${stringLiteral(value)}`);
+}
 android.push('    }');
 android.push('}');
 

@@ -1,5 +1,5 @@
 {
-  "version": "1.12.1",
+  "version": "1.13.0",
   "sourceOfTruth": "design-system/tokens/design-tokens.json",
   "palette": {
     "light": {
@@ -20,7 +20,28 @@
       "line": "#E8E5DF",
       "lineSoft": "#F0EDE8",
       "danger": "#DC2626",
-      "positive": "#047857"
+      "positive": "#047857",
+      "hallHeroBackground": "#1A1A2E",
+      "hallHeroForeground": "#FDFBF4",
+      "hallWallBackground": "#F5F4F0",
+      "hallGoldAccent": "#A8873A",
+      "hallGoldBorder": "#BA984D",
+      "hallGoldSurface": "#FCF8ED",
+      "hallGoldGradientStart": "#FFFDF5",
+      "hallGoldGradientEnd": "#F5EDD7",
+      "hallSilverAccent": "#7D8591",
+      "hallSilverBorder": "#B8BEC7",
+      "hallSilverSurface": "#F4F5F7",
+      "hallBronzeAccent": "#A87550",
+      "hallBronzeBorder": "#C7A38A",
+      "hallBronzeSurface": "#FAF3EE",
+      "hallNeutralAccent": "#777780",
+      "hallNeutralSurface": "#EEEDE9",
+      "hallLabel": "#62626B",
+      "hallTabActive": "#1A1A2E",
+      "hallTabInactive": "#62626B",
+      "hallTabBackground": "#FAFAF8",
+      "hallSectionHeaderBackground": "#F5F4F0"
     },
     "dark": {
       "brandPrimary": "#F5F4F0",
@@ -40,7 +61,28 @@
       "line": "#33333F",
       "lineSoft": "#2A2C35",
       "danger": "#F87171",
-      "positive": "#34D399"
+      "positive": "#34D399",
+      "hallHeroBackground": "#101014",
+      "hallHeroForeground": "#F5F4F0",
+      "hallWallBackground": "#141418",
+      "hallGoldAccent": "#B7A272",
+      "hallGoldBorder": "#786847",
+      "hallGoldSurface": "#26231D",
+      "hallGoldGradientStart": "#2C281F",
+      "hallGoldGradientEnd": "#211F1B",
+      "hallSilverAccent": "#A0A4AD",
+      "hallSilverBorder": "#5B5E66",
+      "hallSilverSurface": "#23252B",
+      "hallBronzeAccent": "#AA896F",
+      "hallBronzeBorder": "#715B4B",
+      "hallBronzeSurface": "#29231F",
+      "hallNeutralAccent": "#9B9BA5",
+      "hallNeutralSurface": "#24242C",
+      "hallLabel": "#B8B8C2",
+      "hallTabActive": "#D6C396",
+      "hallTabInactive": "#B8B8C2",
+      "hallTabBackground": "#18181E",
+      "hallSectionHeaderBackground": "#141418"
     }
   },
   "colors": {
@@ -169,7 +211,28 @@
     "loginActionSurface": "{palette.paper}",
     "hallPlaqueSurface": "#FAF8F2",
     "hallPlaqueBorder": "#D8D0BD",
-    "hallPlaqueHeading": "#8C7947"
+    "hallPlaqueHeading": "#8C7947",
+    "hallHeroBackground": "{palette.hallHeroBackground}",
+    "hallHeroForeground": "{palette.hallHeroForeground}",
+    "hallWallBackground": "{palette.hallWallBackground}",
+    "hallGoldAccent": "{palette.hallGoldAccent}",
+    "hallGoldBorder": "{palette.hallGoldBorder}",
+    "hallGoldSurface": "{palette.hallGoldSurface}",
+    "hallGoldGradientStart": "{palette.hallGoldGradientStart}",
+    "hallGoldGradientEnd": "{palette.hallGoldGradientEnd}",
+    "hallSilverAccent": "{palette.hallSilverAccent}",
+    "hallSilverBorder": "{palette.hallSilverBorder}",
+    "hallSilverSurface": "{palette.hallSilverSurface}",
+    "hallBronzeAccent": "{palette.hallBronzeAccent}",
+    "hallBronzeBorder": "{palette.hallBronzeBorder}",
+    "hallBronzeSurface": "{palette.hallBronzeSurface}",
+    "hallNeutralAccent": "{palette.hallNeutralAccent}",
+    "hallNeutralSurface": "{palette.hallNeutralSurface}",
+    "hallLabel": "{palette.hallLabel}",
+    "hallTabActive": "{palette.hallTabActive}",
+    "hallTabInactive": "{palette.hallTabInactive}",
+    "hallTabBackground": "{palette.hallTabBackground}",
+    "hallSectionHeaderBackground": "{palette.hallSectionHeaderBackground}"
   },
   "colorSchemes": {
     "light": {
@@ -230,7 +293,28 @@
       "loginActionSurface": "{palette.paper}",
       "hallPlaqueSurface": "#FAF8F2",
       "hallPlaqueBorder": "#D8D0BD",
-      "hallPlaqueHeading": "#8C7947"
+      "hallPlaqueHeading": "#8C7947",
+      "hallHeroBackground": "{palette.hallHeroBackground}",
+      "hallHeroForeground": "{palette.hallHeroForeground}",
+      "hallWallBackground": "{palette.hallWallBackground}",
+      "hallGoldAccent": "{palette.hallGoldAccent}",
+      "hallGoldBorder": "{palette.hallGoldBorder}",
+      "hallGoldSurface": "{palette.hallGoldSurface}",
+      "hallGoldGradientStart": "{palette.hallGoldGradientStart}",
+      "hallGoldGradientEnd": "{palette.hallGoldGradientEnd}",
+      "hallSilverAccent": "{palette.hallSilverAccent}",
+      "hallSilverBorder": "{palette.hallSilverBorder}",
+      "hallSilverSurface": "{palette.hallSilverSurface}",
+      "hallBronzeAccent": "{palette.hallBronzeAccent}",
+      "hallBronzeBorder": "{palette.hallBronzeBorder}",
+      "hallBronzeSurface": "{palette.hallBronzeSurface}",
+      "hallNeutralAccent": "{palette.hallNeutralAccent}",
+      "hallNeutralSurface": "{palette.hallNeutralSurface}",
+      "hallLabel": "{palette.hallLabel}",
+      "hallTabActive": "{palette.hallTabActive}",
+      "hallTabInactive": "{palette.hallTabInactive}",
+      "hallTabBackground": "{palette.hallTabBackground}",
+      "hallSectionHeaderBackground": "{palette.hallSectionHeaderBackground}"
     },
     "dark": {
       "background": "{palette.canvas}",
@@ -290,7 +374,28 @@
       "loginActionSurface": "{palette.paper}",
       "hallPlaqueSurface": "#22231F",
       "hallPlaqueBorder": "#3D3D33",
-      "hallPlaqueHeading": "#B5A064"
+      "hallPlaqueHeading": "#B5A064",
+      "hallHeroBackground": "{palette.hallHeroBackground}",
+      "hallHeroForeground": "{palette.hallHeroForeground}",
+      "hallWallBackground": "{palette.hallWallBackground}",
+      "hallGoldAccent": "{palette.hallGoldAccent}",
+      "hallGoldBorder": "{palette.hallGoldBorder}",
+      "hallGoldSurface": "{palette.hallGoldSurface}",
+      "hallGoldGradientStart": "{palette.hallGoldGradientStart}",
+      "hallGoldGradientEnd": "{palette.hallGoldGradientEnd}",
+      "hallSilverAccent": "{palette.hallSilverAccent}",
+      "hallSilverBorder": "{palette.hallSilverBorder}",
+      "hallSilverSurface": "{palette.hallSilverSurface}",
+      "hallBronzeAccent": "{palette.hallBronzeAccent}",
+      "hallBronzeBorder": "{palette.hallBronzeBorder}",
+      "hallBronzeSurface": "{palette.hallBronzeSurface}",
+      "hallNeutralAccent": "{palette.hallNeutralAccent}",
+      "hallNeutralSurface": "{palette.hallNeutralSurface}",
+      "hallLabel": "{palette.hallLabel}",
+      "hallTabActive": "{palette.hallTabActive}",
+      "hallTabInactive": "{palette.hallTabInactive}",
+      "hallTabBackground": "{palette.hallTabBackground}",
+      "hallSectionHeaderBackground": "{palette.hallSectionHeaderBackground}"
     }
   },
   "opacity": {
@@ -351,7 +456,19 @@
       "buttonLabelRegular": "15px",
       "buttonLabelCompact": "13px",
       "loginSchoolName": "21px",
-      "loginFoundationName": "28px"
+      "loginFoundationName": "28px",
+      "hallGoldName": "22px",
+      "hallSilverName": "17px",
+      "hallBronzeName": "16px",
+      "hallNeutralName": "15px",
+      "hallGoldLabel": "12px",
+      "hallSilverLabel": "12px",
+      "hallBronzeLabel": "12px",
+      "hallNeutralLabel": "12px",
+      "hallHeroTitle": "24px",
+      "hallHeroSubtitle": "13px",
+      "hallTabLabel": "12px",
+      "hallSectionTitle": "16px"
     },
     "weight": {
       "regular": 400,
@@ -370,7 +487,19 @@
       "cardAction": "18px",
       "buttonLabel": "24px",
       "buttonLabelRegular": "22px",
-      "buttonLabelCompact": "18px"
+      "buttonLabelCompact": "18px",
+      "hallGoldName": "30px",
+      "hallSilverName": "24px",
+      "hallBronzeName": "24px",
+      "hallNeutralName": "22px",
+      "hallGoldLabel": "18px",
+      "hallSilverLabel": "18px",
+      "hallBronzeLabel": "18px",
+      "hallNeutralLabel": "18px",
+      "hallHeroTitle": "32px",
+      "hallHeroSubtitle": "20px",
+      "hallTabLabel": "18px",
+      "hallSectionTitle": "24px"
     }
   },
   "spacing": {
@@ -398,7 +527,11 @@
     "chip": "4px",
     "thumb": "4px",
     "section": "0px",
-    "loginAction": "14px"
+    "loginAction": "14px",
+    "hallGoldCard": "16px",
+    "hallSilverCard": "12px",
+    "hallBronzeCard": "12px",
+    "hallNeutralTile": "8px"
   },
   "elevation": {
     "xs": "0 1px 2px 0 rgba(0,0,0,0.03)",
@@ -489,7 +622,24 @@
     "loginLandingMinimumHeight": "640px",
     "hallPlaqueHeight": "280px",
     "hallWallTopFadeHeight": "48px",
-    "hallWallBottomFadeHeight": "56px"
+    "hallWallBottomFadeHeight": "56px",
+    "hallHeroMinHeight": "240px",
+    "hallEmblemSize": "72px",
+    "hallGoldCardEmblemSize": "24px",
+    "hallTabBarMinHeight": "48px",
+    "hallSectionHeaderMinHeight": "44px",
+    "hallTouchTarget": "48px",
+    "hallGoldCardMinHeight": "112px",
+    "hallSilverCardMinHeight": "104px",
+    "hallBronzeCardMinHeight": "88px",
+    "hallNeutralTileMinHeight": "72px",
+    "hallGoldCardMinWidth": "240px",
+    "hallSilverCardMinWidth": "144px",
+    "hallBronzeCardMinWidth": "136px",
+    "hallNeutralTileMinWidth": "96px",
+    "hallCardBorderWidth": "1px",
+    "hallNeutralBorderWidth": "0px",
+    "hallTabIndicatorHeight": "2px"
   },
   "motion": {
     "duration": {
@@ -502,11 +652,13 @@
       "navigationPress": "70ms",
       "navigationRelease": "220ms",
       "navigationIndicator": "160ms",
-      "navigationReducedRelease": "120ms"
+      "navigationReducedRelease": "120ms",
+      "hallShimmer": "1400ms"
     },
     "easing": {
       "smooth": "cubic-bezier(0.16,1,0.3,1)",
-      "standard": "ease-out"
+      "standard": "ease-out",
+      "hallShimmer": "cubic-bezier(0.4,0,0.2,1)"
     }
   },
   "layout": {
@@ -550,7 +702,20 @@
       "listRatio": "0.42",
       "landscapeHeightRatio": "0.7142857143"
     },
-    "sectionGap": "8px"
+    "sectionGap": "8px",
+    "hallHeroPadding": "24px",
+    "hallHeroContentGap": "12px",
+    "hallGridGap": "12px",
+    "hallTileGap": "8px",
+    "hallSectionGap": "24px",
+    "hallSectionHeaderPadding": "12px",
+    "hallTabHorizontalPadding": "8px",
+    "hallNameLabelGap": "4px",
+    "hallGoldCardPadding": "20px",
+    "hallSilverCardPadding": "16px",
+    "hallBronzeCardPadding": "12px",
+    "hallNeutralTilePadding": "8px",
+    "hallGoldEmblemGap": "12px"
   },
   "platformMapping": {
     "web": {
