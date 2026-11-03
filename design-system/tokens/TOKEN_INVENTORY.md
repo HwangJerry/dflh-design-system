@@ -72,6 +72,80 @@ Every button label is `typography.weight.semibold` (600) at every size and
 variant; the weight is applied by the platform text styles (iOS
 `DSTextStyle.buttonLabel*`, Android `DSButtonLabelTextStyle`).
 
+## Hall of Fame wall (2026-11-03)
+
+The `hall*` additions support the four tiers 1,000 / 500 / 300 / 100만원 이상.
+They are additive; all existing `hallPlaque*` and `hallWall*FadeHeight` tokens
+remain unchanged for the all-empty response fallback. No existing token is
+exclusive to the retired 5,000만원 tier, so none is removed.
+
+Colors are palette aliases with matching light/dark definitions. The hero is
+`hallHeroBackground` (navy / near-black) with `hallHeroForeground` text. Cards
+use `hallGold*`, `hallSilver*`, `hallBronze*`, or `hallNeutral*` accents and
+surfaces; gold also has gradient endpoints. Neutral tiles have no border.
+Names use `textPrimary`, all card labels and calm status lines use `hallLabel`.
+`hallTabActive` styles the selected text/indicator, `hallTabInactive` the idle
+text; `hallTabBackground` and `hallSectionHeaderBackground` are opaque sticky
+surfaces. `hallWallBackground` provides the near-black dark wall base.
+Metallic accents/borders are decorative; tier headings convey the tier in text.
+Web keeps the generator's existing light-only semantic CSS policy; native
+outputs include both schemes. Web dark-mode consumption is outside this task.
+
+Use the existing `typography.size` / `lineHeight` structure. Native follow-up
+tasks bind these pairs to **DSTextStyle**, using existing weight tokens:
+
+| DSTextStyle / size and line-height token | Size / line height | Weight token |
+| --- | --- | --- |
+| `hallGoldName` | 22 / 30 | `bold` |
+| `hallSilverName` | 17 / 24 | `semibold` |
+| `hallBronzeName` | 16 / 24 | `semibold` |
+| `hallNeutralName` | 15 / 22 | `medium` |
+| `hallGoldLabel`, `hallSilverLabel`, `hallBronzeLabel`, `hallNeutralLabel` | 12 / 18 | `regular` |
+| `hallHeroTitle` | 24 / 32 | `bold` |
+| `hallHeroSubtitle` | 13 / 20 | `regular` |
+| `hallTabLabel` | 12 / 18 | `semibold` |
+| `hallSectionTitle` | 16 / 24 | `semibold` |
+
+The generator emits DSFont / DesignTokens.Typography primitives, as for existing
+styles; it does not define app-owned DSTextStyle or Android theme bindings.
+This token-only task does not edit those helpers or the app token copies.
+
+| Tier layout | Minimum width / height | Padding / radius | Grid gap |
+| --- | --- | --- | --- |
+| Gold, full width | 240 / 112 | 20 / 16 | 12 |
+| Silver, two columns | 144 / 104 | 16 / 12 | 12 |
+| Bronze, two compact columns | 136 / 88 | 12 / 12 | 12 |
+| Neutral, three tiles | 96 / 72 | 8 / 8 | 8 |
+
+Dimensions are pt/dp on native platforms. Use the corresponding
+`sizing.hall*CardMinWidth/MinHeight` or `hallNeutralTileMinWidth/MinHeight`,
+`layout.hall*CardPadding` / `hallNeutralTilePadding`, and `radius.hall*` tokens.
+Widths fill their columns; scale the minimum column width with text and reduce
+columns as available space requires (3 → 2 → 1, with gold always one).
+Minimum heights must grow for wrapped names and labels; never truncate text.
+The gold minimum width is an adaptive-layout preference, not a constraint that
+may force overflow in a narrow viewport. All cards remain within available width.
+
+`hallHeroMinHeight` is 240, `hallEmblemSize` 72 and `hallGoldCardEmblemSize` 24.
+The sticky tab bar has minimum height 48, the section header 44, and interactive
+targets use `hallTouchTarget` (48). At large text sizes, allow taller headers
+and horizontally scrollable tabs. Use `screenPadMobile` for outer insets;
+`hallHeroPadding`, `hallHeroContentGap`, `hallSectionHeaderPadding`,
+`hallTabHorizontalPadding`, `hallSectionGap`, `hallGridGap`, `hallTileGap`,
+`hallGoldEmblemGap` and `hallNameLabelGap` cover internal spacing. Card borders
+use `hallCardBorderWidth` (1); neutral uses `hallNeutralBorderWidth` (0).
+
+`motion.duration.hallShimmer` is 1400ms and `motion.easing.hallShimmer` is
+`cubic-bezier(0.4,0,0.2,1)`. Web emits CSS values, Swift emits seconds and the
+easing string, and Kotlin emits milliseconds and the easing string. Native
+helpers must map the curve to their timing-curve APIs. Gold only, once per app
+session on first opening; Reduce Motion skips it. These lifecycle rules are
+app logic, not repetition defaults embedded in the token generator.
+
+The `screen.donation` contract records the target behavior and text-style
+bindings. Its existing app evidence paths are for the blank wall; new app
+implementation and synthetic visual evidence are pending the native tasks.
+
 ## Generated Artifact Policy
 
 Generated files under `design-system/platform/*` and copied platform token files must not be edited manually. Change `design-system/tokens/design-tokens.json`, then run:
