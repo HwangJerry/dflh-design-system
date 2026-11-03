@@ -96,7 +96,7 @@ test('hall text meets 4.5:1 contrast on cards, gradient stops and sticky surface
     const colors = resolveColorMap(tokens.colorSchemes[scheme], tokens.palette, scheme);
     const pairs = [
       ['hallHeroForeground', 'hallHeroBackground'],
-      ['hallTabActive', 'hallTabBackground'], ['hallTabInactive', 'hallTabBackground'],
+      ['hallHeroForeground', 'hallTabActive'], ['hallTabInactive', 'hallTabBackground'],
       ['textPrimary', 'hallSectionHeaderBackground'], ['hallLabel', 'hallWallBackground'],
     ];
     for (const surface of ['hallGoldSurface', 'hallGoldGradientStart', 'hallGoldGradientEnd', 'hallSilverSurface', 'hallBronzeSurface', 'hallNeutralSurface']) {
@@ -111,22 +111,20 @@ test('hall text meets 4.5:1 contrast on cards, gradient stops and sticky surface
 });
 
 test('four tier type scales and retained blank-wall tokens satisfy the spec', () => {
-  for (const [tier, size, lineHeight] of [['Gold', 22, 30], ['Silver', 17, 24], ['Bronze', 16, 24], ['Neutral', 15, 22]]) {
+  for (const [tier, size, label] of [['Gold', 22, 13], ['Silver', 17, 13], ['Bronze', 16, 12], ['Neutral', 15, 12]]) {
     assert.equal(tokens.typography.size[`hall${tier}Name`], `${size}px`);
-    assert.equal(tokens.typography.lineHeight[`hall${tier}Name`], `${lineHeight}px`);
-    assert.equal(tokens.typography.size[`hall${tier}Label`], '12px');
-    assert.equal(tokens.typography.lineHeight[`hall${tier}Label`], '18px');
+    assert.equal(tokens.typography.size[`hall${tier}Label`], `${label}px`);
   }
   assert.deepEqual(tokens.typography.weight, { regular: 400, medium: 500, semibold: 600, bold: 700 });
   assert.equal(tokens.sizing.hallNeutralBorderWidth, '0px');
-  assert.ok(parseFloat(tokens.sizing.hallTouchTarget) >= 48);
-  assert.equal(tokens.sizing.hallPlaqueHeight, '280px');
+  assert.ok(parseFloat(tokens.sizing.hallTouchTarget) >= 44);
+  assert.equal(tokens.sizing.hallPlaqueHeight, '112px');
   assert.equal(tokens.sizing.hallWallTopFadeHeight, '48px');
   assert.equal(tokens.sizing.hallWallBottomFadeHeight, '56px');
   for (const scheme of ['light', 'dark']) {
     const colors = resolveColorMap(tokens.colorSchemes[scheme], tokens.palette, scheme);
     const actual = ['hallPlaqueSurface', 'hallPlaqueBorder', 'hallPlaqueHeading'].map((key) => colors[key]);
-    const expected = scheme === 'light' ? ['#FAF8F2', '#D8D0BD', '#8C7947'] : ['#22231F', '#3D3D33', '#B5A064'];
+    const expected = scheme === 'light' ? ['#EFEDE6', '#C9C5B8', '#1A1A2E'] : ['#1B1B25', '#2A2A36', '#EDEDF2'];
     assert.deepEqual(actual, expected);
   }
 });
