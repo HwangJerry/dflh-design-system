@@ -1421,8 +1421,9 @@ Rules:
 
 - `Starting sign-up shows the fullScreenLoader without a form: 카카오 정보를 불러오고 있어요 / 잠시만 기다려 주세요. (iOS: 가입 정보를…). A failed prefill changes only the copy to 조금만 더 기다려 주세요 and retries silently: at most 3 attempts, spaced 1s and 2s (proposed default), with attempt dots. Only transport, timeout, 5xx and 429 failures are retried.`
 - `After 3 failures a dialog: 회원가입에 문제가 생겼어요 / 카카오 정보를 불러오지 못해 지금은 가입을 진행할 수 없어요. 오픈채팅으로 문의를 남겨 주시면 확인 후 도와드릴게요. with 닫기 (back to login) and 오픈채팅 문의 (the login-help open chat). No 카카오 정보 없이도 가입 / 다시 불러오기.`
+- `SMS verification uses a single AutoFill-compatible code input and a single-line inline confirm action, with a separate resend action. Successful verification advances automatically, hides the code from completed/review cards, and marks the phone number 인증 완료. Only editing the phone number reopens verification. A pre-commit signup rejection preserves the review, all values and verification; never automatically cancels the continuation (2026-11-12).`
 - `The last step (8 / 8) is a separate profile-photo page: 140 round photo that is itself the button (navy pencil badge), question 20 semibold, explanation 14 regular, one action 이 사진 사용. Uploading disables photo and button; an upload failure keeps the old photo and adds one grey line 사진을 올리지 못했어요. 다시 시도해 주세요.`
-- `이 사진 사용 without a new photo confirms (카카오 사진을 그대로 사용할까요? or 사진 없이 가입할까요?, [사진 고르기] [그대로 사용 / 사진 없이 계속]); a replaced photo continues without a dialog. The review lists 프로필 사진 (카카오 사진 사용 / 새 사진 / 사진 없음).`
+- `이 사진 사용 without a new photo confirms (카카오 사진을 그대로 사용할까요? or 사진 없이 가입할까요?, [사진 고르기] [그대로 사용 / 사진 없이 계속]); a replaced photo continues without a dialog. The review shows the editable circular photo with pencil badge above the information cards, without a profile-photo text card (2026-11-12).`
 
 ### `screen.signUpComplete`
 
