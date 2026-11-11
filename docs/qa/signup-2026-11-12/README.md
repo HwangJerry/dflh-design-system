@@ -35,3 +35,11 @@
 - 캡처: [최종 확인](ios-review.png), [인증번호 입력](ios-sms-code.png), [제출 오류](ios-submit-error.png), [전화번호 변경 후 재인증](ios-phone-edited.png).
 
 운영 SMS 발송이나 실제 신규 회원 생성·가입 제출은 수행하지 않았다. 서버 계정으로 저장 가능한 것은 확인했지만 사진 선택→실제 운영 업로드의 종단 검수는 별도다. 앱 배포·스토어 업로드는 수행하지 않았다. Android 연결 기기가 없어 실제 기기 UI 검수는 수행하지 않았다.
+
+## 승인 대기 dialog 후속 요청
+
+회원가입의 인증 신청 성공 후, 승인 대기 회원 로그인 및 가입 재시도에 `가입 요청 완료` / `가입 요청이 정상적으로 처리되었습니다. 검토 후 승인됩니다.` / `확인` dialog를 추가했다. iOS 단위 744개와 새 시뮬레이터 dialog 테스트, Android 단위 722개 및 instrumentation APK 컴파일이 통과했다. [실제 시뮬레이터 dialog](ios-pending-dialog.png).
+
+서버는 기존 중복 확인 응답에 승인 대기일 때만 `signupPending: true`를 추가하고, 가입 충돌 시 `SIGNUP_ALREADY_PENDING`을 반환한다. canonical ALUMNI_VERIFICATION과 ACTIVE 계정 상태를 함께 조회한다. 기존 앱 호환성을 위해 그 밖에는 기존 응답 형태를 유지한다. 실제 MariaDB/HTTP의 6가지 상태 구분, 반복 소셜 가입 무생성, 기존 가입·iOS/Android 세션 회귀가 통과했다. 개발 환경의 baseline SQL import가 15초 제한에 걸려 테스트 지원 코드의 제한만 실행 중 60초로 늘렸으며 테스트 후 원상복구했다. 제품 코드나 검증 조건은 완화하지 않았다.
+
+서버 빌드 소스 `b5a7363`, SHA-256 `ece7f5333d3224fb29e54a92d32ab0f0fe748fde94e5612679357e6fa4966bf6`. 기존 환경·DB·라우팅을 보존하고 서버 실행 파일만 원자적으로 교체했다. 원격 실행 파일 hash 일치, systemd active, 공개 HTTPS `/api/health`의 `status: ok`를 확인했다. 기존 실행 파일은 서버에 rollback용으로 보존했다.
