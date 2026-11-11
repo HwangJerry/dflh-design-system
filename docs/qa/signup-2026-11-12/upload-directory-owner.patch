@@ -1,0 +1,10 @@
+--- a/deploy/launch_assets.py
++++ b/deploy/launch_assets.py
+@@ -51,6 +51,7 @@
+             boundary=os.path.join(destination,kind)
+             while parent.startswith(boundary+'/'):
+                 os.chmod(parent,0o755)
++                os.chown(parent,account.pw_uid,account.pw_gid)
+                 parent=os.path.dirname(parent)
+             if not os.path.exists(target):
+                 with tarfile.open(os.path.join(archive_directory, source['archive']), 'r:gz') as stream:
