@@ -37,3 +37,13 @@ Android는 상대 업로드 경로 `/uploads/...`를 Coil에 그대로 넘기던
 운영 저장 처리기의 `UPLOAD_MAX_FILE_SIZE_MB`는 10(default)임도 확인했다. 추가 저장 제한 2 MiB가 있었던 것이 아니라 API 공통 제한과 5 MiB 클라이언트/업로드 처리기 계약의 충돌이었다.
 
 통과 항목은 해당 테스트 환경과 범위에 대한 증거다. 실제 외부 카카오 로그인·일반 전화의 통신사 SMS 수신·실사용자 사진의 사진 앱 선택부터 운영 가입 완료까지의 전 과정을 대신하지 않는다. 운영 API 검사는 지정된 합성 테스트 전화와 별도 QA 계정으로 수행했고, 화면 검사는 명시적 테스트 응답을 사용했다.
+
+## 수정본 배포
+
+iOS 1.3.8 build `202611122314`(source `67e6cfa`)는 이전 build `202611120831`의 심사 요청을 취소한 뒤 새 빌드로 제출했다. API 재조회 `WAITING_FOR_REVIEW`, `AFTER_APPROVAL`, 선택 build `202611122314`를 확인했다.
+
+Android 1.3.8 code `1861112002`(source `1abdbc9`)는 서명 및 minified Kakao token API 검사를 통과했다. SHA와 내부 초안 업로드 기록은 `android-artifact.json`에 있다. Aside CLI 소유자 Console에서 운영 release 6, code 1861112002의 심사 요청 접수를 확인했다(“1 change sent for review”). 자동 사전 검사 후 심사로 넘어가며 managed publishing off를 유지해 승인 후 자동 배포된다.
+
+공통 규칙 원본: `/Users/jerryhwang/Workspace/06_metanoia-lab/malfunctionroom-design-system/patterns/flows.md` 및 해당 루트 `AGENTS.md`.
+
+스토어 증거: [Apple 최종 상태](asc-submission.json), [iOS 서명 아티팩트](ios-artifact.json), [Android 아티팩트](android-artifact.json), [Play 심사 접수 화면](play-submission.png).
