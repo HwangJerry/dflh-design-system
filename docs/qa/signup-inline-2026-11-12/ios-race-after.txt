@@ -1,0 +1,3 @@
+PASS ignore send response after phone edit
+PASS ignore confirmation response after phone edit
+PASS previous SMS stays usable after resend failure

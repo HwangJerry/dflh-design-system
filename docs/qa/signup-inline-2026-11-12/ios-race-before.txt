@@ -1,0 +1,3 @@
+FAIL ignore send response after phone edit
+FAIL ignore confirmation response after phone edit
+FAIL previous SMS stays usable after resend failure

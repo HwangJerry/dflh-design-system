@@ -1,0 +1,66 @@
+[
+  {
+    "case": "ios login before verification",
+    "result": "PASS"
+  },
+  {
+    "case": "ios canonical submitted pending state",
+    "result": "PASS"
+  },
+  {
+    "case": "ios pending signup retry id",
+    "result": "PASS"
+  },
+  {
+    "case": "ios pending signup retry phone",
+    "result": "PASS"
+  },
+  {
+    "case": "ios pending signup retry email",
+    "result": "PASS"
+  },
+  {
+    "case": "review-only SMS request",
+    "result": "PASS"
+  },
+  {
+    "case": "review-only SMS confirm",
+    "result": "PASS"
+  },
+  {
+    "case": "ios repeated registration reports pending",
+    "result": "PASS"
+  },
+  {
+    "case": "ios QA session logout",
+    "result": "PASS"
+  },
+  {
+    "case": "android login before verification",
+    "result": "PASS"
+  },
+  {
+    "case": "android canonical submitted pending state",
+    "result": "PASS"
+  },
+  {
+    "case": "android pending signup retry id",
+    "result": "PASS"
+  },
+  {
+    "case": "android pending signup retry phone",
+    "result": "PASS"
+  },
+  {
+    "case": "android pending signup retry email",
+    "result": "PASS"
+  },
+  {
+    "case": "android repeated registration reports pending",
+    "result": "PASS"
+  },
+  {
+    "case": "android QA session logout",
+    "result": "PASS"
+  }
+]

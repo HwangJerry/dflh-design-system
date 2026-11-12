@@ -1859,7 +1859,7 @@
       "notes": "The reverse step form (iOS DSReverseStepForm + DSStepField/DSStepPage; Android DSReverseStepForm + DSStepPage). iOS attaches the page to a field (DSStepField.page) and opens on review with startsAtReview + reviewHeader; Android passes finalPage and startOnReview + reviewLeadingContent / reviewHint.",
       "rules": [
         "One field per step with \"N / total\" and a progress bar; completed answers stack above as editable rows. Choice fields default to the 2-column stepChoiceGrid; the menu variant remains for other callers.",
-        "An optional page step (finalPage / DSStepPage) is its own centred page with its own single action (e.g. the C.3 profile photo, 8 / 8) before the review; its review row reopens it.",
+        "Optional page steps may be used for tasks that need a dedicated context; signup profile photos must remain in a persistent form header and never use a separate final page (2026-11-12).",
         "Re-application (D09) opens directly on the review with prior answers filled (startsAtReview / startOnReview) and a review header such as the rejection-reason card; only the rows the user taps are edited.",
         "The reservedErrorSlot sits above the submit button; save failures are grey, and field errors the user can fix use validationText, never red."
       ]
@@ -2957,14 +2957,14 @@
         "fullScreenLoader",
         "failureDialog",
         "stepForm",
-        "photoPage",
+        "persistentPhotoHeader",
         "review"
       ],
       "tokens": {
         "semantic": [
           "fullScreenLoader",
-          "signupPhoto",
-          "avatarMd",
+          "avatarHero",
+          "avatarSm",
           "statusTitle",
           "stateMessage",
           "progressFill"
@@ -2980,9 +2980,8 @@
           "DSFullScreenLoader"
         ],
         "photo": [
-          "DSSizing.signupPhoto",
-          "DSTextStyle.statusTitle",
-          "DSTextStyle.stateMessage"
+          "DSSizing.avatarHero",
+          "DSSizing.avatarSm"
         ]
       },
       "implementationEvidence": {
@@ -3002,9 +3001,9 @@
         "Starting sign-up shows the fullScreenLoader without a form: 카카오 정보를 불러오고 있어요 / 잠시만 기다려 주세요. (iOS: 가입 정보를…). A failed prefill changes only the copy to 조금만 더 기다려 주세요 and retries silently: at most 3 attempts, spaced 1s and 2s (proposed default), with attempt dots. Only transport, timeout, 5xx and 429 failures are retried.",
         "After 3 failures a dialog: 회원가입에 문제가 생겼어요 / 카카오 정보를 불러오지 못해 지금은 가입을 진행할 수 없어요. 오픈채팅으로 문의를 남겨 주시면 확인 후 도와드릴게요. with 닫기 (back to login) and 오픈채팅 문의 (the login-help open chat). No 카카오 정보 없이도 가입 / 다시 불러오기.",
         "After successful signup application submission, pending/reapproval-pending sign-in, or a server-confirmed pending signup retry, show a dialog titled 가입 요청 완료 with exactly 가입 요청이 정상적으로 처리되었습니다. 검토 후 승인됩니다. and 확인. Approved, rejected, unsubmitted, withdrawn, suspended and failed requests must not receive a false success notice. Acknowledgement dismisses the dialog without recreating the account (2026-11-12).",
-        "SMS verification uses a single AutoFill-compatible code input and a single-line inline confirm action, with a separate resend action. Successful verification advances automatically, hides the code from completed/review cards, and marks the phone number 인증 완료. Only editing the phone number reopens verification. A pre-commit signup rejection preserves the review, all values and verification; never automatically cancels the continuation (2026-11-12).",
-        "The last step (8 / 8) is a separate profile-photo page: 140 round photo that is itself the button (navy pencil badge), question 20 semibold, explanation 14 regular, one action 이 사진 사용. Uploading disables photo and button; an upload failure keeps the old photo and adds one grey line 사진을 올리지 못했어요. 다시 시도해 주세요.",
-        "이 사진 사용 without a new photo confirms (카카오 사진을 그대로 사용할까요? or 사진 없이 가입할까요?, [사진 고르기] [그대로 사용 / 사진 없이 계속]); a replaced photo continues without a dialog. The review shows the editable circular photo with pencil badge above the information cards, without a profile-photo text card (2026-11-12)."
+        "SMS verification uses one AutoFill-compatible input and one inline action. After dispatch: empty code shows enabled 재발송; 1–5 digits shows disabled 확인; 6 digits shows enabled 확인. Never add a separate resend text button. Verified code input disappears and the phone is marked 인증 완료; only a changed phone requires another round. Ignore late responses for discarded rounds and retain the previous valid code after a failed resend (2026-11-12).",
+        "Signup keeps an editable circular profile photo with pencil badge at the top from the first field through review. Selecting opens only the system picker and returns to the same form; no separate photo step, photo text card, or confirmation page. Upload state and retry feedback remain inline; preserve the previous photo and other values on failure (2026-11-12).",
+        "The chosen uploaded photo, existing provider photo, or no photo is used directly at final submit. Photo choice does not require a separate continuation action. Client and server file limits agree at 5 MiB with multipart overhead budgeted separately; test real images above 2 MiB and verify persisted signup photo (2026-11-12)."
       ]
     },
     {
