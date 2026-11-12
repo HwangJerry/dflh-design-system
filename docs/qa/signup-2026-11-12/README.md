@@ -43,3 +43,12 @@
 서버는 기존 중복 확인 응답에 승인 대기일 때만 `signupPending: true`를 추가하고, 가입 충돌 시 `SIGNUP_ALREADY_PENDING`을 반환한다. canonical ALUMNI_VERIFICATION과 ACTIVE 계정 상태를 함께 조회한다. 기존 앱 호환성을 위해 그 밖에는 기존 응답 형태를 유지한다. 실제 MariaDB/HTTP의 6가지 상태 구분, 반복 소셜 가입 무생성, 기존 가입·iOS/Android 세션 회귀가 통과했다. 개발 환경의 baseline SQL import가 15초 제한에 걸려 테스트 지원 코드의 제한만 실행 중 60초로 늘렸으며 테스트 후 원상복구했다. 제품 코드나 검증 조건은 완화하지 않았다.
 
 서버 빌드 소스 `b5a7363`, SHA-256 `ece7f5333d3224fb29e54a92d32ab0f0fe748fde94e5612679357e6fa4966bf6`. 기존 환경·DB·라우팅을 보존하고 서버 실행 파일만 원자적으로 교체했다. 원격 실행 파일 hash 일치, systemd active, 공개 HTTPS `/api/health`의 `status: ok`를 확인했다. 기존 실행 파일은 서버에 rollback용으로 보존했다.
+
+## Store submission — 1.3.8 (2026-11-12)
+
+- iOS build `202611120831`: Fastlane `deliver` submitted successfully. API state `WAITING_FOR_REVIEW`, release `AFTER_APPROVAL`.
+- Android code `1861112001`: Aside CLI owner Console submission accepted; production full rollout, managed publishing off. “Changes in review”, with automatic quick checks running before reviewer processing.
+- A new synthetic approved member review account was created through normal registration, approved only for this purpose, and verified against production login/profile/alumni/messages/feed/hall-of-fame endpoints. No administrator role was granted. Both stores now use it; credentials remain outside Git.
+- Backend binary `b5a7363` is deployed and healthy. Native sources are pushed to main; release branches were not pushed to avoid duplicate CI uploads.
+
+Submission evidence: [Apple API state](asc-1.3.8-submission.json), [Google Play Console](play-1.3.8-submission.png).
